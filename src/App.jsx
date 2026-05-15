@@ -1080,17 +1080,17 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
           {[
-            { heading: "Tools",   links: ["Loan Simulator","Aid Translator","Reality Check"] },
-            { heading: "Company", links: ["About","Contact","Privacy"] },
+            { heading: "Tools",   links: [{ label: "Loan Simulator", href: "#simulator" }, { label: "Aid Translator", href: "#translator" }, { label: "Reality Check", href: "#reality" }] },
+            { heading: "Company", links: [{ label: "About", href: "#about" }, { label: "Contact", href: "#contact" }, { label: "Privacy", href: "#" }] },
           ].map(col => (
             <div key={col.heading}>
               <div style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(253,250,245,0.3)", marginBottom: "0.75rem" }}>{col.heading}</div>
               {col.links.map(l => (
-                <div key={l} style={{ marginBottom: "0.4rem" }}>
-                  <a href="#" style={{ fontSize: "0.82rem", color: "rgba(253,250,245,0.5)", transition: "color 0.2s" }}
+                <div key={l.label} style={{ marginBottom: "0.4rem" }}>
+                  <a href={l.href} style={{ fontSize: "0.82rem", color: "rgba(253,250,245,0.5)", transition: "color 0.2s" }}
                     onMouseEnter={e => e.target.style.color = T.paper}
                     onMouseLeave={e => e.target.style.color = "rgba(253,250,245,0.5)"}
-                  >{l}</a>
+                  >{l.label}</a>
                 </div>
               ))}
             </div>
@@ -1105,6 +1105,106 @@ function Footer() {
   );
 }
 
+// ─── ABOUT ────────────────────────────────────────────────────────────────────
+function About() {
+  const [ref, visible] = useReveal();
+
+  const cards = [
+    {
+      num: "01",
+      title: "Plain-English guidance",
+      body: "No jargon. No fine print buried in footnotes. Every term, offer, and obligation explained in language that actually makes sense.",
+    },
+    {
+      num: "02",
+      title: "Better borrowing decisions",
+      body: "Seeing the full picture before you sign — monthly payments, total interest, income impact — changes how you decide.",
+    },
+    {
+      num: "03",
+      title: "Built for students and families",
+      body: "Designed for the people most affected by student debt, not for institutions. Independent, unbiased, and free to use.",
+    },
+  ];
+
+  return (
+    <section id="about" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Header row */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start", marginBottom: "4rem" }}>
+          <div>
+            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>About</span>
+            <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
+              Why Paid Off exists.
+            </h2>
+          </div>
+          <div style={{ paddingTop: "0.5rem" }}>
+            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.8, fontWeight: 300 }}>
+              Most students are asked to make one of the biggest financial decisions of their lives before they fully understand the long-term impact. Paid Off is being built to make student debt easier to understand before, during, and after borrowing.
+            </p>
+          </div>
+        </div>
+
+        {/* Three cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
+          {cards.map((c, i) => (
+            <div key={i} style={{
+              background: T.white,
+              borderRadius: "10px",
+              border: `1px solid ${T.border}`,
+              padding: "2rem",
+              boxShadow: T.shadow,
+              transition: "transform 0.2s, box-shadow 0.2s",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = T.shadowMd; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = T.shadow; }}
+            >
+              <div className="mono" style={{ fontSize: "0.68rem", color: T.olive, letterSpacing: "0.1em", marginBottom: "1.25rem", opacity: 0.7 }}>{c.num}</div>
+              <div className="serif" style={{ fontSize: "1.1rem", fontWeight: 700, color: T.ink, marginBottom: "0.65rem", lineHeight: 1.2 }}>{c.title}</div>
+              <p style={{ fontSize: "0.85rem", color: T.inkSoft, lineHeight: 1.7 }}>{c.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`@media(max-width:900px){ #about .about-header { grid-template-columns: 1fr !important; gap: 2rem !important; } #about .about-cards { grid-template-columns: 1fr !important; } }`}</style>
+    </section>
+  );
+}
+
+// ─── CONTACT ──────────────────────────────────────────────────────────────────
+function Contact() {
+  const [ref, visible] = useReveal();
+
+  return (
+    <section id="contact" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.white, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "560px", margin: "0 auto" }}>
+        <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Contact</span>
+        <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
+          Want to talk about Paid Off?
+        </h2>
+        <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.8, fontWeight: 300, marginBottom: "2.25rem" }}>
+          Whether you're a student, parent, educator, university leader, or potential partner, I'd love to hear from you.
+        </p>
+        <a href="mailto:YOUR-EMAIL-HERE"
+          style={{
+            display: "inline-block",
+            background: T.olive, color: T.white,
+            padding: "0.88rem 2.25rem", borderRadius: "100px",
+            fontSize: "0.9rem", fontWeight: 500,
+            boxShadow: "0 4px 20px rgba(74,82,64,0.18)",
+            transition: "all 0.2s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(74,82,64,0.24)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(74,82,64,0.18)"; }}
+        >Contact Paid Off</a>
+      </div>
+    </section>
+  );
+}
+
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   useEffect(() => { injectGlobalStyles(); }, []);
@@ -1116,6 +1216,8 @@ export default function App() {
       <Simulator />
       <Translator />
       <RealityCheck />
+      <About />
+      <Contact />
       <Waitlist />
       <Footer />
     </div>

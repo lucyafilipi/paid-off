@@ -2,30 +2,39 @@ import { useState, useEffect, useRef } from "react";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 const T = {
-  olive:       "#4A5240",
-  oliveLight:  "#5C6650",
-  oliveMid:    "#7A8A6A",
-  olivePale:   "#B8C4A8",
-  oliveFaint:  "#E4EAD8",
-  sage:        "#ECF0E4",
-  parchment:   "#F6F3ED",
-  paper:       "#FDFAF5",
-  linen:       "#F0ECE3",
-  warm:        "#EDE8DF",
-  ink:         "#1C1F17",
-  inkMid:      "#3A3D30",
-  inkSoft:     "#6B7060",
+  // Primary accent — deep muted oxblood red
+  olive:       "#7A2D2D",
+  oliveLight:  "#8F3535",
+  oliveMid:    "#A05050",
+  olivePale:   "#C49090",
+  oliveFaint:  "#F5EAEA",
+
+  // Backgrounds — warm ivory / cream
+  sage:        "#F2EDEA",
+  parchment:   "#F7F3EF",
+  paper:       "#FDFAF7",
+  linen:       "#F0EAE4",
+  warm:        "#EDE5DC",
+
+  // Typography — warm charcoal
+  ink:         "#1E1A18",
+  inkMid:      "#3C3430",
+  inkSoft:     "#7A6E68",
   white:       "#FFFFFF",
-  amber:       "#8A6020",
-  amberBg:     "#FDF4E3",
-  rose:        "#8B3A2A",
-  roseBg:      "#FDF0ED",
-  green:       "#3A6040",
-  greenBg:     "#EAF2EC",
-  border:      "rgba(74,82,64,0.11)",
-  borderMid:   "rgba(74,82,64,0.22)",
-  shadow:      "0 2px 16px rgba(74,82,64,0.07)",
-  shadowMd:    "0 4px 32px rgba(74,82,64,0.1)",
+
+  // Status — warm-toned
+  amber:       "#8A5A20",
+  amberBg:     "#FBF2E4",
+  rose:        "#7A2828",
+  roseBg:      "#F7EDED",
+  green:       "#3A5A40",
+  greenBg:     "#EAF0EC",
+
+  // Borders & shadows
+  border:      "rgba(122,45,45,0.1)",
+  borderMid:   "rgba(122,45,45,0.2)",
+  shadow:      "0 2px 16px rgba(90,30,30,0.07)",
+  shadowMd:    "0 4px 32px rgba(90,30,30,0.11)",
 };
 
 // ─── GLOBAL STYLES ────────────────────────────────────────────────────────────
@@ -47,7 +56,7 @@ const GLOBAL_CSS = `
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 16px; height: 16px;
     background: ${T.olive}; border-radius: 50%; cursor: pointer;
-    box-shadow: 0 0 0 3px rgba(74,82,64,0.14);
+    box-shadow: 0 0 0 3px rgba(122,45,45,0.14);
   }
   input[type=range]::-moz-range-thumb {
     width: 16px; height: 16px; background: ${T.olive};
@@ -287,19 +296,19 @@ function Hero() {
         <div style={{
           position: "absolute", top: "-10%", right: "-8%",
           width: "55vw", height: "55vw", borderRadius: "50%",
-          background: "radial-gradient(ellipse at 60% 40%, rgba(212,204,188,0.45) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at 60% 40%, rgba(200,170,160,0.3) 0%, transparent 70%)",
         }} />
-        {/* Soft sage bloom bottom-left */}
+        {/* Soft blush bloom bottom-left */}
         <div style={{
           position: "absolute", bottom: "-5%", left: "-5%",
           width: "45vw", height: "45vw", borderRadius: "50%",
-          background: "radial-gradient(ellipse at 40% 60%, rgba(168,184,152,0.22) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse at 40% 60%, rgba(180,110,100,0.12) 0%, transparent 65%)",
         }} />
-        {/* Center warm wash */}
+        {/* Center warm ivory wash */}
         <div style={{
           position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)",
           width: "80vw", height: "40vw",
-          background: "radial-gradient(ellipse at 50% 50%, rgba(230,222,208,0.3) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at 50% 50%, rgba(230,215,205,0.35) 0%, transparent 60%)",
           borderRadius: "50%",
         }} />
         {/* Ghosted oversized wordmark */}
@@ -310,7 +319,7 @@ function Hero() {
           fontSize: "clamp(10rem, 26vw, 26rem)",
           fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em",
           color: "transparent",
-          WebkitTextStroke: "1.5px rgba(74,82,64,0.055)",
+          WebkitTextStroke: "1.5px rgba(122,45,45,0.05)",
           userSelect: "none", whiteSpace: "nowrap",
         }}>Paid Off.</div>
       </div>
@@ -360,11 +369,11 @@ function Hero() {
             background: T.olive, color: T.white,
             padding: "0.88rem 2.25rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(74,82,64,0.22)",
+            boxShadow: "0 4px 20px rgba(122,45,45,0.2)",
             transition: "all 0.2s",
           }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(74,82,64,0.28)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(74,82,64,0.22)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(122,45,45,0.26)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(122,45,45,0.2)"; }}
           >Try the Simulator</a>
           <a href="#translator" style={{
             color: T.inkMid, fontSize: "0.9rem", fontWeight: 400,
@@ -872,7 +881,7 @@ function Translator() {
               <a href="#waitlist" style={{
                 background: T.olive, color: T.white, padding: "0.8rem 1.75rem",
                 borderRadius: "100px", fontSize: "0.88rem", fontWeight: 500,
-                whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(74,82,64,0.2)",
+                whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(122,45,45,0.18)",
                 transition: "all 0.2s",
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-1px)"; }}
@@ -924,7 +933,7 @@ function RealityCheck() {
               display: "flex", justifyContent: "space-between", alignItems: "center",
               padding: "0.85rem 1.5rem",
               borderBottom: i < rows.length - 1 ? `1px solid ${T.border}` : "none",
-              background: r.warn ? "rgba(74,82,64,0.025)" : T.white,
+              background: r.warn ? "rgba(122,45,45,0.02)" : T.white,
             }}>
               <div>
                 <div style={{ fontSize: "0.85rem", color: T.inkMid }}>{r.label}</div>
@@ -989,7 +998,7 @@ function Waitlist() {
             <div aria-hidden="true" style={{
               position: "absolute", top: "-20%", right: "-10%",
               width: "70%", height: "70%", borderRadius: "50%",
-              background: "radial-gradient(ellipse, rgba(168,184,152,0.3) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse, rgba(180,130,120,0.2) 0%, transparent 65%)",
             }} />
             <div style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
               <div className="serif" style={{ fontSize: "2.75rem", fontWeight: 700, color: T.olive, opacity: 0.35, letterSpacing: "-0.02em" }}>Paid Off.</div>
@@ -1024,7 +1033,7 @@ function Waitlist() {
 
         <div style={{ paddingTop: "0.5rem" }}>
           {submitted ? (
-            <div style={{ background: T.greenBg, border: `1px solid rgba(58,96,64,0.2)`, borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
+            <div style={{ background: T.greenBg, border: `1px solid rgba(58,90,64,0.2)`, borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
               <div style={{ fontSize: "1rem", fontWeight: 600, color: T.green, marginBottom: "0.5rem" }}>You're on the list.</div>
               <p style={{ fontSize: "0.88rem", color: T.inkSoft }}>We'll email <strong style={{ color: T.ink }}>{email}</strong> when Paid Off launches.</p>
             </div>
@@ -1194,11 +1203,11 @@ function Contact() {
             background: T.olive, color: T.white,
             padding: "0.88rem 2.25rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(74,82,64,0.18)",
+            boxShadow: "0 4px 20px rgba(122,45,45,0.16)",
             transition: "all 0.2s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(74,82,64,0.24)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(74,82,64,0.18)"; }}
+          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(122,45,45,0.22)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(122,45,45,0.16)"; }}
         >Contact Paid Off</a>
       </div>
     </section>

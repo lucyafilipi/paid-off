@@ -1429,16 +1429,6 @@ function SurveyPage({ onNavigate }) {
   useEffect(() => {
     window.scrollTo({ top: 0 });
     injectGlobalStyles();
-
-    // Load Tally embed script
-    const script = document.createElement("script");
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(script)) document.head.removeChild(script);
-    };
   }, []);
 
   const navBtn = {
@@ -1549,17 +1539,16 @@ function SurveyPage({ onNavigate }) {
           borderRadius: "14px",
           overflow: "hidden",
           boxShadow: T.shadowMd,
-          minHeight: "600px",
         }}>
           <iframe
-            data-tally-src="https://tally.so/r/PdrD7b?transparentBackground=1"
+            src="https://tally.so/embed/PdrD7b?transparentBackground=1&dynamicHeight=1"
             width="100%"
-            height="100%"
+            height="700"
             frameBorder="0"
             marginHeight="0"
             marginWidth="0"
             title="Help Shape the Future of Student Debt"
-            style={{ display: "block", width: "100%", minHeight: "600px", border: "none" }}
+            style={{ display: "block", width: "100%", minHeight: "700px", border: "none" }}
           />
         </div>
 

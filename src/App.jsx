@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from "react";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 const T = {
-  // Primary accent — deep muted oxblood red
-  olive:       "#7A2D2D",
-  oliveLight:  "#8F3535",
-  oliveMid:    "#A05050",
-  olivePale:   "#C49090",
-  oliveFaint:  "#F5EAEA",
+  // Primary accent — brick red
+  olive:       "#B84040",
+  oliveLight:  "#C24A3A",
+  oliveMid:    "#C87060",
+  olivePale:   "#D4A090",
+  oliveFaint:  "#F8ECEC",
 
   // Backgrounds — warm ivory / cream
   sage:        "#F2EDEA",
@@ -25,28 +25,28 @@ const T = {
   // Status — warm-toned
   amber:       "#8A5A20",
   amberBg:     "#FBF2E4",
-  rose:        "#7A2828",
+  rose:        "#9B2828",
   roseBg:      "#F7EDED",
   green:       "#3A5A40",
   greenBg:     "#EAF0EC",
 
   // Borders & shadows
-  border:      "rgba(122,45,45,0.1)",
-  borderMid:   "rgba(122,45,45,0.2)",
-  shadow:      "0 2px 16px rgba(90,30,30,0.07)",
-  shadowMd:    "0 4px 32px rgba(90,30,30,0.11)",
+  border:      "rgba(184,64,64,0.1)",
+  borderMid:   "rgba(184,64,64,0.2)",
+  shadow:      "0 2px 16px rgba(140,40,40,0.07)",
+  shadowMd:    "0 4px 32px rgba(140,40,40,0.11)",
 };
 
 // ─── GLOBAL STYLES ────────────────────────────────────────────────────────────
 const GLOBAL_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: ${T.parchment}; color: ${T.ink}; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
   ::selection { background: ${T.olive}; color: ${T.white}; }
 
-  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .serif { font-family: 'Inter', -apple-system, 'Helvetica Neue', sans-serif; }
   .mono  { font-family: 'DM Mono', monospace; }
 
   input[type=range] {
@@ -56,7 +56,7 @@ const GLOBAL_CSS = `
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 16px; height: 16px;
     background: ${T.olive}; border-radius: 50%; cursor: pointer;
-    box-shadow: 0 0 0 3px rgba(122,45,45,0.14);
+    box-shadow: 0 0 0 3px rgba(184,64,64,0.14);
   }
   input[type=range]::-moz-range-thumb {
     width: 16px; height: 16px; background: ${T.olive};
@@ -203,8 +203,8 @@ const IconPeople = () => (
   </svg>
 );
 
-// ─── NAV ──────────────────────────────────────────────────────────────────────
-function Nav() {
+// ─── NAV (Homepage) ───────────────────────────────────────────────────────────
+function HomeNav({ navigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -213,11 +213,10 @@ function Nav() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const links = [
+  const anchorLinks = [
     { label: "Simulator",      href: "#simulator" },
     { label: "Aid Translator", href: "#translator" },
     { label: "Reality Check",  href: "#reality" },
-    { label: "About",          href: "#about" },
     { label: "Contact",        href: "#contact" },
   ];
 
@@ -226,22 +225,34 @@ function Nav() {
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "1rem 2.5rem",
-      background: scrolled ? "rgba(253,250,245,0.96)" : "transparent",
+      background: scrolled ? "rgba(253,250,247,0.96)" : "transparent",
       borderBottom: scrolled ? `1px solid ${T.border}` : "1px solid transparent",
       backdropFilter: scrolled ? "blur(12px)" : "none",
       transition: "all 0.35s ease",
     }}>
-      <a href="#" style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, letterSpacing: "-0.01em" }}>
+      <a href="#" style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, letterSpacing: "-0.01em" }}>
         Paid Off.
       </a>
       <div className="nav-links" style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-        {links.map(l => (
+        {anchorLinks.map(l => (
           <a key={l.label} href={l.href}
             style={{ fontSize: "0.82rem", color: T.inkSoft, transition: "color 0.2s" }}
             onMouseEnter={e => e.target.style.color = T.olive}
             onMouseLeave={e => e.target.style.color = T.inkSoft}
           >{l.label}</a>
         ))}
+        {/* About navigates to page */}
+        <button onClick={() => navigate("about")}
+          style={{ background: "none", border: "none", fontSize: "0.82rem", color: T.inkSoft, cursor: "pointer", padding: 0, transition: "color 0.2s", fontFamily: "'DM Sans',sans-serif" }}
+          onMouseEnter={e => e.target.style.color = T.olive}
+          onMouseLeave={e => e.target.style.color = T.inkSoft}
+        >About</button>
+        {/* Survey navigates to page */}
+        <button onClick={() => navigate("survey")}
+          style={{ background: "none", border: "none", fontSize: "0.82rem", color: T.inkSoft, cursor: "pointer", padding: 0, transition: "color 0.2s", fontFamily: "'DM Sans',sans-serif" }}
+          onMouseEnter={e => e.target.style.color = T.olive}
+          onMouseLeave={e => e.target.style.color = T.inkSoft}
+        >Survey</button>
         <a href="#waitlist" style={{
           background: T.olive, color: T.white, padding: "0.5rem 1.35rem",
           borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500,
@@ -263,7 +274,9 @@ function Nav() {
       `}</style>
       {menuOpen && (
         <div style={{ position: "fixed", top: "57px", left: 0, right: 0, background: T.paper, borderBottom: `1px solid ${T.border}`, padding: "1.5rem 2rem", display: "flex", flexDirection: "column", gap: "1.25rem", zIndex: 199 }}>
-          {links.map(l => (<a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{ fontSize: "1rem", color: T.inkMid }}>{l.label}</a>))}
+          {anchorLinks.map(l => (<a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{ fontSize: "1rem", color: T.inkMid }}>{l.label}</a>))}
+          <button onClick={() => { setMenuOpen(false); navigate("about"); }} style={{ background: "none", border: "none", fontSize: "1rem", color: T.inkMid, textAlign: "left", cursor: "pointer", padding: 0 }}>About</button>
+          <button onClick={() => { setMenuOpen(false); navigate("survey"); }} style={{ background: "none", border: "none", fontSize: "1rem", color: T.inkMid, textAlign: "left", cursor: "pointer", padding: 0 }}>Survey</button>
           <a href="#waitlist" onClick={() => setMenuOpen(false)} style={{ background: T.olive, color: T.white, padding: "0.75rem", borderRadius: "100px", textAlign: "center", fontWeight: 500 }}>Become a Tester</a>
         </div>
       )}
@@ -292,7 +305,7 @@ function Hero() {
         <div style={{ position: "absolute", bottom: "-5%", left: "-5%", width: "45vw", height: "45vw", borderRadius: "50%", background: "radial-gradient(ellipse at 40% 60%, rgba(180,110,100,0.12) 0%, transparent 65%)" }} />
         <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: "80vw", height: "40vw", background: "radial-gradient(ellipse at 50% 50%, rgba(230,215,205,0.35) 0%, transparent 60%)", borderRadius: "50%" }} />
         {/* Ghosted wordmark — atmospheric only, not the headline */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontFamily: "'Playfair Display',serif", fontSize: "clamp(10rem, 26vw, 26rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "1.5px rgba(122,45,45,0.045)", userSelect: "none", whiteSpace: "nowrap" }}>Paid Off.</div>
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "clamp(10rem, 26vw, 26rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "1.5px rgba(184,64,64,0.04)", userSelect: "none", whiteSpace: "nowrap" }}>Paid Off.</div>
       </div>
 
       {/* Foreground content */}
@@ -319,11 +332,11 @@ function Hero() {
             background: T.olive, color: T.white,
             padding: "0.88rem 2rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(122,45,45,0.2)",
+            boxShadow: "0 4px 20px rgba(184,64,64,0.2)",
             transition: "all 0.2s",
           }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(122,45,45,0.26)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(122,45,45,0.2)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(184,64,64,0.24)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,64,64,0.2)"; }}
           >Loan Simulator</a>
           <a href="#translator" style={{
             background: T.white, color: T.ink,
@@ -869,7 +882,7 @@ function Translator() {
               <a href="#waitlist" style={{
                 background: T.olive, color: T.white, padding: "0.8rem 1.75rem",
                 borderRadius: "100px", fontSize: "0.88rem", fontWeight: 500,
-                whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(122,45,45,0.18)",
+                whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(184,64,64,0.16)",
                 transition: "all 0.2s",
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-1px)"; }}
@@ -921,7 +934,7 @@ function RealityCheck() {
               display: "flex", justifyContent: "space-between", alignItems: "center",
               padding: "0.85rem 1.5rem",
               borderBottom: i < rows.length - 1 ? `1px solid ${T.border}` : "none",
-              background: r.warn ? "rgba(122,45,45,0.02)" : T.white,
+              background: r.warn ? "rgba(184,64,64,0.02)" : T.white,
             }}>
               <div>
                 <div style={{ fontSize: "0.85rem", color: T.inkMid }}>{r.label}</div>
@@ -1112,75 +1125,7 @@ function Footer() {
 }
 
 // ─── ABOUT / FOUNDER STORY ────────────────────────────────────────────────────
-function About() {
-  const [ref, visible] = useReveal();
-
-  const cards = [
-    {
-      num: "01",
-      title: "Plain-English guidance",
-      body: "No jargon. No fine print buried in footnotes. Every term, offer, and obligation explained in language that actually makes sense.",
-    },
-    {
-      num: "02",
-      title: "Better borrowing decisions",
-      body: "Seeing the full picture before you sign — monthly payments, total interest, income impact — changes how you decide.",
-    },
-    {
-      num: "03",
-      title: "Built for students and families",
-      body: "Designed for the people most affected by student debt, not for institutions. Independent, unbiased, and free to use.",
-    },
-  ];
-
-  return (
-    <section id="about" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-
-        {/* Header row */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start", marginBottom: "4rem" }}>
-          <div>
-            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Founder</span>
-            <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
-              Why I started<br />Paid Off.
-            </h2>
-          </div>
-          <div style={{ paddingTop: "0.5rem" }}>
-            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300, marginBottom: "1.25rem" }}>
-              When I was choosing a college, no one sat me down and explained what $40,000 in loans actually meant after graduation — what I'd owe each month, what percentage of my paycheck would disappear before I could spend it, or how long it would follow me.
-            </p>
-            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300, marginBottom: "1.25rem" }}>
-              I signed because everyone around me was signing. I trusted that it would "work out." It took years of repayment to fully understand what I had agreed to.
-            </p>
-            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300 }}>
-              Paid Off exists because that moment — standing in front of a financial aid offer you don't fully understand — shouldn't lead to a decade of regret. The tools on this site are what I wish had existed when I needed them.
-            </p>
-          </div>
-        </div>
-
-        {/* Three cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
-          {cards.map((c, i) => (
-            <div key={i} style={{
-              background: T.white, borderRadius: "10px",
-              border: `1px solid ${T.border}`, padding: "2rem",
-              boxShadow: T.shadow, transition: "transform 0.2s, box-shadow 0.2s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = T.shadowMd; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = T.shadow; }}
-            >
-              <div className="mono" style={{ fontSize: "0.68rem", color: T.olive, letterSpacing: "0.1em", marginBottom: "1.25rem", opacity: 0.7 }}>{c.num}</div>
-              <div className="serif" style={{ fontSize: "1.1rem", fontWeight: 700, color: T.ink, marginBottom: "0.65rem", lineHeight: 1.2 }}>{c.title}</div>
-              <p style={{ fontSize: "0.85rem", color: T.inkSoft, lineHeight: 1.7 }}>{c.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <style>{`@media(max-width:900px){ #about > div > div:first-of-type { grid-template-columns: 1fr !important; gap: 2rem !important; } #about > div > div:last-of-type { grid-template-columns: 1fr !important; } }`}</style>
-    </section>
-  );
-}
+// About function removed — replaced by FounderIntro below
 
 // ─── CONTACT ──────────────────────────────────────────────────────────────────
 function Contact() {
@@ -1203,29 +1148,467 @@ function Contact() {
             background: T.olive, color: T.white,
             padding: "0.88rem 2.25rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(122,45,45,0.16)",
+            boxShadow: "0 4px 20px rgba(184,64,64,0.14)",
             transition: "all 0.2s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(122,45,45,0.22)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(122,45,45,0.16)"; }}
+          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(184,64,64,0.2)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,64,64,0.14)"; }}
         >Contact Paid Off</a>
       </div>
     </section>
   );
 }
 
-// ─── APP ──────────────────────────────────────────────────────────────────────
+// ─── FOUNDER INTRO ───────────────────────────────────────────────────────────
+function FounderIntro({ navigate }) {
+  const [ref, visible] = useReveal();
+
+  return (
+    <section id="about" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Portrait + greeting + copy — two-column */}
+        <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "3.5rem", alignItems: "start" }}>
+
+          {/* Left: portrait */}
+          <div style={{ paddingTop: "0.5rem" }}>
+            <div style={{
+              width: "96px", height: "96px", borderRadius: "50%",
+              background: `linear-gradient(145deg, ${T.warm} 0%, ${T.linen} 100%)`,
+              border: `1.5px solid ${T.border}`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              overflow: "hidden", boxShadow: T.shadowMd,
+            }}>
+              {/* Replace with: <img src="lucy.jpg" alt="Lucy" style={{ width:"100%", height:"100%", objectFit:"cover" }} /> */}
+              <div className="serif" style={{ fontSize: "2.2rem", fontWeight: 700, color: T.olive, opacity: 0.4, lineHeight: 1 }}>L</div>
+            </div>
+          </div>
+
+          {/* Right: headline + copy */}
+          <div>
+            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "0.75rem" }}>Founder</span>
+            <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "2rem" }}>
+              Hi, I'm Lucy.
+            </h2>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "2.25rem" }}>
+              <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300 }}>
+                Throughout my four years in college, I signed loan documents simply to cover the bills, focused on one thing: earning my degree. I wasn't thinking about interest rates, repayment plans, or what those decisions would mean after graduation.
+              </p>
+              <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300 }}>
+                As graduation approached in 2025, reality started to set in. I wasn't just thinking about what career I wanted — I was thinking about how I was going to pay back my loans.
+              </p>
+              <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300 }}>
+                That realization led me to start Paid Off, with a mission to help prospective and current college students make informed financial decisions, understand the true cost of higher education, and take control of their student debt before graduation.
+              </p>
+              <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 400 }}>
+                I'm building the resource I wish I had as a student.
+              </p>
+            </div>
+
+            <button onClick={() => navigate("about")} style={{
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              background: "none", border: "none", cursor: "pointer", padding: 0,
+              fontSize: "0.88rem", fontWeight: 500, color: T.olive,
+              borderBottom: `1px solid ${T.olivePale}`, paddingBottom: "2px",
+              transition: "color 0.2s, border-color 0.2s",
+              fontFamily: "'DM Sans',sans-serif",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.color = T.oliveLight; e.currentTarget.style.borderColor = T.olive; }}
+              onMouseLeave={e => { e.currentTarget.style.color = T.olive; e.currentTarget.style.borderColor = T.olivePale; }}
+            >
+              Read My Story
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <style>{`@media(max-width:768px){ #about > div > div { grid-template-columns: 1fr !important; } }`}</style>
+    </section>
+  );
+}
+
+// ─── ABOUT PAGE ───────────────────────────────────────────────────────────────
+function AboutPage({ onNavigate }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    injectGlobalStyles();
+  }, []);
+
+  return (
+    <div style={{ background: T.paper, minHeight: "100vh" }}>
+
+      {/* Nav — simplified for About page */}
+      <nav style={{
+        position: "sticky", top: 0, zIndex: 200,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "1rem 2.5rem",
+        background: "rgba(253,250,247,0.97)",
+        borderBottom: `1px solid ${T.border}`,
+        backdropFilter: "blur(12px)",
+      }}>
+        <button onClick={() => onNavigate("home")}
+          style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, background: "none", border: "none", cursor: "pointer", letterSpacing: "-0.01em" }}>
+          Paid Off.
+        </button>
+        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+          <button onClick={() => onNavigate("home")}
+            style={{ background: "none", border: "none", fontSize: "0.82rem", color: T.inkSoft, cursor: "pointer", transition: "color 0.2s" }}
+            onMouseEnter={e => e.target.style.color = T.olive}
+            onMouseLeave={e => e.target.style.color = T.inkSoft}
+          >← Back to Home</button>
+          <button onClick={() => { onNavigate("home"); setTimeout(() => { document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
+            style={{ background: T.olive, color: T.white, padding: "0.5rem 1.35rem", borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500, border: "none", cursor: "pointer", transition: "background 0.2s" }}
+            onMouseEnter={e => e.currentTarget.style.background = T.oliveLight}
+            onMouseLeave={e => e.currentTarget.style.background = T.olive}
+          >Become a Tester</button>
+        </div>
+      </nav>
+
+      {/* Hero — large editorial header */}
+      <div style={{
+        padding: "6rem 2.5rem 5rem",
+        borderBottom: `1px solid ${T.border}`,
+        background: T.paper,
+        position: "relative", overflow: "hidden",
+      }}>
+        {/* Subtle bg gradient blob */}
+        <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-5%", width: "50vw", height: "50vw", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(200,170,160,0.2) 0%, transparent 65%)", pointerEvents: "none" }} />
+
+        <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <span className="fade-up d1" style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1.25rem" }}>
+            Founder Story
+          </span>
+          <h1 className="fade-up d2 serif" style={{
+            fontSize: "clamp(2.4rem, 5vw, 4rem)",
+            fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.03em",
+            color: T.ink, marginBottom: "0",
+          }}>
+            Why I Started<br />Paid Off.
+          </h1>
+        </div>
+      </div>
+
+      {/* Article body */}
+      <article style={{ maxWidth: "680px", margin: "0 auto", padding: "5rem 2.5rem 3rem" }}>
+
+        {/* Portrait + greeting */}
+        <div className="fade-up d1" style={{ display: "flex", alignItems: "flex-start", gap: "2rem", marginBottom: "3.5rem", flexWrap: "wrap" }}>
+          {/* Portrait — swap inner <div> for <img> when photo is ready */}
+          <div style={{
+            flexShrink: 0,
+            width: "100px", height: "100px", borderRadius: "50%",
+            background: `linear-gradient(145deg, ${T.sage} 0%, ${T.warm} 100%)`,
+            border: `1.5px solid ${T.border}`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            overflow: "hidden", boxShadow: T.shadowMd,
+          }}>
+            {/* Replace this div with: <img src="lucy.jpg" alt="Lucy" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
+            <div className="serif" style={{ fontSize: "2.4rem", fontWeight: 700, color: T.olive, opacity: 0.4, lineHeight: 1 }}>L</div>
+          </div>
+          <div style={{ paddingTop: "0.5rem" }}>
+            <div style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.5rem" }}>Founder, Paid Off</div>
+            <div className="serif" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.4rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
+              Hi, I'm Lucy.
+            </div>
+          </div>
+        </div>
+
+        {/* Thin rule */}
+        <div style={{ width: "40px", height: "1px", background: T.olivePale, marginBottom: "3.5rem" }} />
+
+        {/* Story paragraphs */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+
+          <p style={{ fontSize: "1.1rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            In 2021, I started college excited to earn a degree in Biomedical Sciences from Marquette University. Like many students, I signed loan documents and accepted financial aid without fully understanding the long-term financial impact of those decisions.
+          </p>
+
+          <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            As graduation approached, reality started to set in. I wasn't just thinking about what career I wanted — I was thinking about how I was going to pay back my loans. During my final semester, I developed a concept in my New Venture Creation class born out of that anxiety and uncertainty. I called it Paid Off.
+          </p>
+
+          {/* Pull quote */}
+          <blockquote style={{
+            margin: "1rem 0",
+            paddingLeft: "1.75rem",
+            borderLeft: `3px solid ${T.olive}`,
+          }}>
+            <p className="serif" style={{ fontSize: "1.25rem", fontStyle: "italic", fontWeight: 400, color: T.inkMid, lineHeight: 1.7, letterSpacing: "-0.01em" }}>
+              The idea never left me.
+            </p>
+          </blockquote>
+
+          <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            The more I learned, the more I realized that millions of students face the same problem. We spend years helping students figure out how to pay for college, but very little time helping them understand the long-term consequences of borrowing — or giving them meaningful ways to reduce debt before graduation.
+          </p>
+
+          {/* Emphasis line */}
+          <p style={{ fontSize: "1.1rem", color: T.ink, lineHeight: 1.8, fontWeight: 500 }}>
+            That's why I'm building Paid Off.
+          </p>
+
+          <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            My mission is to help students better understand the true cost of college, make informed financial decisions, and reduce student loan debt while they're still in school. I believe every student deserves access to tools, opportunities, and information that make financial freedom more achievable after graduation.
+          </p>
+
+          <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            Paid Off is still in its early stages, and I'm learning as I go. But if you're a student, parent, educator, employer, or someone who believes there should be a better path through higher education, I'd love to connect.
+          </p>
+
+          {/* Sign-off */}
+          <div style={{ paddingTop: "1rem" }}>
+            <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.7, marginBottom: "0.5rem" }}>Thanks for being here.</p>
+            <p className="serif" style={{ fontSize: "1.35rem", fontStyle: "italic", fontWeight: 400, color: T.ink, letterSpacing: "-0.01em" }}>— Lucy</p>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: "1px", background: T.border, margin: "4rem 0" }} />
+
+        {/* Let's Connect */}
+        <div style={{
+          background: T.sage,
+          borderRadius: "12px",
+          padding: "3rem",
+          border: `1px solid ${T.border}`,
+          position: "relative", overflow: "hidden",
+        }}>
+          {/* Decorative blob */}
+          <div aria-hidden="true" style={{ position: "absolute", top: "-30%", right: "-10%", width: "60%", height: "120%", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(180,130,120,0.15) 0%, transparent 65%)", pointerEvents: "none" }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "0.85rem" }}>Get in touch</span>
+            <h3 className="serif" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
+              Let's connect.
+            </h3>
+            <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75, marginBottom: "2rem", maxWidth: "400px" }}>
+              Whether you're a student, parent, educator, university leader, or potential partner — I'd love to hear from you.
+            </p>
+            <button onClick={() => { onNavigate("home"); setTimeout(() => { document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                background: T.olive, color: T.white,
+                padding: "0.85rem 2rem", borderRadius: "100px",
+                fontSize: "0.9rem", fontWeight: 500, border: "none",
+                cursor: "pointer",
+                boxShadow: "0 4px 20px rgba(184,64,64,0.16)",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
+            >
+              Contact Paid Off
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom padding */}
+        <div style={{ height: "4rem" }} />
+      </article>
+
+      {/* Footer */}
+      <footer style={{ background: T.ink, color: T.paper, padding: "2.5rem 2.5rem" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+          <div className="serif" style={{ fontSize: "1.1rem", fontWeight: 700, color: T.paper }}>Paid Off.</div>
+          <p style={{ fontSize: "0.7rem", color: "rgba(253,250,245,0.3)" }}>© 2025 Paid Off. Not financial advice. For educational purposes only.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// ─── SURVEY PAGE ──────────────────────────────────────────────────────────────
+function SurveyPage({ onNavigate }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    injectGlobalStyles();
+
+    // Load Tally embed script
+    const script = document.createElement("script");
+    script.src = "https://tally.so/widgets/embed.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      if (document.head.contains(script)) document.head.removeChild(script);
+    };
+  }, []);
+
+  const navBtn = {
+    background: "none", border: "none", fontSize: "0.82rem",
+    color: T.inkSoft, cursor: "pointer", transition: "color 0.2s",
+    fontFamily: "'DM Sans',sans-serif", padding: 0,
+  };
+
+  return (
+    <div style={{ background: T.parchment, minHeight: "100vh" }}>
+
+      {/* Sticky nav */}
+      <nav style={{
+        position: "sticky", top: 0, zIndex: 200,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "1rem 2.5rem",
+        background: "rgba(253,250,247,0.97)",
+        borderBottom: `1px solid ${T.border}`,
+        backdropFilter: "blur(12px)",
+      }}>
+        <button onClick={() => onNavigate("home")}
+          style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, background: "none", border: "none", cursor: "pointer", letterSpacing: "-0.01em" }}>
+          Paid Off.
+        </button>
+        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+          <button onClick={() => onNavigate("home")} style={navBtn}
+            onMouseEnter={e => e.target.style.color = T.olive}
+            onMouseLeave={e => e.target.style.color = T.inkSoft}
+          >← Back to Home</button>
+          <button
+            onClick={() => { onNavigate("home"); setTimeout(() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+            style={{ background: T.olive, color: T.white, padding: "0.5rem 1.35rem", borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500, border: "none", cursor: "pointer", transition: "background 0.2s" }}
+            onMouseEnter={e => e.currentTarget.style.background = T.oliveLight}
+            onMouseLeave={e => e.currentTarget.style.background = T.olive}
+          >Become a Tester</button>
+        </div>
+      </nav>
+
+      {/* Page header */}
+      <div style={{
+        padding: "6rem 2.5rem 4rem",
+        borderBottom: `1px solid ${T.border}`,
+        background: T.paper,
+        position: "relative", overflow: "hidden",
+      }}>
+        <div aria-hidden="true" style={{
+          position: "absolute", top: "-20%", right: "-5%",
+          width: "50vw", height: "50vw", borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(200,160,150,0.18) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }} />
+        <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <span className="fade-up d1" style={{
+            fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em",
+            textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1.25rem",
+          }}>Research</span>
+          <h1 className="fade-up d2 serif" style={{
+            fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+            fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.03em",
+            color: T.ink, marginBottom: "1.25rem",
+          }}>
+            Student Debt<br />Experience Survey.
+          </h1>
+          <p className="fade-up d3" style={{
+            fontSize: "1rem", color: T.inkSoft, lineHeight: 1.8,
+            fontWeight: 300, maxWidth: "520px",
+          }}>
+            Help shape Paid Off. Share your experience with student loans — what you understood, what surprised you, and what you wish you'd known sooner. It takes about 3 minutes.
+          </p>
+        </div>
+      </div>
+
+      {/* Survey embed */}
+      <div style={{
+        maxWidth: "860px", margin: "0 auto",
+        padding: "4rem 2.5rem 6rem",
+      }}>
+
+        {/* Context strip */}
+        <div style={{
+          display: "flex", gap: "2rem", marginBottom: "3rem",
+          flexWrap: "wrap",
+        }}>
+          {[
+            { label: "Time", val: "~3 minutes" },
+            { label: "Questions", val: "10–12" },
+            { label: "Purpose", val: "Improve Paid Off" },
+            { label: "Your data", val: "Anonymous" },
+          ].map((item, i) => (
+            <div key={i} style={{
+              flex: "1 1 120px",
+              background: T.white,
+              border: `1px solid ${T.border}`,
+              borderRadius: "10px",
+              padding: "1.25rem 1.5rem",
+              boxShadow: T.shadow,
+            }}>
+              <div style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.35rem" }}>{item.label}</div>
+              <div style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink }}>{item.val}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Tally embed */}
+        <div style={{
+          background: T.white,
+          border: `1px solid ${T.border}`,
+          borderRadius: "14px",
+          overflow: "hidden",
+          boxShadow: T.shadowMd,
+          minHeight: "600px",
+        }}>
+          <iframe
+            data-tally-src="https://tally.so/r/PdrD7b?transparentBackground=1"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            marginHeight="0"
+            marginWidth="0"
+            title="Help Shape the Future of Student Debt"
+            style={{ display: "block", width: "100%", minHeight: "600px", border: "none" }}
+          />
+        </div>
+
+        {/* Footer note */}
+        <p style={{
+          fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.65,
+          marginTop: "1.75rem", maxWidth: "480px",
+        }}>
+          Your responses are anonymous and used only to improve Paid Off. By submitting, you agree that your answers may inform product decisions and future research.
+        </p>
+      </div>
+
+      {/* Page footer */}
+      <footer style={{ background: T.ink, color: T.paper, padding: "2.5rem 2.5rem" }}>
+        <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+          <button onClick={() => onNavigate("home")}
+            style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.1rem", fontWeight: 700, color: T.paper, background: "none", border: "none", cursor: "pointer" }}>
+            Paid Off.
+          </button>
+          <p style={{ fontSize: "0.7rem", color: "rgba(253,250,245,0.3)" }}>© 2025 Paid Off. Not financial advice. For educational purposes only.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
 export default function App() {
+  const [page, setPage] = useState("home");
+
   useEffect(() => { injectGlobalStyles(); }, []);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    if (page === "home") window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
+  const navigate = (dest) => setPage(dest);
+
+  if (page === "about") return <AboutPage onNavigate={navigate} />;
+  if (page === "survey") return <SurveyPage onNavigate={navigate} />;
+
   return (
     <div>
-      <Nav />
+      <HomeNav navigate={navigate} />
       <Hero />
       <FeatureStrip />
       <Simulator />
       <Translator />
       <RealityCheck />
-      <About />
+      <FounderIntro navigate={navigate} />
       <Contact />
       <Waitlist />
       <Footer />

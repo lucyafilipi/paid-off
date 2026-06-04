@@ -249,7 +249,7 @@ function Nav() {
         }}
           onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-1px)"; }}
           onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
-        >Join Waitlist</a>
+        >Become a Tester</a>
       </div>
       <button id="mob-menu" onClick={() => setMenuOpen(!menuOpen)}
         style={{ display: "none", background: "none", border: "none", fontSize: "1.3rem", color: T.ink }}>
@@ -264,7 +264,7 @@ function Nav() {
       {menuOpen && (
         <div style={{ position: "fixed", top: "57px", left: 0, right: 0, background: T.paper, borderBottom: `1px solid ${T.border}`, padding: "1.5rem 2rem", display: "flex", flexDirection: "column", gap: "1.25rem", zIndex: 199 }}>
           {links.map(l => (<a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{ fontSize: "1rem", color: T.inkMid }}>{l.label}</a>))}
-          <a href="#waitlist" onClick={() => setMenuOpen(false)} style={{ background: T.olive, color: T.white, padding: "0.75rem", borderRadius: "100px", textAlign: "center", fontWeight: 500 }}>Join Waitlist</a>
+          <a href="#waitlist" onClick={() => setMenuOpen(false)} style={{ background: T.olive, color: T.white, padding: "0.75rem", borderRadius: "100px", textAlign: "center", fontWeight: 500 }}>Become a Tester</a>
         </div>
       )}
     </nav>
@@ -273,7 +273,6 @@ function Nav() {
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function Hero() {
-  // Soft abstract SVG backdrop — no photography, but painterly and warm
   return (
     <section id="hero" style={{
       background: T.paper,
@@ -287,111 +286,61 @@ function Hero() {
       padding: "7rem 2rem 5rem",
       textAlign: "center",
     }}>
-
-      {/* Painterly background — warm abstract gradient shapes, no photo */}
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
-      }}>
-        {/* Large warm blob top-right */}
-        <div style={{
-          position: "absolute", top: "-10%", right: "-8%",
-          width: "55vw", height: "55vw", borderRadius: "50%",
-          background: "radial-gradient(ellipse at 60% 40%, rgba(200,170,160,0.3) 0%, transparent 70%)",
-        }} />
-        {/* Soft blush bloom bottom-left */}
-        <div style={{
-          position: "absolute", bottom: "-5%", left: "-5%",
-          width: "45vw", height: "45vw", borderRadius: "50%",
-          background: "radial-gradient(ellipse at 40% 60%, rgba(180,110,100,0.12) 0%, transparent 65%)",
-        }} />
-        {/* Center warm ivory wash */}
-        <div style={{
-          position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)",
-          width: "80vw", height: "40vw",
-          background: "radial-gradient(ellipse at 50% 50%, rgba(230,215,205,0.35) 0%, transparent 60%)",
-          borderRadius: "50%",
-        }} />
-        {/* Ghosted oversized wordmark */}
-        <div style={{
-          position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontFamily: "'Playfair Display',serif",
-          fontSize: "clamp(10rem, 26vw, 26rem)",
-          fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em",
-          color: "transparent",
-          WebkitTextStroke: "1.5px rgba(122,45,45,0.05)",
-          userSelect: "none", whiteSpace: "nowrap",
-        }}>Paid Off.</div>
+      {/* Painterly background */}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", top: "-10%", right: "-8%", width: "55vw", height: "55vw", borderRadius: "50%", background: "radial-gradient(ellipse at 60% 40%, rgba(200,170,160,0.3) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", bottom: "-5%", left: "-5%", width: "45vw", height: "45vw", borderRadius: "50%", background: "radial-gradient(ellipse at 40% 60%, rgba(180,110,100,0.12) 0%, transparent 65%)" }} />
+        <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: "80vw", height: "40vw", background: "radial-gradient(ellipse at 50% 50%, rgba(230,215,205,0.35) 0%, transparent 60%)", borderRadius: "50%" }} />
+        {/* Ghosted wordmark — atmospheric only, not the headline */}
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontFamily: "'Playfair Display',serif", fontSize: "clamp(10rem, 26vw, 26rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "1.5px rgba(122,45,45,0.045)", userSelect: "none", whiteSpace: "nowrap" }}>Paid Off.</div>
       </div>
 
       {/* Foreground content */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: "640px" }}>
-        {/* Small eyebrow */}
-        <div className="fade-up d1" style={{
-          display: "inline-flex", alignItems: "center", gap: "0.5rem",
-          background: T.sage, borderRadius: "100px",
-          padding: "0.35rem 1rem", marginBottom: "2.5rem",
-          fontSize: "0.72rem", fontWeight: 500, letterSpacing: "0.1em",
-          textTransform: "uppercase", color: T.oliveMid,
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "680px" }}>
+        <h1 className="fade-up d1 serif" style={{
+          fontSize: "clamp(2.6rem, 6vw, 5.5rem)",
+          fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.03em",
+          color: T.ink, marginBottom: "1.5rem",
         }}>
-          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: T.olive, display: "inline-block" }} />
-          Student debt clarity
-        </div>
-
-        {/* Main headline */}
-        <h1 className="fade-up d2 serif" style={{
-          fontSize: "clamp(4.5rem, 13vw, 11.5rem)",
-          fontWeight: 900, lineHeight: 0.92, letterSpacing: "-0.04em",
-          color: T.olive, marginBottom: "2rem",
-        }}>
-          Paid Off.
+          Before you borrow,<br />know what you're signing.
         </h1>
 
-        {/* Thin rule */}
-        <div className="fade-up d2" style={{
-          width: "40px", height: "1px",
-          background: T.olivePale,
-          margin: "0 auto 1.75rem",
-        }} />
-
-        {/* Subheadline */}
-        <p className="fade-up d3" style={{
-          fontSize: "1.15rem", color: T.inkMid, lineHeight: 1.7,
-          maxWidth: "380px", margin: "0 auto 2.75rem",
+        <p className="fade-up d2" style={{
+          fontSize: "1.1rem", color: T.inkSoft, lineHeight: 1.7,
+          maxWidth: "420px", margin: "0 auto 2.75rem",
           fontWeight: 300,
         }}>
-          Understand your loans.<br />Plan your future.<br />Take control of what comes next.
+          Free tools to simulate your loan costs and decode your financial aid offer — before you commit.
         </p>
 
-        {/* CTAs */}
-        <div className="fade-up d4" style={{ display: "flex", gap: "1rem", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+        {/* Two equal primary CTAs */}
+        <div className="fade-up d3" style={{ display: "flex", gap: "0.85rem", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
           <a href="#simulator" style={{
             background: T.olive, color: T.white,
-            padding: "0.88rem 2.25rem", borderRadius: "100px",
+            padding: "0.88rem 2rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
             boxShadow: "0 4px 20px rgba(122,45,45,0.2)",
             transition: "all 0.2s",
           }}
             onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(122,45,45,0.26)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(122,45,45,0.2)"; }}
-          >Try the Simulator</a>
+          >Loan Simulator</a>
           <a href="#translator" style={{
-            color: T.inkMid, fontSize: "0.9rem", fontWeight: 400,
-            borderBottom: `1px solid ${T.borderMid}`, paddingBottom: "2px",
-            transition: "color 0.2s, border-color 0.2s",
+            background: T.white, color: T.ink,
+            padding: "0.88rem 2rem", borderRadius: "100px",
+            fontSize: "0.9rem", fontWeight: 500,
+            border: `1px solid ${T.borderMid}`,
+            boxShadow: T.shadow,
+            transition: "all 0.2s",
           }}
-            onMouseEnter={e => { e.currentTarget.style.color = T.olive; e.currentTarget.style.borderColor = T.olive; }}
-            onMouseLeave={e => { e.currentTarget.style.color = T.inkMid; e.currentTarget.style.borderColor = T.borderMid; }}
-          >Translate My Aid Letter →</a>
+            onMouseEnter={e => { e.currentTarget.style.borderColor = T.olive; e.currentTarget.style.color = T.olive; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; e.currentTarget.style.transform = "translateY(0)"; }}
+          >Translate Aid Offer</a>
         </div>
       </div>
 
-      {/* Bottom scroll hint */}
-      <div className="fade-up d4" style={{
-        position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: "0.4rem",
-        fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: T.olivePale,
-      }}>
+      {/* Scroll hint */}
+      <div className="fade-up d4" style={{ position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.4rem", fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: T.olivePale }}>
         <div style={{ width: "1px", height: "28px", background: T.olivePale, animation: "pulse 2.5s ease infinite" }} />
         Scroll
       </div>
@@ -436,13 +385,29 @@ function Simulator() {
   const [rate, setRate] = useState(6.5);
   const [years, setYears] = useState(10);
   const [salary, setSalary] = useState(50000);
+  const [partTime, setPartTime] = useState(0);          // monthly part-time income during school
+  const schoolYears = 4;
 
   const monthlyRate = rate / 100 / 12;
   const n = years * 12;
-  const monthly = monthlyRate === 0 ? loan / n
-    : (loan * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+
+  // Part-time income reduces principal before repayment starts
+  const partTimeContribution = partTime * 12 * schoolYears;
+  const effectiveLoan = Math.max(0, loan - partTimeContribution);
+
+  const monthly = monthlyRate === 0 ? effectiveLoan / n
+    : (effectiveLoan * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
   const totalRepay = monthly * n;
-  const totalInterest = totalRepay - loan;
+  const totalInterest = totalRepay - effectiveLoan;
+
+  // Without part-time work
+  const monthlyBase = monthlyRate === 0 ? loan / n
+    : (loan * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+  const totalRepayBase = monthlyBase * n;
+
+  const savings = totalRepayBase - totalRepay;
+  const hasPartTime = partTime > 0;
+
   const monthlyTakeHome = (salary * 0.72) / 12;
   const pctIncome = (monthly / monthlyTakeHome) * 100;
   const statusColor = pctIncome <= 10 ? T.green : pctIncome <= 20 ? T.amber : T.rose;
@@ -451,12 +416,12 @@ function Simulator() {
 
   const points = Array.from({ length: 24 }, (_, i) => {
     const t = i / 23;
-    if (monthlyRate === 0) return loan * (1 - t);
-    const remaining = loan * Math.pow(1 + monthlyRate, t * n) - monthly * (Math.pow(1 + monthlyRate, t * n) - 1) / monthlyRate;
+    if (monthlyRate === 0) return effectiveLoan * (1 - t);
+    const remaining = effectiveLoan * Math.pow(1 + monthlyRate, t * n) - monthly * (Math.pow(1 + monthlyRate, t * n) - 1) / monthlyRate;
     return Math.max(0, remaining);
   });
   const H = 56, W = 220;
-  const sparkPath = points.map((v, i) => `${i === 0 ? "M" : "L"} ${(i / 23) * W} ${H - (v / loan) * (H - 6)}`).join(" ");
+  const sparkPath = points.map((v, i) => `${i === 0 ? "M" : "L"} ${(i / 23) * W} ${H - (v / Math.max(loan, 1)) * (H - 6)}`).join(" ");
 
   const field = {
     width: "100%", padding: "0.6rem 0.85rem",
@@ -487,7 +452,7 @@ function Simulator() {
           >Try the Simulator</a>
         </div>
 
-        {/* Card — warm white, no dark backgrounds */}
+        {/* Card */}
         <div style={{ background: T.white, borderRadius: "14px", border: `1px solid ${T.border}`, padding: "2rem", boxShadow: T.shadowMd }}>
           <div style={{ fontSize: "0.88rem", fontWeight: 600, color: T.ink, marginBottom: "1.5rem" }}>Loan Simulator</div>
 
@@ -525,12 +490,12 @@ function Simulator() {
           </div>
 
           {/* Sliders */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem", marginBottom: "1.5rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem", marginBottom: "1.25rem" }}>
             {[
-              { label: "Loan Amount",    value: loan,   min: 5000,  max: 150000, step: 1000, onChange: setLoan,   display: fmt(loan) },
-              { label: "Interest Rate",  value: rate,   min: 3,     max: 12,     step: 0.1,  onChange: setRate,   display: `${rate.toFixed(1)}%` },
-              { label: "Repayment Term", value: years,  min: 5,     max: 30,     step: 1,    onChange: setYears,  display: `${years} yrs` },
-              { label: "Starting Salary",value: salary, min: 25000, max: 150000, step: 1000, onChange: setSalary, display: fmt(salary) },
+              { label: "Loan Amount",    value: loan,     min: 5000,  max: 150000, step: 1000, onChange: setLoan,     display: fmt(loan) },
+              { label: "Interest Rate",  value: rate,     min: 3,     max: 12,     step: 0.1,  onChange: setRate,     display: `${rate.toFixed(1)}%` },
+              { label: "Repayment Term", value: years,    min: 5,     max: 30,     step: 1,    onChange: setYears,    display: `${years} yrs` },
+              { label: "Starting Salary",value: salary,   min: 25000, max: 150000, step: 1000, onChange: setSalary,   display: fmt(salary) },
             ].map(s => (
               <div key={s.label}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
@@ -540,6 +505,32 @@ function Simulator() {
                 <input type="range" min={s.min} max={s.max} step={s.step} value={s.value} onChange={e => s.onChange(Number(e.target.value))} />
               </div>
             ))}
+          </div>
+
+          {/* Part-time income — separated with label */}
+          <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: "1rem", marginBottom: "1.25rem" }}>
+            <div style={{ fontSize: "0.7rem", fontWeight: 600, color: T.oliveMid, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
+              Working while in school?
+            </div>
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
+                <span style={{ fontSize: "0.68rem", color: T.inkSoft }}>Monthly Part-Time Income</span>
+                <span className="mono" style={{ fontSize: "0.68rem", color: partTime > 0 ? T.green : T.inkSoft }}>{partTime > 0 ? fmt(partTime) + "/mo" : "Not working"}</span>
+              </div>
+              <input type="range" min={0} max={2000} step={50} value={partTime} onChange={e => setPartTime(Number(e.target.value))} />
+            </div>
+
+            {/* Part-time impact callout */}
+            {hasPartTime && (
+              <div style={{ marginTop: "0.85rem", padding: "0.85rem 1rem", background: T.greenBg, borderRadius: "8px", borderLeft: `3px solid ${T.green}` }}>
+                <div style={{ fontSize: "0.72rem", fontWeight: 600, color: T.green, marginBottom: "0.2rem" }}>
+                  Working reduces your loan by {fmt(partTimeContribution)}
+                </div>
+                <div style={{ fontSize: "0.72rem", color: T.inkSoft, lineHeight: 1.5 }}>
+                  Saving {fmt(partTime)}/mo over {schoolYears} years of school → <strong style={{ color: T.green }}>{fmt(Math.round(savings))} less</strong> repaid total
+                </div>
+              </div>
+            )}
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", borderTop: `1px solid ${T.border}`, paddingTop: "1.25rem" }}>
@@ -666,12 +657,9 @@ function Translator() {
         {/* Section header */}
         <div style={{ maxWidth: "560px", marginBottom: "3.5rem" }}>
           <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Aid Translator</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "0.85rem" }}>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
             Upload your aid offer.<br />We'll translate it.
           </h2>
-          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Upload your financial aid offer and Paid Off will translate it into plain English — showing what's free money, what's debt, and what to watch out for.
-          </p>
         </div>
 
         {/* ── STAGE: UPLOAD ── */}
@@ -955,7 +943,7 @@ function RealityCheck() {
   );
 }
 
-// ─── WAITLIST ─────────────────────────────────────────────────────────────────
+// ─── EARLY TESTER SIGNUP ─────────────────────────────────────────────────────
 function Waitlist() {
   const [ref, visible] = useReveal();
   const [name, setName] = useState("");
@@ -978,102 +966,111 @@ function Waitlist() {
     outline: "none", marginBottom: "0.85rem",
   };
 
-  const earlyAccess = ["AI financial aid translation","Personalized loan impact projections","College cost comparison tools","Future debt payoff planning features"];
-  const earlyPerks  = ["Free premium access during beta","Personalized debt analysis","Priority feature access"];
+  const testerRoles = [
+    { num: "01", title: "Test new features", body: "Get hands-on access to tools before they're publicly released and help shape how they work." },
+    { num: "02", title: "Provide feedback", body: "Your experience as a student, parent, or educator directly informs what gets built next." },
+    { num: "03", title: "Receive early access", body: "Premium features free during beta. You'll get full access to everything Paid Off builds." },
+  ];
 
   return (
     <section id="waitlist" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.parchment, padding: "6rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+      style={{ background: T.parchment, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        <div>
-          {/* Decorative soft panel replacing photo */}
-          <div style={{
-            width: "100%", aspectRatio: "4/3", borderRadius: "10px", marginBottom: "2.25rem",
-            background: `linear-gradient(145deg, ${T.sage} 0%, ${T.warm} 55%, ${T.linen} 100%)`,
-            border: `1px solid ${T.border}`, display: "flex", alignItems: "center", justifyContent: "center",
-            position: "relative", overflow: "hidden",
-          }}>
-            {/* Abstract inner decoration */}
-            <div aria-hidden="true" style={{
-              position: "absolute", top: "-20%", right: "-10%",
-              width: "70%", height: "70%", borderRadius: "50%",
-              background: "radial-gradient(ellipse, rgba(180,130,120,0.2) 0%, transparent 65%)",
-            }} />
-            <div style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-              <div className="serif" style={{ fontSize: "2.75rem", fontWeight: 700, color: T.olive, opacity: 0.35, letterSpacing: "-0.02em" }}>Paid Off.</div>
-              <div style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, opacity: 0.5, marginTop: "0.35rem" }}>Your future, clarified</div>
-            </div>
-          </div>
-
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Early Access</span>
-          <h2 className="serif" style={{ fontSize: "clamp(1.75rem,3vw,2.4rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: T.ink, marginBottom: "2rem" }}>
-            Join the first group testing Paid Off's student debt tools.
+        {/* Section header */}
+        <div style={{ marginBottom: "4rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Early Testers</span>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, maxWidth: "580px" }}>
+            Help build Paid Off.
           </h2>
-
-          <div style={{ marginBottom: "1.75rem" }}>
-            <div style={{ fontSize: "0.72rem", fontWeight: 600, color: T.inkSoft, marginBottom: "0.65rem" }}>Early access includes:</div>
-            {earlyAccess.map((item, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", marginBottom: "0.4rem" }}>
-                <span style={{ color: T.olive, marginTop: "3px", fontSize: "0.7rem", flexShrink: 0 }}>•</span>
-                <span style={{ fontSize: "0.86rem", color: T.inkMid, lineHeight: 1.45 }}>{item}</span>
-              </div>
-            ))}
-          </div>
-          <div>
-            <div style={{ fontSize: "0.72rem", fontWeight: 600, color: T.inkSoft, marginBottom: "0.65rem" }}>Early users will receive:</div>
-            {earlyPerks.map((item, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", marginBottom: "0.4rem" }}>
-                <span style={{ color: T.olive, marginTop: "3px", fontSize: "0.7rem", flexShrink: 0 }}>•</span>
-                <span style={{ fontSize: "0.86rem", color: T.inkMid, lineHeight: 1.45 }}>{item}</span>
-              </div>
-            ))}
-          </div>
+          <p style={{ fontSize: "1rem", color: T.inkSoft, lineHeight: 1.75, marginTop: "1rem", maxWidth: "480px", fontWeight: 300 }}>
+            Paid Off is being built in the open. Become an early tester and help shape the tools that students and families actually need.
+          </p>
         </div>
 
-        <div style={{ paddingTop: "0.5rem" }}>
-          {submitted ? (
-            <div style={{ background: T.greenBg, border: `1px solid rgba(58,90,64,0.2)`, borderRadius: "10px", padding: "2.5rem", textAlign: "center" }}>
-              <div style={{ fontSize: "1rem", fontWeight: 600, color: T.green, marginBottom: "0.5rem" }}>You're on the list.</div>
-              <p style={{ fontSize: "0.88rem", color: T.inkSoft }}>We'll email <strong style={{ color: T.ink }}>{email}</strong> when Paid Off launches.</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+
+          {/* Left: what testers do */}
+          <div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2.5rem" }}>
+              {testerRoles.map((r, i) => (
+                <div key={i} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+                  <div className="mono" style={{ fontSize: "0.65rem", color: T.olive, letterSpacing: "0.1em", flexShrink: 0, marginTop: "3px", opacity: 0.7 }}>{r.num}</div>
+                  <div>
+                    <div style={{ fontSize: "0.92rem", fontWeight: 600, color: T.ink, marginBottom: "0.3rem" }}>{r.title}</div>
+                    <p style={{ fontSize: "0.84rem", color: T.inkSoft, lineHeight: 1.65 }}>{r.body}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <div>
-              <p style={{ fontSize: "0.82rem", color: T.inkSoft, marginBottom: "1.5rem", lineHeight: 1.6 }}>Spots are limited. Join now to secure early access.</p>
-              <input style={field} type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
-                onFocus={e => e.target.style.borderColor = T.olive}
-                onBlur={e => e.target.style.borderColor = T.border} />
-              <input style={field} type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)}
-                onFocus={e => e.target.style.borderColor = T.olive}
-                onBlur={e => e.target.style.borderColor = T.border} />
-              {error && <p style={{ fontSize: "0.78rem", color: T.rose, marginBottom: "0.75rem", marginTop: "-0.4rem" }}>{error}</p>}
-              <button onClick={handleSubmit} disabled={loading} style={{
-                width: "100%", background: loading ? T.olivePale : T.olive,
-                color: T.white, padding: "0.9rem", borderRadius: "100px",
-                fontSize: "0.9rem", fontWeight: 500, border: "none",
-                transition: "background 0.2s", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-              }}
-                onMouseEnter={e => { if (!loading) e.currentTarget.style.background = T.oliveLight; }}
-                onMouseLeave={e => { if (!loading) e.currentTarget.style.background = T.olive; }}
-              >
-                {loading
-                  ? <><span style={{ width: "14px", height: "14px", border: "2px solid rgba(255,255,255,0.3)", borderTopColor: T.white, borderRadius: "50%", display: "inline-block", animation: "spin 0.7s linear infinite" }} /> Joining...</>
-                  : "Join the Waitlist"}
-              </button>
-              <p style={{ fontSize: "0.68rem", color: T.olivePale, marginTop: "0.75rem", textAlign: "center" }}>No spam. Unsubscribe anytime.</p>
-            </div>
-          )}
-          <div style={{ display: "flex", gap: "2.5rem", marginTop: "3rem", paddingTop: "2rem", borderTop: `1px solid ${T.border}` }}>
-            {[["$1.7T","US student debt"],["45M","Borrowers"],["Free","Always"]].map(([num, lbl]) => (
-              <div key={lbl}>
-                <div className="serif" style={{ fontSize: "1.55rem", fontWeight: 700, color: T.olive, lineHeight: 1 }}>{num}</div>
-                <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.olivePale, marginTop: "0.2rem" }}>{lbl}</div>
+
+            {/* Decorative panel */}
+            <div style={{
+              borderRadius: "10px", padding: "1.75rem",
+              background: `linear-gradient(145deg, ${T.sage} 0%, ${T.warm} 60%, ${T.linen} 100%)`,
+              border: `1px solid ${T.border}`,
+              position: "relative", overflow: "hidden",
+            }}>
+              <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-10%", width: "70%", height: "70%", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(180,130,120,0.2) 0%, transparent 65%)" }} />
+              <div style={{ position: "relative", zIndex: 1 }}>
+                <div className="serif" style={{ fontSize: "1rem", fontStyle: "italic", color: T.inkSoft, lineHeight: 1.7, marginBottom: "0.75rem" }}>
+                  "Every feature on Paid Off comes from a real situation students face. Testers help make sure we're solving the right problems."
+                </div>
+                <div style={{ fontSize: "0.75rem", fontWeight: 500, color: T.oliveMid }}>— Paid Off founder</div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Right: form */}
+          <div>
+            {submitted ? (
+              <div style={{ background: T.greenBg, border: `1px solid rgba(58,90,64,0.2)`, borderRadius: "10px", padding: "2.5rem" }}>
+                <div style={{ fontSize: "1rem", fontWeight: 600, color: T.green, marginBottom: "0.5rem" }}>You're in.</div>
+                <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.6 }}>
+                  We'll reach out to <strong style={{ color: T.ink }}>{email}</strong> when early testing begins. Thank you for helping build this.
+                </p>
+              </div>
+            ) : (
+              <div style={{ background: T.white, borderRadius: "12px", border: `1px solid ${T.border}`, padding: "2.5rem", boxShadow: T.shadow }}>
+                <div style={{ fontSize: "0.82rem", color: T.inkSoft, marginBottom: "1.75rem", lineHeight: 1.6 }}>
+                  A small group of early testers will get hands-on access before Paid Off officially launches. Apply now.
+                </div>
+                <input style={field} type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
+                  onFocus={e => e.target.style.borderColor = T.olive}
+                  onBlur={e => e.target.style.borderColor = T.border} />
+                <input style={field} type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)}
+                  onFocus={e => e.target.style.borderColor = T.olive}
+                  onBlur={e => e.target.style.borderColor = T.border} />
+                {error && <p style={{ fontSize: "0.78rem", color: T.rose, marginBottom: "0.75rem", marginTop: "-0.4rem" }}>{error}</p>}
+                <button onClick={handleSubmit} disabled={loading} style={{
+                  width: "100%", background: loading ? T.olivePale : T.olive,
+                  color: T.white, padding: "0.9rem", borderRadius: "100px",
+                  fontSize: "0.9rem", fontWeight: 500, border: "none",
+                  transition: "background 0.2s", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                }}
+                  onMouseEnter={e => { if (!loading) e.currentTarget.style.background = T.oliveLight; }}
+                  onMouseLeave={e => { if (!loading) e.currentTarget.style.background = T.olive; }}
+                >
+                  {loading
+                    ? <><span style={{ width: "14px", height: "14px", border: "2px solid rgba(255,255,255,0.3)", borderTopColor: T.white, borderRadius: "50%", display: "inline-block", animation: "spin 0.7s linear infinite" }} /> Applying...</>
+                    : "Become an Early Tester"}
+                </button>
+                <p style={{ fontSize: "0.68rem", color: T.olivePale, marginTop: "0.75rem", textAlign: "center" }}>No spam. Unsubscribe anytime.</p>
+              </div>
+            )}
+
+            <div style={{ display: "flex", gap: "2.5rem", marginTop: "2.5rem", paddingTop: "2rem", borderTop: `1px solid ${T.border}` }}>
+              {[["$1.7T","US student debt"],["45M","Borrowers"],["Free","Always"]].map(([num, lbl]) => (
+                <div key={lbl}>
+                  <div className="serif" style={{ fontSize: "1.55rem", fontWeight: 700, color: T.olive, lineHeight: 1 }}>{num}</div>
+                  <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.olivePale, marginTop: "0.2rem" }}>{lbl}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:900px){ #waitlist > div { grid-template-columns: 1fr !important; gap: 3rem !important; } }`}</style>
+      <style>{`@media(max-width:900px){ #waitlist > div > div:last-of-type { grid-template-columns: 1fr !important; gap: 3rem !important; } }`}</style>
     </section>
   );
 }
@@ -1114,7 +1111,7 @@ function Footer() {
   );
 }
 
-// ─── ABOUT ────────────────────────────────────────────────────────────────────
+// ─── ABOUT / FOUNDER STORY ────────────────────────────────────────────────────
 function About() {
   const [ref, visible] = useReveal();
 
@@ -1144,14 +1141,20 @@ function About() {
         {/* Header row */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start", marginBottom: "4rem" }}>
           <div>
-            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>About</span>
+            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Founder</span>
             <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
-              Why Paid Off exists.
+              Why I started<br />Paid Off.
             </h2>
           </div>
           <div style={{ paddingTop: "0.5rem" }}>
-            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.8, fontWeight: 300 }}>
-              Most students are asked to make one of the biggest financial decisions of their lives before they fully understand the long-term impact. Paid Off is being built to make student debt easier to understand before, during, and after borrowing.
+            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300, marginBottom: "1.25rem" }}>
+              When I was choosing a college, no one sat me down and explained what $40,000 in loans actually meant after graduation — what I'd owe each month, what percentage of my paycheck would disappear before I could spend it, or how long it would follow me.
+            </p>
+            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300, marginBottom: "1.25rem" }}>
+              I signed because everyone around me was signing. I trusted that it would "work out." It took years of repayment to fully understand what I had agreed to.
+            </p>
+            <p style={{ fontSize: "1rem", color: T.inkMid, lineHeight: 1.85, fontWeight: 300 }}>
+              Paid Off exists because that moment — standing in front of a financial aid offer you don't fully understand — shouldn't lead to a decade of regret. The tools on this site are what I wish had existed when I needed them.
             </p>
           </div>
         </div>
@@ -1160,12 +1163,9 @@ function About() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
           {cards.map((c, i) => (
             <div key={i} style={{
-              background: T.white,
-              borderRadius: "10px",
-              border: `1px solid ${T.border}`,
-              padding: "2rem",
-              boxShadow: T.shadow,
-              transition: "transform 0.2s, box-shadow 0.2s",
+              background: T.white, borderRadius: "10px",
+              border: `1px solid ${T.border}`, padding: "2rem",
+              boxShadow: T.shadow, transition: "transform 0.2s, box-shadow 0.2s",
             }}
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = T.shadowMd; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = T.shadow; }}
@@ -1177,7 +1177,7 @@ function About() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:900px){ #about .about-header { grid-template-columns: 1fr !important; gap: 2rem !important; } #about .about-cards { grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`@media(max-width:900px){ #about > div > div:first-of-type { grid-template-columns: 1fr !important; gap: 2rem !important; } #about > div > div:last-of-type { grid-template-columns: 1fr !important; } }`}</style>
     </section>
   );
 }

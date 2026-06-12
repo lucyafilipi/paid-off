@@ -214,10 +214,11 @@ function HomeNav({ navigate }) {
   }, []);
 
   const anchorLinks = [
-    { label: "Simulator",      href: "#simulator" },
+    { label: "Compare",       href: "#compare" },
     { label: "Aid Translator", href: "#translator" },
-    { label: "Reality Check",  href: "#reality" },
-    { label: "Contact",        href: "#contact" },
+    { label: "Simulator",     href: "#simulator" },
+    { label: "Planner",       href: "#planner" },
+    { label: "Contact",       href: "#contact" },
   ];
 
   return (
@@ -314,8 +315,9 @@ function Hero() {
           fontSize: "clamp(2.6rem, 6vw, 5.5rem)",
           fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.03em",
           color: T.ink, marginBottom: "1.5rem",
+          textTransform: "uppercase",
         }}>
-          Before you borrow,<br />know what you're signing.
+          College Is an<br />Investment.<br />Let's Treat It<br />Like One.
         </h1>
 
         <p className="fade-up d2" style={{
@@ -323,7 +325,7 @@ function Hero() {
           maxWidth: "420px", margin: "0 auto 2.75rem",
           fontWeight: 300,
         }}>
-          Free tools to simulate your loan costs and decode your financial aid offer — before you commit.
+          Compare costs, estimate future payments, and understand how today's decisions may impact tomorrow's opportunities.
         </p>
 
         {/* Two equal primary CTAs */}
@@ -337,8 +339,8 @@ function Hero() {
           }}
             onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(184,64,64,0.24)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,64,64,0.2)"; }}
-          >Loan Simulator</a>
-          <a href="#translator" style={{
+          >Try the Simulator</a>
+          <a href="#waitlist" style={{
             background: T.white, color: T.ink,
             padding: "0.88rem 2rem", borderRadius: "100px",
             fontSize: "0.9rem", fontWeight: 500,
@@ -348,7 +350,7 @@ function Hero() {
           }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = T.olive; e.currentTarget.style.color = T.olive; e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; e.currentTarget.style.transform = "translateY(0)"; }}
-          >Translate Aid Offer</a>
+          >Join Early Access</a>
         </div>
       </div>
 
@@ -362,32 +364,110 @@ function Hero() {
 }
 
 // ─── FEATURE STRIP ────────────────────────────────────────────────────────────
-function FeatureStrip() {
+// ─── TOOLS ECOSYSTEM ──────────────────────────────────────────────────────────
+function ToolsEcosystem() {
   const [ref, visible] = useReveal();
-  const features = [
-    { icon: <IconGrid />,   title: "Loan Simulator",  body: "See the real cost of borrowing and compare repayment outcomes.", cta: "Try it →", href: "#simulator" },
-    { icon: <IconDoc />,    title: "Aid Translator",  body: "Upload your aid letter and get clear, plain-English answers.", cta: "Try it →", href: "#translator" },
-    { icon: <IconChart />,  title: "Reality Check",   body: "See how student debt can impact your future lifestyle.", cta: "Explore →", href: "#reality" },
-    { icon: <IconPeople />, title: "Built for Students", body: "Independent, unbiased, and designed to put you in control.", cta: "Learn more →", href: "#waitlist" },
+
+  const tools = [
+    {
+      icon: <IconChart />,
+      tag: "Decision Tool",
+      title: "Compare Your Future",
+      question: "Which path gives me the best financial outcome?",
+      body: "Compare schools, majors, scholarships, borrowing amounts, expected salaries, and career outlook side by side before making one of the biggest financial decisions of your life.",
+      cta: "Compare Paths",
+      href: "#compare",
+    },
+    {
+      icon: <IconDoc />,
+      tag: "Understanding Tool",
+      title: "Financial Aid Translator",
+      question: "What am I actually being offered?",
+      body: "Upload or enter a financial aid offer and see what's free money, what must be repaid, your estimated net cost, and questions to ask before accepting.",
+      cta: "Translate Aid Offer",
+      href: "#translator",
+    },
+    {
+      icon: <IconGrid />,
+      tag: "Education Tool",
+      title: "Borrowing Impact Simulator",
+      question: "What happens if I borrow this amount?",
+      body: "See how loan amount, interest rate, repayment term, and extra payments affect your monthly payment, total interest, and payoff timeline.",
+      cta: "Simulate Borrowing",
+      href: "#simulator",
+    },
+    {
+      icon: <IconPeople />,
+      tag: "Action Tool",
+      title: "Paid Off Planner",
+      question: "How can I reduce my debt before graduation?",
+      body: "Build a plan to reduce debt before graduation using part-time income, summer work, employer contributions, and extra payments.",
+      cta: "Build My Plan",
+      href: "#planner",
+    },
   ];
+
   return (
-    <div ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.white, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "1160px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
-        {features.map((f, i) => (
-          <div key={i} style={{ padding: "2.25rem 2rem", borderRight: i < 3 ? `1px solid ${T.border}` : "none" }}>
-            <div style={{ marginBottom: "1rem", opacity: 0.85 }}>{f.icon}</div>
-            <div style={{ fontSize: "0.93rem", fontWeight: 600, color: T.ink, marginBottom: "0.45rem" }}>{f.title}</div>
-            <p style={{ fontSize: "0.8rem", color: T.inkSoft, lineHeight: 1.65, marginBottom: "1rem" }}>{f.body}</p>
-            <a href={f.href} style={{ fontSize: "0.78rem", color: T.olive, fontWeight: 500, transition: "opacity 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-            >{f.cta}</a>
-          </div>
-        ))}
+    <section id="tools" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.paper, padding: "7rem 2.5rem" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Header */}
+        <div style={{ maxWidth: "640px", marginBottom: "3.5rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>The Paid Off System</span>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
+            Tools built for every step of the college decision.
+          </h2>
+          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
+            Four connected tools — each answering a different question, at a different stage of your decision.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
+          {tools.map((t, i) => (
+            <div key={i} style={{
+              background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px",
+              padding: "2rem", boxShadow: T.shadow,
+              display: "flex", flexDirection: "column",
+              transition: "transform 0.2s, box-shadow 0.2s",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = T.shadowMd; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = T.shadow; }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+                <div style={{ opacity: 0.85 }}>{t.icon}</div>
+                <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, background: T.oliveFaint, padding: "0.2rem 0.65rem", borderRadius: "100px" }}>{t.tag}</span>
+              </div>
+
+              <div className="serif" style={{ fontSize: "1.3rem", fontWeight: 700, color: T.ink, marginBottom: "0.5rem", lineHeight: 1.2 }}>{t.title}</div>
+
+              <div style={{ fontSize: "0.85rem", fontWeight: 500, color: T.olive, marginBottom: "0.75rem", fontStyle: "italic" }}>
+                "{t.question}"
+              </div>
+
+              <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, marginBottom: "1.5rem", flex: 1 }}>{t.body}</p>
+
+              <a href={t.href} style={{
+                display: "inline-flex", alignItems: "center", gap: "0.4rem",
+                fontSize: "0.85rem", fontWeight: 500, color: T.olive,
+                borderBottom: `1px solid ${T.olivePale}`, paddingBottom: "2px",
+                alignSelf: "flex-start", transition: "color 0.2s, border-color 0.2s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.color = T.oliveLight; e.currentTarget.style.borderColor = T.olive; }}
+                onMouseLeave={e => { e.currentTarget.style.color = T.olive; e.currentTarget.style.borderColor = T.olivePale; }}
+              >
+                {t.cta}
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
-      <style>{`@media(max-width:900px){ .feature-grid { grid-template-columns: 1fr 1fr !important; } @media(max-width:600px){ .feature-grid { grid-template-columns: 1fr !important; } } }`}</style>
-    </div>
+      <style>{`@media(max-width:768px){ #tools > div > div:last-of-type { grid-template-columns: 1fr !important; } }`}</style>
+    </section>
   );
 }
 
@@ -444,16 +524,16 @@ function Simulator() {
 
   return (
     <section id="simulator" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.parchment, padding: "6rem 2.5rem" }}>
+      style={{ background: T.sage, padding: "6rem 2.5rem" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.7fr", gap: "5rem", alignItems: "center" }}>
 
         <div>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Loan Simulator</span>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Borrowing Impact Simulator</span>
           <h2 className="serif" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
-            See the full picture.
+            What happens if I borrow this much?
           </h2>
           <p style={{ fontSize: "0.93rem", color: T.inkSoft, lineHeight: 1.75, marginBottom: "2rem" }}>
-            Model different loan amounts, interest rates, and repayment plans to see what your future could really look like.
+            Model different loan amounts, interest rates, and repayment plans to see your monthly payment, total interest, and payoff timeline.
           </p>
           <a href="#simulator" style={{
             display: "inline-block", padding: "0.65rem 1.5rem",
@@ -462,7 +542,7 @@ function Simulator() {
           }}
             onMouseEnter={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.color = T.white; e.currentTarget.style.borderColor = T.olive; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.inkMid; e.currentTarget.style.borderColor = T.borderMid; }}
-          >Try the Simulator</a>
+          >Simulate Borrowing</a>
         </div>
 
         {/* Card */}
@@ -664,12 +744,12 @@ function Translator() {
 
   return (
     <section id="translator" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.linen, padding: "7rem 2.5rem" }}>
+      style={{ background: T.sage, padding: "7rem 2.5rem" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
         {/* Section header */}
         <div style={{ maxWidth: "560px", marginBottom: "3.5rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Aid Translator</span>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Financial Aid Translator</span>
           <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
             Upload your aid offer.<br />We'll translate it.
           </h2>
@@ -897,61 +977,289 @@ function Translator() {
   );
 }
 
-// ─── REALITY CHECK ────────────────────────────────────────────────────────────
-function RealityCheck() {
+// ─── COMPARE YOUR FUTURE (Reality Check style, with school selector) ──────────
+// PLACEHOLDER DATA — replace with real school/major/salary/AI-risk data sources.
+// Each entry represents one "path": a school + major combination with its
+// associated cost, aid, borrowing, salary, and career-risk figures.
+const schoolPaths = [
+  {
+    school: "Marquette University",
+    major: "Biomedical Sciences",
+    yearlyCost: 58000,
+    aidPerYear: 14895,
+    borrowedTotal: 62000,
+    startingSalary: 52000,
+    aiRisk: 34, // 0-100, lower = safer — see riskColor()
+  },
+  {
+    school: "University of Wisconsin",
+    major: "Business Administration",
+    yearlyCost: 28000,
+    aidPerYear: 8000,
+    borrowedTotal: 38000,
+    startingSalary: 50000,
+    aiRisk: 55,
+  },
+  {
+    school: "Arizona State University",
+    major: "Computer Science",
+    yearlyCost: 34000,
+    aidPerYear: 6000,
+    borrowedTotal: 44000,
+    startingSalary: 78000,
+    aiRisk: 45,
+  },
+  {
+    school: "Ohio State University",
+    major: "Nursing",
+    yearlyCost: 30000,
+    aidPerYear: 9000,
+    borrowedTotal: 36000,
+    startingSalary: 68000,
+    aiRisk: 18,
+  },
+];
+
+// Derived output calculations — swap with real amortization / salary-API logic later
+function computePathOutputs(path) {
+  const rate = 0.065;
+  const years = 10;
+  const n = years * 12;
+  const monthlyRate = rate / 12;
+  const monthly = (path.borrowedTotal * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+  const totalRepay = monthly * n;
+  const totalInterest = totalRepay - path.borrowedTotal;
+  const monthlyTakeHome = (path.startingSalary * 0.72) / 12;
+  const dti = (monthly / monthlyTakeHome) * 100;
+
+  // Simple composite "Future Score" — weights debt burden, salary, and AI risk
+  // Replace with a more sophisticated model when real data is available
+  const dtiScore = Math.max(0, 100 - dti * 2.2);
+  const salaryScore = Math.min(100, (path.startingSalary / 1000));
+  const aiScore = 100 - path.aiRisk;
+  const futureScore = Math.round(dtiScore * 0.4 + salaryScore * 0.35 + aiScore * 0.25);
+
+  return { monthly, totalInterest, dti, futureScore };
+}
+
+function dtiOutlook(dti) {
+  if (dti <= 10) return { label: "Comfortable", color: T.green, bg: T.greenBg };
+  if (dti <= 20) return { label: "Manageable", color: T.amber, bg: T.amberBg };
+  return { label: "Tight", color: T.rose, bg: T.roseBg };
+}
+
+function CompareYourFuture() {
   const [ref, visible] = useReveal();
-  const data = { totalBorrowed: 58000, monthlyPayment: 644, avgSalary: 45000, payoffYears: 10, dti: 17.1 };
-  const rows = [
-    { label: "Total borrowed",       val: fmt(data.totalBorrowed),          warn: false },
-    { label: "Monthly payment",      val: fmt(data.monthlyPayment) + "/mo", warn: true },
-    { label: "Avg. starting salary", val: fmt(data.avgSalary) + "/yr",      warn: false },
-    { label: "Debt-to-income ratio", val: fmtPct(data.dti),                 warn: true, note: "Exceeds recommended 15%" },
-    { label: "Payoff timeline",      val: `${data.payoffYears} years`,       warn: false },
-    { label: "Total repaid",         val: fmt(data.monthlyPayment * 120),    warn: true },
-  ];
-  return (
-    <section id="reality" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.white, padding: "6rem 2.5rem" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
-        <div>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Reality Check</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
-            Every degree has a real cost.
-          </h2>
-          <p style={{ fontSize: "0.93rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            This is what a typical 4-year degree actually looks like on paper. The full tool lets you enter your own school, major, and income.
-          </p>
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [compareIdx, setCompareIdx] = useState(null); // null = single-school view
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [compareDropdownOpen, setCompareDropdownOpen] = useState(false);
+
+  const selected = schoolPaths[selectedIdx];
+  const out = computePathOutputs(selected);
+  const dtiInfo = dtiOutlook(out.dti);
+  const aiInfo = riskColor(selected.aiRisk);
+
+  const comparePath = compareIdx !== null ? schoolPaths[compareIdx] : null;
+  const compareOut = comparePath ? computePathOutputs(comparePath) : null;
+  const compareDtiInfo = compareOut ? dtiOutlook(compareOut.dti) : null;
+  const compareAiInfo = comparePath ? riskColor(comparePath.aiRisk) : null;
+
+  // Single profile card — same visual language as the old "Reality Check" card
+  const ProfileCard = ({ path, out, dtiInfo, aiInfo }) => {
+    const rows = [
+      { label: "Estimated yearly cost", val: fmt(path.yearlyCost), note: null },
+      { label: "Scholarships / aid per year", val: fmt(path.aidPerYear), note: null },
+      { label: "Estimated debt at graduation", val: fmt(path.borrowedTotal), warn: true },
+      { label: "Estimated monthly payment", val: fmt(Math.round(out.monthly)) + "/mo", warn: true },
+      { label: "Starting salary", val: fmt(path.startingSalary) + "/yr", note: null },
+      { label: "Total estimated interest", val: fmt(Math.round(out.totalInterest)), warn: true },
+    ];
+
+    return (
+      <div style={{ border: `1.5px solid ${T.borderMid}`, borderRadius: "10px", overflow: "hidden", boxShadow: T.shadow, background: T.white }}>
+        <div style={{ background: T.warm, padding: "1.25rem 1.5rem", borderBottom: `1px solid ${T.border}` }}>
+          <div style={{ fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.25rem" }}>Future Snapshot</div>
+          <div className="serif" style={{ fontSize: "1.5rem", fontWeight: 700, color: T.ink, lineHeight: 1.2 }}>{path.school}</div>
+          <div style={{ fontSize: "0.78rem", color: T.inkSoft, marginTop: "0.25rem" }}>{path.major}</div>
         </div>
-        <div style={{ border: `1.5px solid ${T.borderMid}`, borderRadius: "10px", overflow: "hidden", boxShadow: T.shadow }}>
-          <div style={{ background: T.warm, padding: "1.25rem 1.5rem", borderBottom: `1px solid ${T.border}` }}>
-            <div style={{ fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.25rem" }}>College Debt Facts</div>
-            <div className="serif" style={{ fontSize: "1.65rem", fontWeight: 700, color: T.ink, lineHeight: 1 }}>State University</div>
-            <div style={{ fontSize: "0.73rem", color: T.inkSoft, marginTop: "0.25rem" }}>4-Year Degree · Sample Profile</div>
+        <div style={{ height: "4px", background: T.olive }} />
+        {rows.map((r, i) => (
+          <div key={i} style={{
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            padding: "0.85rem 1.5rem",
+            borderBottom: i < rows.length - 1 ? `1px solid ${T.border}` : "none",
+            background: r.warn ? "rgba(184,64,64,0.02)" : T.white,
+          }}>
+            <div style={{ fontSize: "0.85rem", color: T.inkMid }}>{r.label}</div>
+            <div className="mono" style={{ fontSize: "0.93rem", fontWeight: 600, color: r.warn ? T.rose : T.ink }}>{r.val}</div>
           </div>
-          <div style={{ height: "4px", background: T.olive }} />
-          {rows.map((r, i) => (
-            <div key={i} style={{
-              display: "flex", justifyContent: "space-between", alignItems: "center",
-              padding: "0.85rem 1.5rem",
-              borderBottom: i < rows.length - 1 ? `1px solid ${T.border}` : "none",
-              background: r.warn ? "rgba(184,64,64,0.02)" : T.white,
-            }}>
-              <div>
-                <div style={{ fontSize: "0.85rem", color: T.inkMid }}>{r.label}</div>
-                {r.note && <div style={{ fontSize: "0.65rem", color: T.rose, marginTop: "0.1rem" }}>{r.note}</div>}
-              </div>
-              <div className="mono" style={{ fontSize: "0.93rem", fontWeight: 600, color: r.warn ? T.rose : T.ink }}>{r.val}</div>
-            </div>
-          ))}
-          <div style={{ background: T.olive, color: T.white, padding: "1rem 1.5rem" }}>
-            <div style={{ fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", opacity: 0.65, marginBottom: "0.2rem" }}>Bottom line</div>
-            <div style={{ fontSize: "0.88rem", fontWeight: 500, lineHeight: 1.5 }}>
-              {fmtPct(data.dti)} of monthly take-home goes to loans — for a decade.
-            </div>
+        ))}
+        {/* Outlook badges */}
+        <div style={{ display: "flex", gap: "0.75rem", padding: "1rem 1.5rem", borderBottom: `1px solid ${T.border}`, flexWrap: "wrap" }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.35rem" }}>Debt-to-income</div>
+            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: dtiInfo.color, background: dtiInfo.bg, padding: "0.2rem 0.65rem", borderRadius: "100px" }}>{dtiInfo.label}</span>
           </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.35rem" }}>Career / AI outlook</div>
+            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: aiInfo.color, background: aiInfo.bg, padding: "0.2rem 0.65rem", borderRadius: "100px" }}>{aiInfo.label}</span>
+          </div>
+        </div>
+        {/* Future Score bottom line */}
+        <div style={{ background: T.olive, color: T.white, padding: "1rem 1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div>
+            <div style={{ fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", opacity: 0.65, marginBottom: "0.2rem" }}>Future Score</div>
+            <div style={{ fontSize: "0.88rem", fontWeight: 500, lineHeight: 1.5 }}>Out of 100 — weighs debt, salary, and career outlook</div>
+          </div>
+          <div className="serif" style={{ fontSize: "2.25rem", fontWeight: 700, lineHeight: 1 }}>{out.futureScore}</div>
         </div>
       </div>
-      <style>{`@media(max-width:900px){ #reality > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }`}</style>
+    );
+  };
+
+  // Reusable school selector dropdown
+  const SchoolDropdown = ({ value, onChange, open, setOpen, excludeIdx, placeholder }) => (
+    <div style={{ position: "relative" }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
+          background: T.white, border: `1px solid ${open ? T.olive : T.border}`,
+          borderRadius: "10px", padding: "0.85rem 1.1rem",
+          fontSize: "0.9rem", fontWeight: 500, color: value === null ? T.inkSoft : T.ink,
+          cursor: "pointer", transition: "border-color 0.2s",
+          boxShadow: T.shadow,
+        }}
+      >
+        <span>{value === null ? placeholder : `${schoolPaths[value].school} — ${schoolPaths[value].major}`}</span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ transform: open ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
+          <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      {open && (
+        <div style={{
+          position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
+          background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
+          boxShadow: T.shadowMd, zIndex: 30, overflow: "hidden",
+        }}>
+          {placeholder && (
+            <button
+              onClick={() => { onChange(null); setOpen(false); }}
+              style={{ width: "100%", textAlign: "left", padding: "0.75rem 1.1rem", background: "transparent", border: "none", borderBottom: `1px solid ${T.border}`, fontSize: "0.85rem", color: T.inkSoft, cursor: "pointer" }}
+            >{placeholder}</button>
+          )}
+          {schoolPaths.map((p, i) => i !== excludeIdx && (
+            <button
+              key={p.school + p.major}
+              onClick={() => { onChange(i); setOpen(false); }}
+              style={{
+                width: "100%", textAlign: "left", padding: "0.75rem 1.1rem",
+                background: value === i ? T.oliveFaint : "transparent",
+                border: "none", borderBottom: `1px solid ${T.border}`,
+                fontSize: "0.85rem", fontWeight: value === i ? 600 : 400,
+                color: value === i ? T.olive : T.inkMid,
+                cursor: "pointer", transition: "background 0.15s",
+              }}
+              onMouseEnter={e => { if (value !== i) e.currentTarget.style.background = T.parchment; }}
+              onMouseLeave={e => { if (value !== i) e.currentTarget.style.background = "transparent"; }}
+            >
+              {p.school} — {p.major}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <section id="compare" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.paper, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Header */}
+        <div style={{ maxWidth: "640px", marginBottom: "2.5rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>The Main Tool</span>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
+            Compare Your Future
+          </h2>
+          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
+            See how different schools, majors, and borrowing decisions affect your debt, monthly payments, and financial freedom after graduation.
+          </p>
+        </div>
+
+        {/* Selectors */}
+        <div style={{ display: "grid", gridTemplateColumns: compareIdx === null ? "1fr auto" : "1fr 1fr", gap: "1rem", marginBottom: "2rem", alignItems: "start" }}>
+          <SchoolDropdown
+            value={selectedIdx}
+            onChange={setSelectedIdx}
+            open={dropdownOpen}
+            setOpen={setDropdownOpen}
+            excludeIdx={compareIdx}
+          />
+          {compareIdx === null ? (
+            <button
+              onClick={() => setCompareIdx(schoolPaths.findIndex((_, i) => i !== selectedIdx))}
+              style={{
+                display: "flex", alignItems: "center", gap: "0.5rem",
+                padding: "0.85rem 1.25rem", borderRadius: "10px",
+                border: `1px dashed ${T.borderMid}`, background: "transparent",
+                fontSize: "0.85rem", fontWeight: 500, color: T.inkSoft,
+                cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = T.olive; e.currentTarget.style.color = T.olive; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.inkSoft; }}
+            >
+              + Compare another school
+            </button>
+          ) : (
+            <SchoolDropdown
+              value={compareIdx}
+              onChange={(i) => { if (i === null) setCompareIdx(null); else setCompareIdx(i); }}
+              open={compareDropdownOpen}
+              setOpen={setCompareDropdownOpen}
+              excludeIdx={selectedIdx}
+              placeholder="Remove comparison"
+            />
+          )}
+        </div>
+
+        {/* Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: compareIdx === null ? "1fr" : "1fr 1fr", gap: "1.5rem", marginBottom: "2.5rem", maxWidth: compareIdx === null ? "560px" : "none", marginLeft: compareIdx === null ? "auto" : 0, marginRight: compareIdx === null ? "auto" : 0 }}>
+          <ProfileCard path={selected} out={out} dtiInfo={dtiInfo} aiInfo={aiInfo} />
+          {comparePath && <ProfileCard path={comparePath} out={compareOut} dtiInfo={compareDtiInfo} aiInfo={compareAiInfo} />}
+        </div>
+
+        {/* CTA */}
+        <div style={{ textAlign: "center" }}>
+          <a href="#tools" style={{
+            display: "inline-flex", alignItems: "center", gap: "0.5rem",
+            background: T.olive, color: T.white,
+            padding: "0.85rem 2.25rem", borderRadius: "100px",
+            fontSize: "0.9rem", fontWeight: 500,
+            boxShadow: "0 4px 20px rgba(184,64,64,0.18)",
+            transition: "all 0.2s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            Explore the Full Comparison Tool
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+          <p style={{ fontSize: "0.82rem", color: T.inkSoft, lineHeight: 1.7, marginTop: "1.25rem", maxWidth: "480px", marginLeft: "auto", marginRight: "auto" }}>
+            Compare schools, majors, aid packages, and repayment outcomes before making one of the biggest financial decisions of your life.
+          </p>
+        </div>
+
+        {/* Disclaimer */}
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, marginTop: "2rem", textAlign: "center", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
+          This preview uses sample data for a small set of schools. The full tool will let you enter any school, major, scholarship package, and borrowing scenario.
+        </p>
+
+      </div>
+      <style>{`@media(max-width:768px){ #compare > div > div:nth-of-type(2), #compare > div > div:nth-of-type(3) { grid-template-columns: 1fr !important; } }`}</style>
     </section>
   );
 }
@@ -987,7 +1295,7 @@ function Waitlist() {
 
   return (
     <section id="waitlist" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.parchment, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
         {/* Section header */}
@@ -1099,7 +1407,7 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
           {[
-            { heading: "Tools",   links: [{ label: "Loan Simulator", href: "#simulator" }, { label: "Aid Translator", href: "#translator" }, { label: "Reality Check", href: "#reality" }] },
+            { heading: "Tools",   links: [{ label: "Compare Your Future", href: "#compare" }, { label: "Aid Translator", href: "#translator" }, { label: "Borrowing Simulator", href: "#simulator" }, { label: "Paid Off Planner", href: "#planner" }] },
             { heading: "Company", links: [{ label: "About", href: "#about" }, { label: "Contact", href: "#contact" }, { label: "Privacy", href: "#" }] },
           ].map(col => (
             <div key={col.heading}>
@@ -1133,7 +1441,7 @@ function Contact() {
 
   return (
     <section id="contact" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.white, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      style={{ background: T.paper, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: "560px", margin: "0 auto" }}>
         <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Contact</span>
         <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
@@ -1329,7 +1637,7 @@ function AboutPage({ onNavigate }) {
           </p>
 
           <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
-            As graduation approached, reality started to set in. I wasn't just thinking about what career I wanted — I was thinking about how I was going to pay back my loans. During my final semester, I developed a concept in my New Venture Creation class born out of that anxiety and uncertainty. I called it Paid Off.
+            As graduation approached, reality started setting in. I wasn't just thinking about a career, I was thinking a lot about my loans. During my final semester, I developed a concept in my New Venture Creation class born out of that anxiety and uncertainty. I called it Paid Off.
           </p>
 
           {/* Pull quote */}
@@ -1344,7 +1652,7 @@ function AboutPage({ onNavigate }) {
           </blockquote>
 
           <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
-            The more I learned, the more I realized that millions of students face the same problem. We spend years helping students figure out how to pay for college, but very little time helping them understand the long-term consequences of borrowing — or giving them meaningful ways to reduce debt before graduation.
+            The more I learned, the more I realized that millions of students face the same problem—very little education on the long-term consequences of borrowing and almost no resources for reducing debt before graduation.
           </p>
 
           {/* Emphasis line */}
@@ -1574,6 +1882,571 @@ function SurveyPage({ onNavigate }) {
     </div>
   );
 }
+
+// ─── MAJOR FUTURE-PROOF EXPLORER ──────────────────────────────────────────────
+const majorData = [
+  {
+    major: "Nursing",
+    aiRisk: 18,
+    startingSalary: "$68,000",
+    midCareerSalary: "$92,000",
+    outlook: "Strong",
+    debtCaution: "Low to Moderate",
+    snapshot: "Healthcare roles that require hands-on patient care are less likely to be fully automated, though AI may change documentation, monitoring, and workflow.",
+  },
+  {
+    major: "Biomedical Sciences",
+    aiRisk: 34,
+    startingSalary: "$52,000",
+    midCareerSalary: "$88,000",
+    outlook: "Moderate",
+    debtCaution: "High if graduate school is required",
+    snapshot: "Strong foundation for research, healthcare, and biotech — but many higher-paying roles require an advanced degree. Weigh additional debt against expected income.",
+  },
+  {
+    major: "Business Administration",
+    aiRisk: 55,
+    startingSalary: "$50,000",
+    midCareerSalary: "$85,000",
+    outlook: "Moderate",
+    debtCaution: "Moderate",
+    snapshot: "Broad and flexible, but many entry-level analysis and admin tasks are increasingly automatable. Specialization and leadership experience matter more over time.",
+  },
+  {
+    major: "Computer Science",
+    aiRisk: 45,
+    startingSalary: "$78,000",
+    midCareerSalary: "$125,000",
+    outlook: "Strong",
+    debtCaution: "Low",
+    snapshot: "Technical skills remain valuable, but AI may change entry-level coding work. Students may need to focus on systems thinking, product knowledge, and applied problem-solving.",
+  },
+  {
+    major: "Marketing",
+    aiRisk: 62,
+    startingSalary: "$48,000",
+    midCareerSalary: "$82,000",
+    outlook: "Moderate",
+    debtCaution: "Moderate",
+    snapshot: "Marketing careers may remain valuable, but AI is likely to automate content creation, analytics, and campaign support. Human strategy and creativity will matter more.",
+  },
+  {
+    major: "Finance",
+    aiRisk: 58,
+    startingSalary: "$58,000",
+    midCareerSalary: "$105,000",
+    outlook: "Strong",
+    debtCaution: "Low to Moderate",
+    snapshot: "Core financial analysis is increasingly supported by automated tools, but advisory, judgment-heavy, and client-facing roles remain in demand.",
+  },
+  {
+    major: "Psychology",
+    aiRisk: 38,
+    startingSalary: "$42,000",
+    midCareerSalary: "$70,000",
+    outlook: "Moderate",
+    debtCaution: "High if graduate school is required",
+    snapshot: "Psychology can lead to meaningful careers, but many higher-paying paths require graduate education. Students should compare debt levels with expected income.",
+  },
+  {
+    major: "Education",
+    aiRisk: 22,
+    startingSalary: "$41,000",
+    midCareerSalary: "$58,000",
+    outlook: "Moderate",
+    debtCaution: "High relative to salary",
+    snapshot: "Teaching remains a human-centered profession with low automation risk, but salaries are often modest relative to the cost of the degree. Loan forgiveness programs may help.",
+  },
+  {
+    major: "Communications",
+    aiRisk: 60,
+    startingSalary: "$44,000",
+    midCareerSalary: "$72,000",
+    outlook: "Moderate",
+    debtCaution: "Moderate",
+    snapshot: "Writing, editing, and content tasks are highly exposed to AI tools. Career growth often depends on building a specialized niche or moving into strategy and leadership.",
+  },
+  {
+    major: "Biology",
+    aiRisk: 30,
+    startingSalary: "$45,000",
+    midCareerSalary: "$75,000",
+    outlook: "Moderate",
+    debtCaution: "High if graduate school is required",
+    snapshot: "A flexible science foundation, but many of the highest-paying paths (research, medicine, pharma) require additional degrees. Plan for that added cost.",
+  },
+  {
+    major: "Engineering",
+    aiRisk: 40,
+    startingSalary: "$72,000",
+    midCareerSalary: "$118,000",
+    outlook: "Strong",
+    debtCaution: "Low",
+    snapshot: "Engineering disciplines generally offer strong salaries relative to debt. AI may assist design and analysis, but hands-on technical expertise remains in demand.",
+  },
+  {
+    major: "Accounting",
+    aiRisk: 64,
+    startingSalary: "$54,000",
+    midCareerSalary: "$88,000",
+    outlook: "Moderate",
+    debtCaution: "Low to Moderate",
+    snapshot: "Routine bookkeeping and reporting tasks are highly automatable. Credentialed roles (CPA) and advisory-focused accounting remain more resilient.",
+  },
+  {
+    major: "Graphic Design",
+    aiRisk: 70,
+    startingSalary: "$40,000",
+    midCareerSalary: "$62,000",
+    outlook: "Declining",
+    debtCaution: "High relative to salary",
+    snapshot: "Generative AI tools directly overlap with core design tasks. Designers who pair visual skills with strategy, branding, or motion/UX tend to fare better.",
+  },
+  {
+    major: "Criminal Justice",
+    aiRisk: 28,
+    startingSalary: "$42,000",
+    midCareerSalary: "$64,000",
+    outlook: "Moderate",
+    debtCaution: "Moderate",
+    snapshot: "Many roles involve fieldwork and human judgment that's hard to automate, but salaries can be modest. Consider how debt compares to realistic starting pay.",
+  },
+  {
+    major: "Political Science",
+    aiRisk: 48,
+    startingSalary: "$44,000",
+    midCareerSalary: "$76,000",
+    outlook: "Moderate",
+    debtCaution: "High if graduate school is required",
+    snapshot: "A flexible degree often used as a stepping stone to law, policy, or graduate study — each of which adds significant cost. Map out the full education path before borrowing.",
+  },
+];
+
+// ─── PAID OFF PLANNER ─────────────────────────────────────────────────────────
+function PaidOffPlanner() {
+  const [ref, visible] = useReveal();
+
+  // PLACEHOLDER BASELINE — replace with the user's actual projected loan figures
+  const baseline = {
+    projectedDebtAtGrad: 42000,
+    rate: 6.5,
+    years: 10,
+  };
+
+  const [partTimeMonthly, setPartTimeMonthly] = useState(300);
+  const [summerEarnings, setSummerEarnings] = useState(2500);
+  const [employerContribution, setEmployerContribution] = useState(0);
+  const [extraMonthly, setExtraMonthly] = useState(50);
+
+  const schoolYears = 4;
+  const summersRemaining = 3;
+
+  // Total reduction to principal before graduation
+  const fromPartTime = partTimeMonthly * 12 * schoolYears;
+  const fromSummers = summerEarnings * summersRemaining;
+  const fromEmployer = employerContribution * 12 * schoolYears;
+  const debtReducedBeforeGrad = fromPartTime + fromSummers + fromEmployer;
+
+  const projectedGradDebt = Math.max(0, baseline.projectedDebtAtGrad - debtReducedBeforeGrad);
+
+  // Repayment comparison: baseline vs reduced principal + extra monthly payments
+  const monthlyRate = baseline.rate / 100 / 12;
+  const n = baseline.years * 12;
+
+  const calcTotalInterest = (principal, extraPmt) => {
+    if (principal <= 0) return { totalInterest: 0, months: 0 };
+    const basePmt = (principal * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    const pmt = basePmt + extraPmt;
+    let balance = principal;
+    let totalInterest = 0;
+    let months = 0;
+    while (balance > 0 && months < 600) {
+      const interest = balance * monthlyRate;
+      totalInterest += interest;
+      balance = balance + interest - pmt;
+      months++;
+    }
+    return { totalInterest, months };
+  };
+
+  const baselineResult = calcTotalInterest(baseline.projectedDebtAtGrad, 0);
+  const plannedResult = calcTotalInterest(projectedGradDebt, extraMonthly);
+
+  const interestSaved = baselineResult.totalInterest - plannedResult.totalInterest;
+  const monthsShaved = baselineResult.months - plannedResult.months;
+
+  const SliderRow = ({ label, value, min, max, step, onChange, display, hint }) => (
+    <div style={{ marginBottom: "1.25rem" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
+        <span style={{ fontSize: "0.78rem", color: T.inkMid, fontWeight: 500 }}>{label}</span>
+        <span className="mono" style={{ fontSize: "0.78rem", color: T.olive, fontWeight: 600 }}>{display}</span>
+      </div>
+      <input type="range" min={min} max={max} step={step} value={value} onChange={e => onChange(Number(e.target.value))} />
+      {hint && <div style={{ fontSize: "0.7rem", color: T.inkSoft, marginTop: "0.3rem" }}>{hint}</div>}
+    </div>
+  );
+
+  return (
+    <section id="planner" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.paper, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Header */}
+        <div style={{ maxWidth: "640px", marginBottom: "3.5rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Paid Off Planner</span>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
+            How can I reduce my debt before graduation?
+          </h2>
+          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
+            Build a plan using part-time income, summer work, employer contributions, and extra payments — and see how much it could shave off your future debt.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem", alignItems: "start" }}>
+
+          {/* Inputs */}
+          <div style={{ background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "2rem", boxShadow: T.shadow }}>
+            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: T.ink, marginBottom: "1.5rem" }}>Your action plan</div>
+
+            <SliderRow
+              label="Part-time income while in school"
+              value={partTimeMonthly} min={0} max={1500} step={50}
+              onChange={setPartTimeMonthly} display={`${fmt(partTimeMonthly)}/mo`}
+              hint={`Over ${schoolYears} years: ${fmt(fromPartTime)} toward your loans`}
+            />
+            <SliderRow
+              label="Summer earnings (per summer)"
+              value={summerEarnings} min={0} max={8000} step={250}
+              onChange={setSummerEarnings} display={fmt(summerEarnings)}
+              hint={`Over ${summersRemaining} summers: ${fmt(fromSummers)} toward your loans`}
+            />
+            <SliderRow
+              label="Employer / co-op contribution"
+              value={employerContribution} min={0} max={1000} step={50}
+              onChange={setEmployerContribution} display={`${fmt(employerContribution)}/mo`}
+              hint={fromEmployer > 0 ? `Over ${schoolYears} years: ${fmt(fromEmployer)} toward your loans` : "Some employers offer tuition or loan assistance"}
+            />
+            <SliderRow
+              label="Extra monthly payment after graduation"
+              value={extraMonthly} min={0} max={500} step={25}
+              onChange={setExtraMonthly} display={`${fmt(extraMonthly)}/mo`}
+              hint="Paid on top of your standard monthly payment"
+            />
+          </div>
+
+          {/* Outputs */}
+          <div style={{ background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "2rem", boxShadow: T.shadowMd }}>
+            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: T.ink, marginBottom: "1.5rem" }}>Your projected results</div>
+
+            {/* Headline metric */}
+            <div style={{ marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: `1px solid ${T.border}` }}>
+              <div style={{ fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.35rem" }}>Debt reduced before graduation</div>
+              <div className="serif" style={{ fontSize: "2.5rem", fontWeight: 700, color: T.green, lineHeight: 1 }}>{fmt(debtReducedBeforeGrad)}</div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Projected graduation debt</span>
+                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink }}>{fmt(Math.round(projectedGradDebt))}</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Interest saved</span>
+                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.green }}>{fmt(Math.round(Math.max(0, interestSaved)))}</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Months shaved off repayment</span>
+                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.green }}>{Math.max(0, monthsShaved)} months</span>
+              </div>
+            </div>
+
+            {/* Suggested action plan */}
+            <div style={{ marginTop: "1.75rem", background: T.parchment, borderRadius: "10px", padding: "1.25rem 1.5rem" }}>
+              <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.6rem" }}>Suggested next step</div>
+              <p style={{ fontSize: "0.85rem", color: T.inkMid, lineHeight: 1.65 }}>
+                {partTimeMonthly === 0 && summerEarnings === 0
+                  ? "Try adding a modest part-time income or summer earnings goal to see how even small, consistent contributions add up before graduation."
+                  : `Saving ${fmt(partTimeMonthly)}/mo during school and ${fmt(summerEarnings)} each summer could meaningfully lower what you owe at graduation — before you've made a single repayment.`}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer */}
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, marginTop: "2rem", textAlign: "center", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
+          This planner uses a placeholder projected debt figure. The full tool will use your actual loan details from the Compare and Borrowing tools.
+        </p>
+
+      </div>
+      <style>{`@media(max-width:900px){ #planner > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; } }`}</style>
+    </section>
+  );
+}
+
+function riskColor(score) {
+  if (score <= 35) return { color: T.green, bg: T.greenBg, label: "Low Risk" };
+  if (score <= 65) return { color: T.amber, bg: T.amberBg, label: "Moderate Risk" };
+  return { color: T.rose, bg: T.roseBg, label: "High Risk" };
+}
+
+function outlookColor(outlook) {
+  if (outlook === "Strong") return T.green;
+  if (outlook === "Declining") return T.rose;
+  return T.amber;
+}
+
+function MajorExplorer() {
+  const [ref, visible] = useReveal();
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [animatedRisk, setAnimatedRisk] = useState(0);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const selected = majorData[selectedIdx];
+  const risk = riskColor(selected.aiRisk);
+
+  // Animate the gauge whenever the selected major changes
+  useEffect(() => {
+    setAnimatedRisk(0);
+    const target = selected.aiRisk;
+    const duration = 700;
+    const start = performance.now();
+
+    let frame;
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setAnimatedRisk(Math.round(target * eased));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [selectedIdx]);
+
+  // Gauge geometry — circular arc, 270° sweep
+  const R = 70;
+  const CX = 90, CY = 90;
+  const startAngle = 135; // degrees
+  const sweepAngle = 270;
+  const angle = startAngle + (animatedRisk / 100) * sweepAngle;
+
+  const polarToCartesian = (cx, cy, r, angleDeg) => {
+    const angleRad = (angleDeg - 90) * (Math.PI / 180);
+    return { x: cx + r * Math.cos(angleRad), y: cy + r * Math.sin(angleRad) };
+  };
+
+  const describeArc = (cx, cy, r, startA, endA) => {
+    const start = polarToCartesian(cx, cy, r, endA);
+    const end = polarToCartesian(cx, cy, r, startA);
+    const largeArc = endA - startA <= 180 ? "0" : "1";
+    return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 0 ${end.x} ${end.y}`;
+  };
+
+  const trackPath = describeArc(CX, CY, R, startAngle, startAngle + sweepAngle);
+  const valuePath = describeArc(CX, CY, R, startAngle, angle);
+
+  return (
+    <section id="major-explorer" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+        {/* Header */}
+        <div style={{ maxWidth: "620px", marginBottom: "3.5rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Career Outlook</span>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
+            Is Your Major Future-Proof?
+          </h2>
+          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
+            Choose a major to see projected salary, job outlook, AI exposure, and how student debt could affect your future income.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: "2.5rem", alignItems: "start" }}>
+
+          {/* LEFT: major selector */}
+          <div>
+            <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.6rem" }}>
+              Choose a major
+            </label>
+
+            {/* Custom dropdown */}
+            <div style={{ position: "relative" }}>
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                style={{
+                  width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
+                  background: T.white, border: `1px solid ${dropdownOpen ? T.olive : T.border}`,
+                  borderRadius: "10px", padding: "0.95rem 1.25rem",
+                  fontSize: "0.95rem", fontWeight: 500, color: T.ink,
+                  cursor: "pointer", transition: "border-color 0.2s",
+                  boxShadow: T.shadow,
+                }}
+              >
+                <span>{selected.major}</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s" }}>
+                  <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {dropdownOpen && (
+                <div style={{
+                  position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
+                  background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
+                  boxShadow: T.shadowMd, zIndex: 20, maxHeight: "320px", overflowY: "auto",
+                }}>
+                  {majorData.map((m, i) => (
+                    <button
+                      key={m.major}
+                      onClick={() => { setSelectedIdx(i); setDropdownOpen(false); }}
+                      style={{
+                        width: "100%", textAlign: "left", padding: "0.8rem 1.25rem",
+                        background: i === selectedIdx ? T.oliveFaint : "transparent",
+                        border: "none", borderBottom: i < majorData.length - 1 ? `1px solid ${T.border}` : "none",
+                        fontSize: "0.9rem", fontWeight: i === selectedIdx ? 600 : 400,
+                        color: i === selectedIdx ? T.olive : T.inkMid,
+                        cursor: "pointer", transition: "background 0.15s",
+                      }}
+                      onMouseEnter={e => { if (i !== selectedIdx) e.currentTarget.style.background = T.parchment; }}
+                      onMouseLeave={e => { if (i !== selectedIdx) e.currentTarget.style.background = "transparent"; }}
+                    >
+                      {m.major}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Quick chips for popular majors */}
+            <div style={{ marginTop: "1.25rem" }}>
+              <div style={{ fontSize: "0.7rem", color: T.inkSoft, marginBottom: "0.6rem" }}>Popular choices</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {[0, 3, 4, 6, 10].map(i => (
+                  <button
+                    key={majorData[i].major}
+                    onClick={() => setSelectedIdx(i)}
+                    style={{
+                      padding: "0.35rem 0.85rem", borderRadius: "100px",
+                      border: i === selectedIdx ? `1.5px solid ${T.olive}` : `1px solid ${T.border}`,
+                      background: i === selectedIdx ? T.oliveFaint : T.white,
+                      fontSize: "0.78rem", color: i === selectedIdx ? T.olive : T.inkSoft,
+                      fontWeight: i === selectedIdx ? 500 : 400,
+                      cursor: "pointer", transition: "all 0.18s",
+                    }}
+                  >{majorData[i].major}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Future snapshot */}
+            <div style={{
+              marginTop: "1.75rem", background: T.white, border: `1px solid ${T.border}`,
+              borderRadius: "10px", padding: "1.5rem", boxShadow: T.shadow,
+            }}>
+              <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.6rem" }}>Future Snapshot</div>
+              <p style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.7 }}>{selected.snapshot}</p>
+            </div>
+          </div>
+
+          {/* RIGHT: dashboard */}
+          <div style={{
+            background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
+            padding: "2rem", boxShadow: T.shadowMd,
+          }}>
+
+            {/* Top row: gauge + key stats */}
+            <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "2rem", alignItems: "center", marginBottom: "1.75rem" }}>
+
+              {/* Gauge */}
+              <div style={{ position: "relative", width: "180px", height: "180px" }}>
+                <svg width="180" height="180" viewBox="0 0 180 180">
+                  {/* Track */}
+                  <path d={trackPath} fill="none" stroke={T.linen} strokeWidth="12" strokeLinecap="round" />
+                  {/* Value arc */}
+                  <path d={valuePath} fill="none" stroke={risk.color} strokeWidth="12" strokeLinecap="round"
+                    style={{ transition: "stroke 0.3s ease" }} />
+                </svg>
+                {/* Center label */}
+                <div style={{
+                  position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                }}>
+                  <div className="serif" style={{ fontSize: "2.4rem", fontWeight: 700, color: risk.color, lineHeight: 1, transition: "color 0.3s ease" }}>
+                    {animatedRisk}
+                  </div>
+                  <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginTop: "0.25rem" }}>AI Exposure</div>
+                  <div style={{
+                    fontSize: "0.68rem", fontWeight: 600, color: risk.color, background: risk.bg,
+                    padding: "0.15rem 0.6rem", borderRadius: "100px", marginTop: "0.4rem",
+                    transition: "color 0.3s ease, background 0.3s ease",
+                  }}>{risk.label}</div>
+                </div>
+              </div>
+
+              {/* Salary + outlook stats */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div>
+                  <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.25rem" }}>Starting Salary</div>
+                  <div className="serif" style={{ fontSize: "1.6rem", fontWeight: 700, color: T.ink, lineHeight: 1 }}>{selected.startingSalary}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.25rem" }}>Mid-Career Salary</div>
+                  <div className="serif" style={{ fontSize: "1.6rem", fontWeight: 700, color: T.ink, lineHeight: 1 }}>{selected.midCareerSalary}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom row: outlook + debt caution */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div style={{ background: T.parchment, borderRadius: "10px", padding: "1.25rem" }}>
+                <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.4rem" }}>Job Outlook</div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: outlookColor(selected.outlook), flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink }}>{selected.outlook}</span>
+                </div>
+              </div>
+              <div style={{ background: T.parchment, borderRadius: "10px", padding: "1.25rem" }}>
+                <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.4rem" }}>Debt Caution Level</div>
+                <span style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink, lineHeight: 1.3 }}>{selected.debtCaution}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ textAlign: "center", marginTop: "3rem" }}>
+          <a href="#simulator" style={{
+            display: "inline-flex", alignItems: "center", gap: "0.5rem",
+            background: T.olive, color: T.white,
+            padding: "0.85rem 2.25rem", borderRadius: "100px",
+            fontSize: "0.9rem", fontWeight: 500,
+            boxShadow: "0 4px 20px rgba(184,64,64,0.18)",
+            transition: "all 0.2s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            Compare this with your debt
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        {/* Disclaimer */}
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, marginTop: "2rem", textAlign: "center", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
+          These estimates are for educational purposes only and are based on general labor market trends. Actual outcomes vary by school, location, experience, and career path.
+        </p>
+
+      </div>
+      <style>{`
+        @media(max-width:900px){
+          #major-explorer > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+// ─── APP ROOT — simple state-based router ────────────────────────────────────
 export default function App() {
   const [page, setPage] = useState("home");
 
@@ -1593,10 +2466,12 @@ export default function App() {
     <div>
       <HomeNav navigate={navigate} />
       <Hero />
-      <FeatureStrip />
       <Simulator />
+      <CompareYourFuture />
+      <MajorExplorer />
+      <ToolsEcosystem />
       <Translator />
-      <RealityCheck />
+      <PaidOffPlanner />
       <FounderIntro navigate={navigate} />
       <Contact />
       <Waitlist />

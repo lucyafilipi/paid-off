@@ -218,7 +218,6 @@ function HomeNav({ navigate }) {
     { label: "Compare Costs",  href: "#compare" },
     { label: "Career Outlook", href: "#career-outlook" },
     { label: "Aid Translator", href: "#translator" },
-    { label: "Planner",        href: "#planner" },
     { label: "Contact",        href: "#contact" },
   ];
 
@@ -312,7 +311,7 @@ function Hero() {
         <div style={{ position: "absolute", bottom: "-5%", left: "-5%", width: "45vw", height: "45vw", borderRadius: "50%", background: "radial-gradient(ellipse at 40% 60%, rgba(180,110,100,0.12) 0%, transparent 65%)" }} />
         <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: "80vw", height: "40vw", background: "radial-gradient(ellipse at 50% 50%, rgba(230,215,205,0.35) 0%, transparent 60%)", borderRadius: "50%" }} />
         {/* Ghosted wordmark — atmospheric only, not the headline */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "clamp(10rem, 26vw, 26rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "1.5px rgba(184,64,64,0.04)", userSelect: "none", whiteSpace: "nowrap" }}>Paid Off.</div>
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "clamp(10rem, 26vw, 26rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "transparent", WebkitTextStroke: "2px rgba(184,64,64,0.13)", userSelect: "none", whiteSpace: "nowrap" }}>Paid Off.</div>
       </div>
 
       {/* Foreground content */}
@@ -327,14 +326,6 @@ function Hero() {
           <span style={{ display: "block" }}>Know the Cost.</span>
           <span style={{ display: "block" }}>Own the Decision.</span>
         </h1>
-
-        <p className="fade-up d2" style={{
-          fontSize: "1.1rem", color: T.inkSoft, lineHeight: 1.7,
-          maxWidth: "420px", margin: "0 auto 2.75rem",
-          fontWeight: 300,
-        }}>
-          Compare costs, estimate future payments, and understand how today's decisions may impact tomorrow's opportunities.
-        </p>
 
         {/* Two equal primary CTAs */}
         <div className="fade-up d3" style={{ display: "flex", gap: "0.85rem", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
@@ -358,103 +349,48 @@ function ToolsEcosystem() {
   const tools = [
     {
       icon: <IconChart />,
-      tag: "Decision Tool",
       title: "Compare College Costs",
-      question: "What will this school actually cost me?",
       body: "Compare schools side by side and see your real out-of-pocket cost after scholarships and aid — and what that adds up to over four years.",
-      cta: "Compare Costs",
       href: "#compare",
     },
     {
       icon: <IconDoc />,
-      tag: "Understanding Tool",
       title: "Financial Aid Translator",
-      question: "What am I actually being offered?",
       body: "Upload or enter a financial aid offer and see what's free money, what must be repaid, your estimated net cost, and questions to ask before accepting.",
-      cta: "Translate Aid Offer",
       href: "#translator",
     },
     {
       icon: <IconGrid />,
-      tag: "Education Tool",
       title: "Borrowing Impact Simulator",
-      question: "What happens if I borrow this amount?",
-      body: "See how loan amount, interest rate, repayment term, and extra payments affect your monthly payment, total interest, and payoff timeline.",
-      cta: "Simulate Borrowing",
+      body: "See how loan amount, interest rate, and repayment term affect your monthly payment, total interest, and payoff timeline.",
       href: "#simulator",
-    },
-    {
-      icon: <IconPeople />,
-      tag: "Action Tool",
-      title: "Paid Off Planner",
-      question: "How can I reduce my debt before graduation?",
-      body: "Build a plan to reduce debt before graduation using part-time income, summer work, employer contributions, and extra payments.",
-      cta: "Build My Plan",
-      href: "#planner",
     },
   ];
 
   return (
-    <section id="tools" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.paper, padding: "7rem 2.5rem" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-
-        {/* Header */}
-        <div style={{ maxWidth: "640px", marginBottom: "3.5rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>The Paid Off System</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
-            Tools built for every step of the college decision.
-          </h2>
-          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Four connected tools — each answering a different question, at a different stage of your decision.
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}>
-          {tools.map((t, i) => (
-            <div key={i} style={{
-              background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px",
-              padding: "2rem", boxShadow: T.shadow,
-              display: "flex", flexDirection: "column",
-              transition: "transform 0.2s, box-shadow 0.2s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = T.shadowMd; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = T.shadow; }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-                <div style={{ opacity: 0.85 }}>{t.icon}</div>
-                <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, background: T.oliveFaint, padding: "0.2rem 0.65rem", borderRadius: "100px" }}>{t.tag}</span>
-              </div>
-
-              <div className="serif" style={{ fontSize: "1.3rem", fontWeight: 700, color: T.ink, marginBottom: "0.5rem", lineHeight: 1.2 }}>{t.title}</div>
-
-              <div style={{ fontSize: "0.85rem", fontWeight: 500, color: T.olive, marginBottom: "0.75rem", fontStyle: "italic" }}>
-                "{t.question}"
-              </div>
-
-              <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, marginBottom: "1.5rem", flex: 1 }}>{t.body}</p>
-
-              <a href={t.href} style={{
-                display: "inline-flex", alignItems: "center", gap: "0.4rem",
-                fontSize: "0.85rem", fontWeight: 500, color: T.olive,
-                borderBottom: `1px solid ${T.olivePale}`, paddingBottom: "2px",
-                alignSelf: "flex-start", transition: "color 0.2s, border-color 0.2s",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.color = T.oliveLight; e.currentTarget.style.borderColor = T.olive; }}
-                onMouseLeave={e => { e.currentTarget.style.color = T.olive; e.currentTarget.style.borderColor = T.olivePale; }}
-              >
-                {t.cta}
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
+    <div ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
+      style={{ background: T.linen, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+        {tools.map((t, i) => (
+          <a key={i} href={t.href} style={{
+            display: "block", padding: "1.75rem 2rem",
+            borderRight: i < tools.length - 1 ? `1px solid ${T.border}` : "none",
+            textDecoration: "none",
+            transition: "background 0.2s",
+          }}
+            onMouseEnter={e => e.currentTarget.style.background = T.warm}
+            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
+              <div style={{ opacity: 0.85 }}>{t.icon}</div>
+              <div style={{ fontSize: "0.88rem", fontWeight: 600, color: T.ink }}>{t.title}</div>
             </div>
-          ))}
-        </div>
+            <p style={{ fontSize: "0.8rem", color: T.inkSoft, lineHeight: 1.6, margin: 0 }}>{t.body}</p>
+          </a>
+        ))}
       </div>
-      <style>{`@media(max-width:768px){ #tools > div > div:last-of-type { grid-template-columns: 1fr !important; } }`}</style>
-    </section>
+      <style>{`@media(max-width:768px){ #tools-strip > div { grid-template-columns: 1fr !important; } #tools-strip a { border-right: none !important; border-bottom: 1px solid ${T.border}; } }`}</style>
+    </div>
   );
 }
 
@@ -723,7 +659,7 @@ function Translator() {
 
   return (
     <section id="translator" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.sage, padding: "7rem 2.5rem" }}>
+      style={{ background: T.paper, padding: "7rem 2.5rem" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
         {/* Section header */}
@@ -1210,10 +1146,10 @@ function CompareYourFuture() {
           {comparePath && <CostCard path={comparePath} scholarship={scholarship2} grant={grant2} onScholarshipChange={setScholarship2} onGrantChange={setGrant2} residency={residency2} onResidencyChange={setResidency2} incHousing={incHousing2} onHousingToggle={setIncHousing2} incMeal={incMeal2} onMealToggle={setIncMeal2} />}
         </div>
 
-        <p style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "680px", marginBottom: "0.5rem" }}>
+        <p style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "640px", marginBottom: "0.5rem", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
           Estimates are based on publicly available university cost-of-attendance data and may vary based on housing choices, residency status, and individual financial aid packages.
         </p>
-        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, maxWidth: "560px" }}>
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, maxWidth: "560px", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
           This preview uses 2024–25 published cost-of-attendance figures for a small set of schools. The full tool will let you enter any school and your actual financial aid package.
         </p>
 
@@ -1241,11 +1177,11 @@ function DeeperComparisonBanner() {
         <div className="serif" style={{ fontSize: "1.5rem", fontWeight: 700, color: T.ink, marginBottom: "0.6rem" }}>
           Want a Deeper Comparison?
         </div>
-        <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "480px", margin: "0 auto 1.75rem" }}>
-          The full Compare Your Future tool brings all of this together in one side-by-side experience:
+        <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "520px", margin: "0 auto 1.75rem" }}>
+          Become an early tester and access the full Compare Your Future tool — which brings all of this together in one side-by-side experience:
         </p>
 
-        <div className="deeper-comparison-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem 1.5rem", maxWidth: "640px", margin: "0 auto" }}>
+        <div className="deeper-comparison-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem 1.5rem", maxWidth: "640px", margin: "0 auto 2rem" }}>
           {comparisonItems.map((item) => (
             <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: T.inkMid }}>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
@@ -1256,6 +1192,20 @@ function DeeperComparisonBanner() {
             </div>
           ))}
         </div>
+
+        <a href="#waitlist" style={{
+          display: "inline-flex", alignItems: "center", gap: "0.5rem",
+          background: T.olive, color: T.white,
+          padding: "0.85rem 2.25rem", borderRadius: "100px",
+          fontSize: "0.9rem", fontWeight: 500,
+          boxShadow: "0 4px 20px rgba(184,64,64,0.18)",
+          transition: "all 0.2s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
+        >
+          Become an Early Tester
+        </a>
       </div>
       <style>{`@media(max-width:640px){ .deeper-comparison-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
     </div>
@@ -1396,7 +1346,7 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
           {[
-            { heading: "Tools",   links: [{ label: "Compare College Costs", href: "#compare" }, { label: "Aid Translator", href: "#translator" }, { label: "Borrowing Simulator", href: "#simulator" }, { label: "Paid Off Planner", href: "#planner" }] },
+            { heading: "Tools",   links: [{ label: "Compare College Costs", href: "#compare" }, { label: "Aid Translator", href: "#translator" }, { label: "Borrowing Simulator", href: "#simulator" }] },
             { heading: "Company", links: [{ label: "About", href: "#about" }, { label: "Contact", href: "#contact" }, { label: "Privacy", href: "#" }] },
           ].map(col => (
             <div key={col.heading}>
@@ -1872,479 +1822,313 @@ function SurveyPage({ onNavigate }) {
   );
 }
 
-// ─── FUTURE CAREER OUTLOOK — DATA ─────────────────────────────────────────────
-// PLACEHOLDER DATA — replace with real salary, growth, stability, and
-// automation-exposure figures from sources like BLS, Lightcast, O*NET, or
-// Payscale when available.
-//
-// jobGrowth / careerStability / aiResilience are on a 0–10 scale.
-// AI Resilience reflects task redundancy — how much of the role depends on
-// human judgment, creativity, relationships, or physical work (high score)
-// versus repetitive, predictable, automatable tasks (low score). It is not a
-// measure of "AI taking jobs."
-const careerOutlookData = [
-  { major: "Registered Nurse", startingSalary: 72000, jobGrowth: 8.5, careerStability: 9.3, aiResilience: 9.2,
-    description: "Nursing combines clinical training with hands-on patient care — a combination that's difficult to automate. Strong demand, steady growth, and a variety of specializations make it one of the most resilient career paths available." },
-  { major: "Software Developer", startingSalary: 80000, jobGrowth: 9.0, careerStability: 8.5, aiResilience: 6.5,
-    description: "Software development remains in high demand across every industry. AI tools are changing how code gets written, but the need for people who can design, problem-solve, and build complex systems continues to grow." },
-  { major: "Data Analyst", startingSalary: 68000, jobGrowth: 8.5, careerStability: 8.0, aiResilience: 6.2,
-    description: "Data analysts turn raw information into useful insights for businesses and organizations. As automation handles routine reporting, the most valuable work shifts toward interpretation, storytelling, and strategic recommendations." },
-  { major: "Financial Analyst", startingSalary: 70000, jobGrowth: 6.5, careerStability: 7.5, aiResilience: 6.0,
-    description: "Financial analysts help organizations and individuals make informed investment and planning decisions. Routine modeling is increasingly automated, but advisory, relationship-driven, and strategic work continues to rely on human judgment." },
-  { major: "Marketing Manager", startingSalary: 68000, jobGrowth: 6.5, careerStability: 6.8, aiResilience: 6.0,
-    description: "Marketing managers blend strategy, creativity, and data to drive business growth. As content creation and analytics tools become more automated, the premium shifts to strategic thinking, brand leadership, and cross-functional coordination." },
-  { major: "Physical Therapist", startingSalary: 78000, jobGrowth: 7.5, careerStability: 9.0, aiResilience: 9.0,
-    description: "Physical therapists work directly with patients to restore movement and manage pain — work that depends on physical touch, clinical observation, and therapeutic relationships. Demand is growing alongside an aging population." },
-  { major: "Teacher (K–12)", startingSalary: 44000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.8,
-    description: "Teaching is deeply human work — mentorship, communication, and adaptability in real time with real students. New tools may enter the classroom, but the need for skilled, caring educators continues to grow." },
-  { major: "Graphic Designer", startingSalary: 50000, jobGrowth: 5.0, careerStability: 5.5, aiResilience: 4.0,
-    description: "Graphic design is evolving quickly as generative tools take on more visual production work. Designers who pair strong craft with brand strategy, motion, or UX thinking tend to build more resilient careers." },
-  { major: "Civil Engineer", startingSalary: 68000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.2,
-    description: "Civil engineers design, plan, and oversee the infrastructure that communities depend on — from roads to water systems to buildings. On-site judgment, regulatory expertise, and complex project coordination keep this work grounded in human oversight." },
-  { major: "Physician", startingSalary: 120000, jobGrowth: 8.0, careerStability: 9.5, aiResilience: 8.5,
-    description: "Physicians require years of training and combine medical expertise with patient relationships, clinical judgment, and ethical decision-making. While AI may support diagnosis, the complexity and accountability of the role keeps it deeply human." },
-  { major: "Social Worker", startingSalary: 48000, jobGrowth: 7.0, careerStability: 8.0, aiResilience: 9.0,
-    description: "Social workers support individuals and families through difficult circumstances — work that depends almost entirely on human empathy, communication, and trust. Demand grows steadily as communities grapple with mental health and social challenges." },
-  { major: "Mechanical Engineer", startingSalary: 72000, jobGrowth: 6.5, careerStability: 8.0, aiResilience: 7.8,
-    description: "Mechanical engineers design and build the physical systems behind products, machines, and infrastructure. Hands-on design, testing, and applied problem-solving keep the field grounded in practical, creative expertise." },
-  { major: "Accountant / CPA", startingSalary: 60000, jobGrowth: 6.0, careerStability: 7.0, aiResilience: 5.5,
-    description: "Accountants manage financial records, compliance, and reporting across virtually every industry. Automation is reshaping routine bookkeeping, but credentialed and advisory roles — particularly CPAs — remain in steady demand." },
-  { major: "Environmental Scientist", startingSalary: 54000, jobGrowth: 7.5, careerStability: 7.0, aiResilience: 8.0,
-    description: "Environmental scientists study natural systems and help organizations navigate sustainability, regulations, and ecological impact. Growing demand tied to climate and policy work, with fieldwork and applied expertise at the core." },
-  { major: "Physician Assistant", startingSalary: 110000, jobGrowth: 9.0, careerStability: 9.0, aiResilience: 8.5,
-    description: "Physician assistants practice medicine across specialties, combining clinical training with patient care in a role that's growing quickly. The hands-on, relationship-driven nature of the work keeps it highly resilient." },
+
+
+// ─── IS YOUR CAREER CHOICE AI-RESILIENT? — DATA ──────────────────────────────
+// Placeholder data — replace with research-backed figures from O*NET, OECD,
+// World Economic Forum, Lightcast, or similar future-of-work datasets.
+// resilienceScore: 0–100 (higher = more resilient to automation)
+const aiResilienceData = [
+  {
+    career: "Registered Nurse",
+    resilienceScore: 88,
+    snapshot: "AI may assist with monitoring, documentation, and clinical decision support, but hands-on care, empathy, and patient advocacy remain deeply human.",
+    humanStrengths: ["Empathy", "Communication", "Critical Thinking", "Adaptability", "Relationship Building"],
+  },
+  {
+    career: "Physician",
+    resilienceScore: 84,
+    snapshot: "AI tools may support diagnosis and research, but the complexity of patient care, ethical judgment, and trust-based relationships keep this field firmly human-centered.",
+    humanStrengths: ["Ethical Judgment", "Critical Thinking", "Empathy", "Communication", "Leadership"],
+  },
+  {
+    career: "Physical Therapist",
+    resilienceScore: 91,
+    snapshot: "Hands-on rehabilitation, patient motivation, and real-time physical assessment are extremely difficult to automate. Growing demand keeps this field strong.",
+    humanStrengths: ["Empathy", "Communication", "Problem Solving", "Adaptability", "Relationship Building"],
+  },
+  {
+    career: "Teacher",
+    resilienceScore: 85,
+    snapshot: "AI may personalize curriculum delivery, but mentorship, classroom management, emotional attunement, and community trust remain irreplaceable human contributions.",
+    humanStrengths: ["Communication", "Empathy", "Adaptability", "Leadership", "Creativity"],
+  },
+  {
+    career: "Software Engineer",
+    resilienceScore: 67,
+    snapshot: "AI is already writing code—but engineers who understand systems architecture, product thinking, and complex problem-solving will remain highly valued as AI amplifies their output.",
+    humanStrengths: ["Problem Solving", "Critical Thinking", "Adaptability", "Creativity", "Communication"],
+  },
+  {
+    career: "Accountant",
+    resilienceScore: 45,
+    snapshot: "Routine reporting and data processing may become increasingly automated, shifting the profession toward interpretation, advisory work, and strategic thinking.",
+    humanStrengths: ["Critical Thinking", "Communication", "Ethical Judgment", "Adaptability", "Problem Solving"],
+  },
+  {
+    career: "Financial Advisor",
+    resilienceScore: 72,
+    snapshot: "Algorithmic tools can optimize portfolios, but trust, behavioral coaching, and navigating life's complexity keep human advisors central to long-term financial relationships.",
+    humanStrengths: ["Relationship Building", "Communication", "Ethical Judgment", "Empathy", "Problem Solving"],
+  },
+  {
+    career: "Marketing Manager",
+    resilienceScore: 60,
+    snapshot: "AI may streamline content generation and analytics, while creativity, brand strategy, and human insight become even more important in a crowded automated landscape.",
+    humanStrengths: ["Creativity", "Communication", "Leadership", "Adaptability", "Critical Thinking"],
+  },
+  {
+    career: "Graphic Designer",
+    resilienceScore: 42,
+    snapshot: "Generative AI tools are rapidly changing visual production. Designers who combine visual craft with strategic thinking, brand understanding, and direction will adapt best.",
+    humanStrengths: ["Creativity", "Communication", "Adaptability", "Critical Thinking", "Problem Solving"],
+  },
+  {
+    career: "Journalist",
+    resilienceScore: 55,
+    snapshot: "AI can produce routine reports, but investigative depth, source relationships, ethical judgment, and narrative storytelling remain distinctly human strengths.",
+    humanStrengths: ["Critical Thinking", "Communication", "Ethical Judgment", "Adaptability", "Relationship Building"],
+  },
+  {
+    career: "Human Resources Specialist",
+    resilienceScore: 64,
+    snapshot: "Recruiting tools and HR software are increasingly automated, but conflict resolution, cultural fit, employee wellbeing, and organizational trust require a human touch.",
+    humanStrengths: ["Empathy", "Communication", "Ethical Judgment", "Relationship Building", "Problem Solving"],
+  },
+  {
+    career: "Sales Representative",
+    resilienceScore: 59,
+    snapshot: "AI can optimize outreach and lead scoring, but persuasion, relationship-building, and reading interpersonal dynamics remain core to closing complex deals.",
+    humanStrengths: ["Communication", "Relationship Building", "Negotiation", "Adaptability", "Problem Solving"],
+  },
+  {
+    career: "Attorney",
+    resilienceScore: 70,
+    snapshot: "Legal research and document review are being automated, but courtroom advocacy, client counsel, ethical reasoning, and judicial strategy remain deeply human endeavors.",
+    humanStrengths: ["Critical Thinking", "Communication", "Ethical Judgment", "Negotiation", "Problem Solving"],
+  },
+  {
+    career: "Pharmacist",
+    resilienceScore: 62,
+    snapshot: "Automated dispensing is common and growing, but pharmacists who focus on patient counseling, medication therapy management, and clinical collaboration stay essential.",
+    humanStrengths: ["Critical Thinking", "Communication", "Ethical Judgment", "Empathy", "Adaptability"],
+  },
+  {
+    career: "Data Analyst",
+    resilienceScore: 54,
+    snapshot: "Routine analysis and reporting are increasingly handled by AI tools. Analysts who translate data into strategic decisions and business stories become exponentially more valuable.",
+    humanStrengths: ["Critical Thinking", "Communication", "Problem Solving", "Adaptability", "Creativity"],
+  },
+  {
+    career: "Psychologist",
+    resilienceScore: 87,
+    snapshot: "Therapeutic relationships, emotional attunement, and the nuanced process of human healing are profoundly difficult to replicate artificially. Demand for mental health care continues to grow.",
+    humanStrengths: ["Empathy", "Communication", "Ethical Judgment", "Critical Thinking", "Relationship Building"],
+  },
+  {
+    career: "Social Worker",
+    resilienceScore: 89,
+    snapshot: "Social work is grounded in human connection, community trust, and real-world navigation of complex systems—areas where human presence, empathy, and judgment are irreplaceable.",
+    humanStrengths: ["Empathy", "Communication", "Problem Solving", "Adaptability", "Ethical Judgment"],
+  },
+  {
+    career: "Mechanical Engineer",
+    resilienceScore: 73,
+    snapshot: "AI may assist with simulation and design, but hands-on problem-solving, cross-disciplinary collaboration, and physical systems thinking remain core engineering strengths.",
+    humanStrengths: ["Problem Solving", "Critical Thinking", "Creativity", "Adaptability", "Communication"],
+  },
+  {
+    career: "Occupational Therapist",
+    resilienceScore: 92,
+    snapshot: "The hands-on, personalized, and deeply relational nature of occupational therapy—helping people rebuild everyday independence—is exceptionally resistant to automation.",
+    humanStrengths: ["Empathy", "Communication", "Adaptability", "Critical Thinking", "Problem Solving"],
+  },
 ];
 
-// Future-Proof Score — a 0-100 composite of salary potential, job growth,
-// career stability, and AI resilience. Salary is normalized against a
-// $40k–$85k range to put it on the same 0–10 scale as the other factors.
-function computeFutureProofScore(m) {
-  const salaryScore = Math.max(0, Math.min(10, ((m.startingSalary - 40000) / 45000) * 10));
-  const avg = (m.jobGrowth + m.careerStability + m.aiResilience + salaryScore) / 4;
-  return Math.round(avg * 10);
+// Score category — empowering language only, no fear-based framing
+function resilienceCategory(score) {
+  if (score >= 80) return { label: "Highly AI-Resilient", color: T.green, bg: T.greenBg };
+  if (score >= 50) return { label: "Evolving with AI",   color: T.olive, bg: T.oliveFaint };
+  return                  { label: "High Transformation Potential", color: T.amber, bg: T.amberBg };
 }
 
-// Score tiers — kept within the brand's green / brick / amber / terracotta
-// palette. Never uses "rose" (the debt/error tone), so nothing reads as a
-// warning — "Developing" just means more change ahead.
-function scoreTier(score) {
-  if (score >= 85) return { label: "Excellent", color: T.green, bg: T.greenBg };
-  if (score >= 70) return { label: "Strong", color: T.olive, bg: T.oliveFaint };
-  if (score >= 50) return { label: "Moderate", color: T.amber, bg: T.amberBg };
-  return { label: "Developing", color: T.oliveMid, bg: T.oliveFaint };
-}
-
-// Static tooltip copy for the four metric tiles.
-const METRIC_INFO = {
-  salary: "Typical starting salary for people entering this career.",
-  jobGrowth: "Projected increase in opportunities over the next decade.",
-  careerStability: "Likelihood of maintaining demand despite economic changes.",
-  aiResilience: "Measures how difficult the core responsibilities are to automate.",
-};
-
-// ─── PAID OFF PLANNER ─────────────────────────────────────────────────────────
-function PaidOffPlanner() {
+function AIResilienceSection() {
   const [ref, visible] = useReveal();
-
-  // PLACEHOLDER BASELINE — replace with the user's actual projected loan figures
-  const baseline = {
-    projectedDebtAtGrad: 42000,
-    rate: 6.5,
-    years: 10,
-  };
-
-  const [partTimeMonthly, setPartTimeMonthly] = useState(300);
-  const [summerEarnings, setSummerEarnings] = useState(2500);
-  const [employerContribution, setEmployerContribution] = useState(0);
-  const [extraMonthly, setExtraMonthly] = useState(50);
-
-  const schoolYears = 4;
-  const summersRemaining = 3;
-
-  // Total reduction to principal before graduation
-  const fromPartTime = partTimeMonthly * 12 * schoolYears;
-  const fromSummers = summerEarnings * summersRemaining;
-  const fromEmployer = employerContribution * 12 * schoolYears;
-  const debtReducedBeforeGrad = fromPartTime + fromSummers + fromEmployer;
-
-  const projectedGradDebt = Math.max(0, baseline.projectedDebtAtGrad - debtReducedBeforeGrad);
-
-  // Repayment comparison: baseline vs reduced principal + extra monthly payments
-  const monthlyRate = baseline.rate / 100 / 12;
-  const n = baseline.years * 12;
-
-  const calcTotalInterest = (principal, extraPmt) => {
-    if (principal <= 0) return { totalInterest: 0, months: 0 };
-    const basePmt = (principal * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
-    const pmt = basePmt + extraPmt;
-    let balance = principal;
-    let totalInterest = 0;
-    let months = 0;
-    while (balance > 0 && months < 600) {
-      const interest = balance * monthlyRate;
-      totalInterest += interest;
-      balance = balance + interest - pmt;
-      months++;
-    }
-    return { totalInterest, months };
-  };
-
-  const baselineResult = calcTotalInterest(baseline.projectedDebtAtGrad, 0);
-  const plannedResult = calcTotalInterest(projectedGradDebt, extraMonthly);
-
-  const interestSaved = baselineResult.totalInterest - plannedResult.totalInterest;
-  const monthsShaved = baselineResult.months - plannedResult.months;
-
-  const SliderRow = ({ label, value, min, max, step, onChange, display, hint }) => (
-    <div style={{ marginBottom: "1.25rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
-        <span style={{ fontSize: "0.78rem", color: T.inkMid, fontWeight: 500 }}>{label}</span>
-        <span className="mono" style={{ fontSize: "0.78rem", color: T.olive, fontWeight: 600 }}>{display}</span>
-      </div>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={e => onChange(Number(e.target.value))} />
-      {hint && <div style={{ fontSize: "0.7rem", color: T.inkSoft, marginTop: "0.3rem" }}>{hint}</div>}
-    </div>
-  );
-
-  return (
-    <section id="planner" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.paper, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-
-        {/* Header */}
-        <div style={{ maxWidth: "640px", marginBottom: "3.5rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Paid Off Planner</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
-            How can I reduce my debt before graduation?
-          </h2>
-          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Build a plan using part-time income, summer work, employer contributions, and extra payments — and see how much it could shave off your future debt.
-          </p>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem", alignItems: "start" }}>
-
-          {/* Inputs */}
-          <div style={{ background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "2rem", boxShadow: T.shadow }}>
-            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: T.ink, marginBottom: "1.5rem" }}>Your action plan</div>
-
-            <SliderRow
-              label="Part-time income while in school"
-              value={partTimeMonthly} min={0} max={1500} step={50}
-              onChange={setPartTimeMonthly} display={`${fmt(partTimeMonthly)}/mo`}
-              hint={`Over ${schoolYears} years: ${fmt(fromPartTime)} toward your loans`}
-            />
-            <SliderRow
-              label="Summer earnings (per summer)"
-              value={summerEarnings} min={0} max={8000} step={250}
-              onChange={setSummerEarnings} display={fmt(summerEarnings)}
-              hint={`Over ${summersRemaining} summers: ${fmt(fromSummers)} toward your loans`}
-            />
-            <SliderRow
-              label="Employer / co-op contribution"
-              value={employerContribution} min={0} max={1000} step={50}
-              onChange={setEmployerContribution} display={`${fmt(employerContribution)}/mo`}
-              hint={fromEmployer > 0 ? `Over ${schoolYears} years: ${fmt(fromEmployer)} toward your loans` : "Some employers offer tuition or loan assistance"}
-            />
-            <SliderRow
-              label="Extra monthly payment after graduation"
-              value={extraMonthly} min={0} max={500} step={25}
-              onChange={setExtraMonthly} display={`${fmt(extraMonthly)}/mo`}
-              hint="Paid on top of your standard monthly payment"
-            />
-          </div>
-
-          {/* Outputs */}
-          <div style={{ background: T.white, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "2rem", boxShadow: T.shadowMd }}>
-            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: T.ink, marginBottom: "1.5rem" }}>Your projected results</div>
-
-            {/* Headline metric */}
-            <div style={{ marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: `1px solid ${T.border}` }}>
-              <div style={{ fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.35rem" }}>Debt reduced before graduation</div>
-              <div className="serif" style={{ fontSize: "2.5rem", fontWeight: 700, color: T.green, lineHeight: 1 }}>{fmt(debtReducedBeforeGrad)}</div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Projected graduation debt</span>
-                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink }}>{fmt(Math.round(projectedGradDebt))}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Interest saved</span>
-                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.green }}>{fmt(Math.round(Math.max(0, interestSaved)))}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontSize: "0.85rem", color: T.inkSoft }}>Months shaved off repayment</span>
-                <span className="mono" style={{ fontSize: "0.95rem", fontWeight: 600, color: T.green }}>{Math.max(0, monthsShaved)} months</span>
-              </div>
-            </div>
-
-            {/* Suggested action plan */}
-            <div style={{ marginTop: "1.75rem", background: T.parchment, borderRadius: "10px", padding: "1.25rem 1.5rem" }}>
-              <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.6rem" }}>Suggested next step</div>
-              <p style={{ fontSize: "0.85rem", color: T.inkMid, lineHeight: 1.65 }}>
-                {partTimeMonthly === 0 && summerEarnings === 0
-                  ? "Try adding a modest part-time income or summer earnings goal to see how even small, consistent contributions add up before graduation."
-                  : `Saving ${fmt(partTimeMonthly)}/mo during school and ${fmt(summerEarnings)} each summer could meaningfully lower what you owe at graduation — before you've made a single repayment.`}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Disclaimer */}
-        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, marginTop: "2rem", textAlign: "center", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
-          This planner uses a placeholder projected debt figure. The full tool will use your actual loan details from the Compare and Borrowing tools.
-        </p>
-
-      </div>
-      <style>{`@media(max-width:900px){ #planner > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; } }`}</style>
-    </section>
-  );
-}
-
-function FutureCareerOutlook() {
-  const [ref, visible] = useReveal();
-  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [selectedIdx,  setSelectedIdx]  = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [transparencyOpen, setTransparencyOpen] = useState(false);
+  const [search,       setSearch]       = useState("");
+  const [animScore,    setAnimScore]    = useState(0);
 
-  const selected = careerOutlookData[selectedIdx];
-  const score = computeFutureProofScore(selected);
-  const tier = scoreTier(score);
+  const selected = aiResilienceData[selectedIdx];
+  const category = resilienceCategory(selected.resilienceScore);
 
-  // Animate the gauge + score whenever the selected major changes
-  const [animScore, setAnimScore] = useState(0);
   useEffect(() => {
-    const target = score;
+    setAnimScore(0);
+    const target = selected.resilienceScore;
     const duration = 700;
     const start = performance.now();
-    setAnimScore(0);
-
     let frame;
     const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setAnimScore(Math.round(target * eased));
-      if (progress < 1) frame = requestAnimationFrame(step);
+      const p = Math.min((now - start) / duration, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      setAnimScore(Math.round(target * e));
+      if (p < 1) frame = requestAnimationFrame(step);
     };
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [selectedIdx]);
 
-  // Gauge geometry — semicircular arc, 270° sweep
-  const R = 84;
-  const CX = 110, CY = 110;
-  const startAngle = 135;
-  const sweepAngle = 270;
+  const CX = 90, CY = 90, R = 70;
+  const startAngle = 135, sweepAngle = 270;
   const angle = startAngle + (animScore / 100) * sweepAngle;
-
-  const polarToCartesian = (cx, cy, r, angleDeg) => {
-    const rad = (angleDeg - 90) * (Math.PI / 180);
+  const polar = (cx, cy, r, deg) => {
+    const rad = (deg - 90) * (Math.PI / 180);
     return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
   };
-  const describeArc = (cx, cy, r, startA, endA) => {
-    const start = polarToCartesian(cx, cy, r, endA);
-    const end = polarToCartesian(cx, cy, r, startA);
-    const largeArc = endA - startA <= 180 ? "0" : "1";
-    return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 0 ${end.x} ${end.y}`;
+  const arc = (startA, endA) => {
+    const s = polar(CX, CY, R, endA);
+    const e = polar(CX, CY, R, startA);
+    return `M ${s.x} ${s.y} A ${R} ${R} 0 ${endA - startA <= 180 ? "0" : "1"} 0 ${e.x} ${e.y}`;
   };
-  const trackPath = describeArc(CX, CY, R, startAngle, startAngle + sweepAngle);
-  const valuePath = describeArc(CX, CY, R, startAngle, angle);
 
-  // Small "i" info icon with a CSS-only hover tooltip
-  const InfoTip = ({ text }) => (
-    <span className="io-tooltip" style={{ position: "relative", display: "inline-flex", marginLeft: "0.35rem", cursor: "default" }}>
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="7" stroke={T.olivePale} strokeWidth="1.3"/>
-        <line x1="8" y1="7.2" x2="8" y2="11.5" stroke={T.olivePale} strokeWidth="1.3" strokeLinecap="round"/>
-        <circle cx="8" cy="4.7" r="0.9" fill={T.olivePale}/>
-      </svg>
-      <span className="io-tooltip-box" style={{
-        position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)",
-        background: T.ink, color: T.paper, fontSize: "0.72rem", lineHeight: 1.5, fontWeight: 400,
-        padding: "0.6rem 0.8rem", borderRadius: "8px", width: "190px",
-        opacity: 0, visibility: "hidden", transition: "opacity 0.18s ease",
-        boxShadow: T.shadowMd, zIndex: 30, textTransform: "none", letterSpacing: "normal",
-      }}>{text}</span>
-    </span>
-  );
+  const filtered = aiResilienceData
+    .map((m, i) => ({ ...m, idx: i }))
+    .filter(m => m.career.toLowerCase().includes(search.toLowerCase()));
 
-  const Metric = ({ label, value, info }) => (
-    <div style={{ background: T.parchment, borderRadius: "10px", padding: "1.1rem 1.25rem" }}>
-      <div style={{ display: "flex", alignItems: "center", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.5rem" }}>
-        {label}
-        <InfoTip text={info} />
-      </div>
-      <div className="serif" style={{ fontSize: "1.3rem", fontWeight: 700, color: T.ink }}>{value}</div>
-    </div>
-  );
+  const legend = [
+    { range: "80–100", label: "Highly AI-Resilient",           color: T.green,    bg: T.greenBg,   tooltip: "Careers that rely heavily on human judgment, empathy, hands-on interaction, relationship-building, or complex decision-making. These roles are difficult to automate and are expected to remain in strong demand." },
+    { range: "50–79",  label: "Evolving with AI",              color: T.olive,    bg: T.oliveFaint, tooltip: "Careers likely to incorporate AI into everyday workflows. Professionals in these fields who adapt and learn alongside technology will become more valuable — not less." },
+    { range: "0–49",   label: "High Transformation Potential", color: T.amber,    bg: T.amberBg,   tooltip: "Careers where routine or repetitive tasks are increasingly automatable. These fields may change significantly, and continuous upskilling will be important for long-term success." },
+  ];
 
   return (
     <section id="career-outlook" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      style={{ background: T.sage, padding: "5rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "700px", margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ maxWidth: "640px", marginBottom: "3rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Career Outlook</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
-            Future Career Outlook
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "0.75rem" }}>Career Intelligence</span>
+          <h2 className="serif" style={{ fontSize: "clamp(1.75rem,3.5vw,2.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: T.ink, marginBottom: "0.75rem" }}>
+            Is Your Career Choice AI-Resilient?
           </h2>
-          <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Explore how different careers compare in salary potential, job growth, stability, and resilience to emerging technologies.
+          <p style={{ fontSize: "0.9rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "520px", margin: "0 auto" }}>
+            Explore how different career paths may evolve in an AI-driven world — and which uniquely human skills could keep you valuable in the future.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: "2.5rem", alignItems: "start" }}>
-
-          {/* LEFT: major selector */}
-          <div>
-            <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.6rem" }}>
-              Select a Career
-            </label>
-
-            <div style={{ position: "relative" }}>
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                style={{
-                  width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
-                  background: T.white, border: `1px solid ${dropdownOpen ? T.olive : T.border}`,
-                  borderRadius: "10px", padding: "0.95rem 1.25rem",
-                  fontSize: "0.95rem", fontWeight: 500, color: T.ink,
-                  cursor: "pointer", transition: "border-color 0.2s",
-                  boxShadow: T.shadow,
-                }}
-              >
-                <span>{selected.major}</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
-                  <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-
-              {dropdownOpen && (
-                <div style={{
-                  position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
-                  background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
-                  boxShadow: T.shadowMd, zIndex: 20, maxHeight: "340px", overflowY: "auto",
-                }}>
-                  {careerOutlookData.map((m, i) => (
-                    <button
-                      key={m.major}
-                      onClick={() => { setSelectedIdx(i); setDropdownOpen(false); }}
+        {/* Dropdown — centered */}
+        <div style={{ marginBottom: "1.75rem" }}>
+          <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.5rem", textAlign: "center" }}>
+            What career path interests you?
+          </label>
+          <div style={{ position: "relative" }}>
+            <button onClick={() => setDropdownOpen(!dropdownOpen)} style={{
+              width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
+              background: T.white, border: `1px solid ${dropdownOpen ? T.olive : T.border}`,
+              borderRadius: "10px", padding: "0.85rem 1.25rem",
+              fontSize: "0.95rem", fontWeight: 500, color: T.ink,
+              cursor: "pointer", transition: "border-color 0.2s", boxShadow: T.shadow,
+            }}>
+              <span>{selected.career}</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
+                <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {dropdownOpen && (
+              <div style={{
+                position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
+                background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
+                boxShadow: T.shadowMd, zIndex: 20, overflow: "hidden",
+              }}>
+                <div style={{ padding: "0.6rem", borderBottom: `1px solid ${T.border}` }}>
+                  <input autoFocus type="text" placeholder="Search careers..."
+                    value={search} onChange={e => setSearch(e.target.value)}
+                    style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${T.border}`, borderRadius: "7px", background: T.parchment, fontSize: "0.85rem", color: T.ink, outline: "none" }}
+                    onFocus={e => e.target.style.borderColor = T.olive}
+                    onBlur={e => e.target.style.borderColor = T.border}
+                  />
+                </div>
+                <div style={{ maxHeight: "280px", overflowY: "auto" }}>
+                  {filtered.length === 0 && <div style={{ padding: "0.9rem 1.25rem", fontSize: "0.85rem", color: T.inkSoft }}>No careers found</div>}
+                  {filtered.map((m, i) => (
+                    <button key={m.career} onClick={() => { setSelectedIdx(m.idx); setDropdownOpen(false); setSearch(""); }}
                       style={{
                         width: "100%", textAlign: "left", padding: "0.75rem 1.25rem",
-                        background: i === selectedIdx ? T.oliveFaint : "transparent",
-                        border: "none", borderBottom: i < careerOutlookData.length - 1 ? `1px solid ${T.border}` : "none",
-                        fontSize: "0.88rem", fontWeight: i === selectedIdx ? 600 : 400,
-                        color: i === selectedIdx ? T.olive : T.inkMid,
+                        background: m.idx === selectedIdx ? T.oliveFaint : "transparent",
+                        border: "none", borderBottom: i < filtered.length - 1 ? `1px solid ${T.border}` : "none",
+                        fontSize: "0.9rem", fontWeight: m.idx === selectedIdx ? 600 : 400,
+                        color: m.idx === selectedIdx ? T.olive : T.inkMid,
                         cursor: "pointer", transition: "background 0.15s",
                       }}
-                      onMouseEnter={e => { if (i !== selectedIdx) e.currentTarget.style.background = T.parchment; }}
-                      onMouseLeave={e => { if (i !== selectedIdx) e.currentTarget.style.background = "transparent"; }}
-                    >
-                      {m.major}
-                    </button>
+                      onMouseEnter={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = T.parchment; }}
+                      onMouseLeave={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = "transparent"; }}
+                    >{m.career}</button>
                   ))}
                 </div>
-              )}
-            </div>
-
-            <p style={{ fontSize: "0.85rem", color: T.inkSoft, lineHeight: 1.7, marginTop: "1.25rem" }}>
-              Pick any career to see its Future-Proof Score and a quick snapshot of what the next decade may look like.
-            </p>
-          </div>
-
-          {/* RIGHT: gauge + metrics + description — re-keyed for a subtle fade/slide transition */}
-          <div key={selectedIdx} className="fade-up" style={{
-            background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
-            padding: "2.25rem", boxShadow: T.shadowMd,
-          }}>
-
-            {/* Gauge — the focal point */}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1.75rem" }}>
-              <div style={{ position: "relative", width: "220px", height: "180px" }}>
-                <svg width="220" height="180" viewBox="0 0 220 180">
-                  <path d={trackPath} fill="none" stroke={T.linen} strokeWidth="14" strokeLinecap="round" />
-                  <path d={valuePath} fill="none" stroke={tier.color} strokeWidth="14" strokeLinecap="round"
-                    style={{ transition: "stroke 0.3s ease" }} />
-                </svg>
-                <div style={{
-                  position: "absolute", top: "38%", left: 0, width: "100%",
-                  display: "flex", flexDirection: "column", alignItems: "center",
-                }}>
-                  <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.35rem" }}>Future-Proof Score</div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.3rem" }}>
-                    <div className="serif" style={{ fontSize: "3rem", fontWeight: 700, color: tier.color, lineHeight: 1, transition: "color 0.3s ease" }}>{animScore}</div>
-                    <div style={{ fontSize: "1rem", color: T.inkSoft, fontWeight: 500 }}>/100</div>
-                  </div>
-                </div>
               </div>
-              <div style={{
-                fontSize: "0.78rem", fontWeight: 600, color: tier.color, background: tier.bg,
-                padding: "0.3rem 1rem", borderRadius: "100px", marginTop: "0.5rem",
-                transition: "color 0.3s ease, background 0.3s ease",
-              }}>{tier.label}</div>
-            </div>
-
-            {/* Four key metrics */}
-            <div className="outlook-metrics" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem", marginBottom: "1.5rem" }}>
-              <Metric label="Avg. Starting Salary" value={fmt(selected.startingSalary)} info={METRIC_INFO.salary} />
-              <Metric label="Job Growth" value={`${selected.jobGrowth.toFixed(1)} / 10`} info={METRIC_INFO.jobGrowth} />
-              <Metric label="Career Stability" value={`${selected.careerStability.toFixed(1)} / 10`} info={METRIC_INFO.careerStability} />
-              <Metric label="AI Resilience" value={`${selected.aiResilience.toFixed(1)} / 10`} info={METRIC_INFO.aiResilience} />
-            </div>
-
-            {/* Short description */}
-            <p style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.7, borderTop: `1px solid ${T.border}`, paddingTop: "1.25rem" }}>
-              {selected.description}
-            </p>
+            )}
           </div>
         </div>
 
-        {/* Reflection */}
-        <div style={{ textAlign: "center", maxWidth: "620px", margin: "3.5rem auto 0" }}>
-          <h3 className="serif" style={{ fontSize: "clamp(1.5rem,3vw,2.1rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em", color: T.ink, marginBottom: "0.85rem" }}>
-            Would You Still Choose This Path?
-          </h3>
-          <p style={{ fontSize: "0.92rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Understanding the future outlook of a career is only one piece of the equation. University costs, scholarships, student debt, and future earnings can dramatically change the financial outcome of your decision.
-          </p>
+        {/* Score card — centered, compact */}
+        <div key={selectedIdx} className="fade-up" style={{
+          background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
+          padding: "2rem", boxShadow: T.shadowMd, marginBottom: "1.5rem",
+        }}>
+          {/* Gauge */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1.25rem" }}>
+            <div style={{ position: "relative", width: "180px", height: "155px" }}>
+              <svg width="180" height="155" viewBox="0 0 180 180">
+                <path d={arc(startAngle, startAngle + sweepAngle)} fill="none" stroke={T.linen} strokeWidth="14" strokeLinecap="round"/>
+                <path d={arc(startAngle, angle)} fill="none" stroke={category.color} strokeWidth="14" strokeLinecap="round" style={{ transition: "stroke 0.4s ease" }}/>
+              </svg>
+              <div style={{ position: "absolute", top: "36%", left: 0, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.3rem" }}>AI Resilience Score</div>
+                <div className="serif" style={{ fontSize: "3rem", fontWeight: 700, color: category.color, lineHeight: 1, transition: "color 0.3s ease" }}>{animScore}</div>
+                <div style={{ fontSize: "0.7rem", fontWeight: 600, color: category.color, background: category.bg, padding: "0.2rem 0.75rem", borderRadius: "100px", marginTop: "0.4rem", transition: "all 0.3s ease" }}>{category.label}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2035 Snapshot */}
+          <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: "1.1rem", textAlign: "center" }}>
+            <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.5rem" }}>2035 Snapshot</div>
+            <p style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.7 }}>{selected.snapshot}</p>
+          </div>
         </div>
 
-        {/* Data transparency */}
-        <div style={{ marginTop: "3rem", maxWidth: "720px", marginLeft: "auto", marginRight: "auto" }}>
-          <button
-            onClick={() => setTransparencyOpen(!transparencyOpen)}
-            style={{
-              width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
-              background: "none", border: "none", cursor: "pointer", padding: "0.75rem 0",
-              fontSize: "0.85rem", fontWeight: 500, color: T.inkMid,
-            }}
-          >
-            How are these scores calculated?
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ transform: transparencyOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
-              <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          {transparencyOpen && (
-            <p className="fade-up" style={{ fontSize: "0.85rem", color: T.inkSoft, lineHeight: 1.75, paddingBottom: "0.75rem", borderTop: `1px solid ${T.border}`, paddingTop: "0.85rem" }}>
-              Future-Proof Scores are estimated using publicly available salary data, labor market projections, industry demand trends, and assessments of how automatable the core responsibilities of a profession may be over time.
-            </p>
-          )}
+        {/* Legend */}
+        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+          {legend.map(l => (
+            <div key={l.label} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", background: T.white, border: `1px solid ${T.border}`, borderRadius: "8px", padding: "0.6rem 0.85rem", flex: "1 1 180px", maxWidth: "210px" }}>
+              <span style={{ fontSize: "0.7rem", fontWeight: 700, color: l.color, background: l.bg, padding: "0.1rem 0.5rem", borderRadius: "100px", whiteSpace: "nowrap", marginTop: "1px", flexShrink: 0 }}>{l.range}</span>
+              <span style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.4, flex: 1 }}>{l.label}</span>
+              <span className="io-tooltip" style={{ position: "relative", display: "inline-flex", marginTop: "2px", flexShrink: 0, cursor: "default" }}>
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="7" stroke={T.olivePale} strokeWidth="1.3"/>
+                  <line x1="8" y1="7.2" x2="8" y2="11.5" stroke={T.olivePale} strokeWidth="1.3" strokeLinecap="round"/>
+                  <circle cx="8" cy="4.7" r="0.9" fill={T.olivePale}/>
+                </svg>
+                <span className="io-tooltip-box" style={{
+                  position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)",
+                  background: T.ink, color: T.paper, fontSize: "0.72rem", lineHeight: 1.55,
+                  padding: "0.65rem 0.85rem", borderRadius: "8px", width: "210px",
+                  opacity: 0, visibility: "hidden", transition: "opacity 0.18s ease",
+                  boxShadow: T.shadowMd, zIndex: 40, pointerEvents: "none",
+                }}>{l.tooltip}</span>
+              </span>
+            </div>
+          ))}
         </div>
+
+        {/* Disclaimer */}
+        <p style={{ fontSize: "0.73rem", color: T.olivePale, lineHeight: 1.6, textAlign: "center", fontStyle: "italic" }}>
+          These projections are intended for educational purposes and are based on emerging labor market and technology trends. The future of work is constantly evolving, and no career path can be predicted with certainty.
+        </p>
 
       </div>
-      <style>{`
-        .io-tooltip:hover .io-tooltip-box { opacity: 1 !important; visibility: visible !important; }
-        @media(max-width:900px){
-          #career-outlook > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; }
-        }
-        @media(max-width:640px){
-          #career-outlook .outlook-metrics { grid-template-columns: 1fr 1fr !important; }
-          #career-outlook .outlook-metrics .io-tooltip-box { left: 0; transform: none; }
-          #career-outlook > div > div:nth-of-type(4) > div:nth-of-type(2) { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}</style>
+      <style>{`.io-tooltip:hover .io-tooltip-box { opacity: 1 !important; visibility: visible !important; }`}</style>
     </section>
   );
 }
@@ -2369,13 +2153,12 @@ export default function App() {
     <div>
       <HomeNav navigate={navigate} />
       <Hero />
+      <ToolsEcosystem />
       <Simulator />
       <CompareYourFuture />
       <DeeperComparisonBanner />
-      <FutureCareerOutlook />
-      <ToolsEcosystem />
+      <AIResilienceSection />
       <Translator />
-      <PaidOffPlanner />
       <FounderIntro navigate={navigate} />
       <Contact />
       <Waitlist />

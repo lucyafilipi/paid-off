@@ -308,14 +308,16 @@ function Hero() {
       </div>
 
       {/* Foreground content */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: "680px" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "900px" }}>
         <h1 className="fade-up d1 serif" style={{
           fontSize: "clamp(2.6rem, 6vw, 5.5rem)",
-          fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.03em",
+          fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.03em",
           color: T.ink, marginBottom: "1.5rem",
           textTransform: "uppercase",
+          whiteSpace: "nowrap",
         }}>
-          College Is an<br />Investment.<br />Let's Treat It<br />Like One.
+          <span style={{ display: "block" }}>Know the Cost.</span>
+          <span style={{ display: "block" }}>Own the Decision.</span>
         </h1>
 
         <p className="fade-up d2" style={{
@@ -328,27 +330,6 @@ function Hero() {
 
         {/* Two equal primary CTAs */}
         <div className="fade-up d3" style={{ display: "flex", gap: "0.85rem", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
-          <a href="#simulator" style={{
-            background: T.olive, color: T.white,
-            padding: "0.88rem 2rem", borderRadius: "100px",
-            fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(184,64,64,0.2)",
-            transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(184,64,64,0.24)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,64,64,0.2)"; }}
-          >Try the Simulator</a>
-          <a href="#waitlist" style={{
-            background: T.white, color: T.ink,
-            padding: "0.88rem 2rem", borderRadius: "100px",
-            fontSize: "0.9rem", fontWeight: 500,
-            border: `1px solid ${T.borderMid}`,
-            boxShadow: T.shadow,
-            transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = T.olive; e.currentTarget.style.color = T.olive; e.currentTarget.style.transform = "translateY(-2px)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.ink; e.currentTarget.style.transform = "translateY(0)"; }}
-          >Become an Early Tester</a>
         </div>
       </div>
 
@@ -533,14 +514,6 @@ function Simulator() {
           <p style={{ fontSize: "0.93rem", color: T.inkSoft, lineHeight: 1.75, marginBottom: "2rem" }}>
             Model different loan amounts, interest rates, and repayment plans to see your monthly payment, total interest, and payoff timeline.
           </p>
-          <a href="#simulator" style={{
-            display: "inline-block", padding: "0.65rem 1.5rem",
-            border: `1px solid ${T.borderMid}`, borderRadius: "100px",
-            fontSize: "0.82rem", color: T.inkMid, fontWeight: 500, transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.color = T.white; e.currentTarget.style.borderColor = T.olive; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.inkMid; e.currentTarget.style.borderColor = T.borderMid; }}
-          >Simulate Borrowing</a>
         </div>
 
         {/* Card */}
@@ -976,125 +949,100 @@ function Translator() {
 }
 
 // ─── COMPARE COLLEGE COSTS ────────────────────────────────────────────────────
-// PLACEHOLDER DATA — replace with real tuition/housing/meal-plan/fee figures
-// from each school's published cost of attendance when available.
+// Cost-of-attendance figures sourced from each university's published 2024–25
+// Cost of Attendance pages. All figures are annual.
+//
+// isPublic: true  → show in-state / out-of-state selector
+// isPublic: false → hide selector, show private-institution note
 const universityCostData = [
-  { school: "Marquette University",          tuition: 48000, housing: 8500,  mealPlan: 4800, fees: 1200 },
-  { school: "University of Wisconsin",       tuition: 11000, housing: 9000,  mealPlan: 4200, fees: 1300 },
-  { school: "University of Colorado Boulder", tuition: 38000, housing: 13000, mealPlan: 5200, fees: 2200 },
-  { school: "Arizona State University",      tuition: 29000, housing: 11000, mealPlan: 4800, fees: 1800 },
-  { school: "Ohio State University",         tuition: 35000, housing: 12500, mealPlan: 5000, fees: 1700 },
-  { school: "University of Michigan",        tuition: 52000, housing: 13000, mealPlan: 5500, fees: 1000 },
-  { school: "Penn State University",         tuition: 36000, housing: 11500, mealPlan: 4900, fees: 1200 },
-  { school: "Indiana University",            tuition: 28000, housing: 10500, mealPlan: 4600, fees: 1400 },
+  { school: "Marquette University",           isPublic: false, tuition: 48620, housing: 10500, mealPlan: 5540, fees: 644  },
+  { school: "University of Wisconsin–Madison", isPublic: true,  tuitionInState: 11205, tuitionOutOfState: 40369, housing: 9000,  mealPlan: 4600, fees: 1408 },
+  { school: "University of Colorado Boulder",  isPublic: true,  tuitionInState: 13256, tuitionOutOfState: 40428, housing: 12400, mealPlan: 5400, fees: 2280 },
+  { school: "Arizona State University",        isPublic: true,  tuitionInState: 12720, tuitionOutOfState: 34080, housing: 11196, mealPlan: 5260, fees: 878  },
+  { school: "Ohio State University",           isPublic: true,  tuitionInState: 11936, tuitionOutOfState: 35019, housing: 12492, mealPlan: 5246, fees: 832  },
+  { school: "University of Michigan",          isPublic: true,  tuitionInState: 17786, tuitionOutOfState: 57273, housing: 13400, mealPlan: 5600, fees: 390  },
+  { school: "Penn State University",           isPublic: true,  tuitionInState: 20052, tuitionOutOfState: 38106, housing: 11620, mealPlan: 5590, fees: 244  },
+  { school: "Indiana University",              isPublic: true,  tuitionInState: 11168, tuitionOutOfState: 37426, housing: 10796, mealPlan: 5160, fees: 2062 },
 ];
 
-function totalAnnualCost(school) {
-  return school.tuition + school.housing + school.mealPlan + school.fees;
-}
-
-// Cost Efficiency Score — a simple, secondary indicator based on the
-// annual out-of-pocket cost after scholarships and grants. Kept within the
-// brand's green / brick / amber / terracotta palette, never "rose".
 function costEfficiencyTier(outOfPocket) {
-  if (outOfPocket < 15000) return { label: "Excellent Value", color: T.green, bg: T.greenBg };
-  if (outOfPocket < 25000) return { label: "Good Value", color: T.olive, bg: T.oliveFaint };
-  if (outOfPocket < 35000) return { label: "Average Value", color: T.amber, bg: T.amberBg };
-  return { label: "Higher Cost Option", color: T.oliveMid, bg: T.oliveFaint };
+  if (outOfPocket < 15000) return { label: "Excellent Value", color: T.green,    bg: T.greenBg   };
+  if (outOfPocket < 25000) return { label: "Good Value",      color: T.olive,    bg: T.oliveFaint };
+  if (outOfPocket < 37000) return { label: "Average Value",   color: T.amber,    bg: T.amberBg   };
+  return                          { label: "Higher Cost",     color: T.oliveMid, bg: T.oliveFaint };
 }
 
 function CompareYourFuture() {
   const [ref, visible] = useReveal();
-  const [selectedIdx, setSelectedIdx] = useState(0);
-  const [compareIdx, setCompareIdx] = useState(null); // null = single-school view
+  const [selectedIdx,  setSelectedIdx]  = useState(0);
+  const [compareIdx,   setCompareIdx]   = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [compareDropdownOpen, setCompareDropdownOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search,        setSearch]       = useState("");
   const [compareSearch, setCompareSearch] = useState("");
 
-  // Per-card scholarship & grant inputs (optional)
   const [scholarship1, setScholarship1] = useState(0);
-  const [grant1, setGrant1] = useState(0);
+  const [grant1,       setGrant1]       = useState(0);
   const [scholarship2, setScholarship2] = useState(0);
-  const [grant2, setGrant2] = useState(0);
+  const [grant2,       setGrant2]       = useState(0);
 
-  const selected = universityCostData[selectedIdx];
+  const [residency1, setResidency1] = useState("in");
+  const [residency2, setResidency2] = useState("in");
+
+  const [incHousing1, setIncHousing1] = useState(true);
+  const [incMeal1,    setIncMeal1]    = useState(true);
+  const [incHousing2, setIncHousing2] = useState(true);
+  const [incMeal2,    setIncMeal2]    = useState(true);
+
+  const selected    = universityCostData[selectedIdx];
   const comparePath = compareIdx !== null ? universityCostData[compareIdx] : null;
 
-  // Searchable school dropdown — type to filter, click to select
+  const effectiveTuition = (school, residency) =>
+    school.isPublic
+      ? (residency === "in" ? school.tuitionInState : school.tuitionOutOfState)
+      : school.tuition;
+
   const SchoolDropdown = ({ value, onChange, open, setOpen, search, setSearch, excludeIdx, placeholder }) => {
     const filtered = universityCostData
       .map((p, i) => ({ ...p, idx: i }))
       .filter(p => p.idx !== excludeIdx && p.school.toLowerCase().includes(search.toLowerCase()));
-
     return (
       <div style={{ position: "relative" }}>
-        <button
-          onClick={() => setOpen(!open)}
-          style={{
-            width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
-            background: T.white, border: `1px solid ${open ? T.olive : T.border}`,
-            borderRadius: "10px", padding: "0.85rem 1.1rem",
-            fontSize: "0.9rem", fontWeight: 500, color: value === null ? T.inkSoft : T.ink,
-            cursor: "pointer", transition: "border-color 0.2s",
-            boxShadow: T.shadow,
-          }}
-        >
+        <button onClick={() => setOpen(!open)} style={{
+          width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
+          background: T.white, border: `1px solid ${open ? T.olive : T.border}`,
+          borderRadius: "10px", padding: "0.85rem 1.1rem",
+          fontSize: "0.9rem", fontWeight: 500, color: value === null ? T.inkSoft : T.ink,
+          cursor: "pointer", transition: "border-color 0.2s", boxShadow: T.shadow,
+        }}>
           <span>{value === null ? placeholder : universityCostData[value].school}</span>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ transform: open ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
             <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
         {open && (
-          <div style={{
-            position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
-            background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
-            boxShadow: T.shadowMd, zIndex: 30, overflow: "hidden",
-          }}>
-            {/* Search input */}
+          <div style={{ position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0, background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px", boxShadow: T.shadowMd, zIndex: 30, overflow: "hidden" }}>
             <div style={{ padding: "0.6rem", borderBottom: `1px solid ${T.border}` }}>
-              <input
-                autoFocus
-                type="text"
-                placeholder="Type a university name..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                style={{
-                  width: "100%", padding: "0.55rem 0.75rem",
-                  border: `1px solid ${T.border}`, borderRadius: "7px",
-                  background: T.parchment, fontSize: "0.85rem", color: T.ink, outline: "none",
-                }}
+              <input autoFocus type="text" placeholder="Type a university name..." value={search} onChange={e => setSearch(e.target.value)}
+                style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${T.border}`, borderRadius: "7px", background: T.parchment, fontSize: "0.85rem", color: T.ink, outline: "none" }}
                 onFocus={e => e.target.style.borderColor = T.olive}
                 onBlur={e => e.target.style.borderColor = T.border}
               />
             </div>
             <div style={{ maxHeight: "240px", overflowY: "auto" }}>
               {placeholder && (
-                <button
-                  onClick={() => { onChange(null); setOpen(false); setSearch(""); }}
-                  style={{ width: "100%", textAlign: "left", padding: "0.75rem 1.1rem", background: "transparent", border: "none", borderBottom: `1px solid ${T.border}`, fontSize: "0.85rem", color: T.inkSoft, cursor: "pointer" }}
-                >{placeholder}</button>
+                <button onClick={() => { onChange(null); setOpen(false); setSearch(""); }}
+                  style={{ width: "100%", textAlign: "left", padding: "0.75rem 1.1rem", background: "transparent", border: "none", borderBottom: `1px solid ${T.border}`, fontSize: "0.85rem", color: T.inkSoft, cursor: "pointer" }}>
+                  {placeholder}
+                </button>
               )}
-              {filtered.length === 0 && (
-                <div style={{ padding: "0.9rem 1.1rem", fontSize: "0.85rem", color: T.inkSoft }}>No universities found</div>
-              )}
-              {filtered.map((p) => (
-                <button
-                  key={p.school}
-                  onClick={() => { onChange(p.idx); setOpen(false); setSearch(""); }}
-                  style={{
-                    width: "100%", textAlign: "left", padding: "0.75rem 1.1rem",
-                    background: value === p.idx ? T.oliveFaint : "transparent",
-                    border: "none", borderBottom: `1px solid ${T.border}`,
-                    fontSize: "0.85rem", fontWeight: value === p.idx ? 600 : 400,
-                    color: value === p.idx ? T.olive : T.inkMid,
-                    cursor: "pointer", transition: "background 0.15s",
-                  }}
+              {filtered.length === 0 && <div style={{ padding: "0.9rem 1.1rem", fontSize: "0.85rem", color: T.inkSoft }}>No universities found</div>}
+              {filtered.map(p => (
+                <button key={p.school} onClick={() => { onChange(p.idx); setOpen(false); setSearch(""); }}
+                  style={{ width: "100%", textAlign: "left", padding: "0.75rem 1.1rem", background: value === p.idx ? T.oliveFaint : "transparent", border: "none", borderBottom: `1px solid ${T.border}`, fontSize: "0.85rem", fontWeight: value === p.idx ? 600 : 400, color: value === p.idx ? T.olive : T.inkMid, cursor: "pointer", transition: "background 0.15s" }}
                   onMouseEnter={e => { if (value !== p.idx) e.currentTarget.style.background = T.parchment; }}
                   onMouseLeave={e => { if (value !== p.idx) e.currentTarget.style.background = "transparent"; }}
-                >
-                  {p.school}
-                </button>
+                >{p.school}</button>
               ))}
             </div>
           </div>
@@ -1103,16 +1051,12 @@ function CompareYourFuture() {
     );
   };
 
-  // Small labeled number input for scholarships / grants
   const AidInput = ({ label, value, onChange }) => (
     <div style={{ flex: 1 }}>
       <div style={{ fontSize: "0.7rem", color: T.inkSoft, marginBottom: "0.3rem" }}>{label}</div>
       <div style={{ display: "flex", alignItems: "center", border: `1px solid ${T.border}`, borderRadius: "7px", background: T.parchment, padding: "0.45rem 0.7rem" }}>
         <span style={{ fontSize: "0.85rem", color: T.inkSoft, marginRight: "0.3rem" }}>$</span>
-        <input
-          type="number" min="0" step="500"
-          value={value === 0 ? "" : value}
-          placeholder="0"
+        <input type="number" min="0" step="500" value={value === 0 ? "" : value} placeholder="0"
           onChange={e => onChange(Math.max(0, Number(e.target.value) || 0))}
           style={{ width: "100%", border: "none", background: "transparent", outline: "none", fontSize: "0.85rem", color: T.ink, fontFamily: "'DM Mono',monospace" }}
         />
@@ -1120,60 +1064,90 @@ function CompareYourFuture() {
     </div>
   );
 
-  // Cost breakdown card — the "true cost" snapshot for one university
-  const CostCard = ({ path, scholarship, grant, onScholarshipChange, onGrantChange }) => {
-    const annual = totalAnnualCost(path);
+  const Toggle = ({ checked, onChange, label }) => (
+    <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.82rem", color: T.inkMid, userSelect: "none" }}>
+      <div onClick={() => onChange(!checked)} style={{ width: "16px", height: "16px", borderRadius: "4px", flexShrink: 0, border: `1.5px solid ${checked ? T.olive : T.border}`, background: checked ? T.olive : T.white, display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.15s", cursor: "pointer" }}>
+        {checked && <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+      </div>
+      {label}
+    </label>
+  );
+
+  const CostCard = ({ path, scholarship, grant, onScholarshipChange, onGrantChange, residency, onResidencyChange, incHousing, onHousingToggle, incMeal, onMealToggle }) => {
+    const tuition     = effectiveTuition(path, residency);
+    const housingAmt  = incHousing ? path.housing  : 0;
+    const mealAmt     = incMeal    ? path.mealPlan : 0;
+    const annual      = tuition + housingAmt + mealAmt + path.fees;
     const outOfPocket = Math.max(0, annual - scholarship - grant);
-    const fourYear = outOfPocket * 4;
-    const tier = costEfficiencyTier(outOfPocket);
+    const fourYear    = outOfPocket * 4;
+    const tier        = costEfficiencyTier(outOfPocket);
 
     const rows = [
-      { label: "Annual Tuition", val: fmt(path.tuition) },
-      { label: "Annual Housing", val: fmt(path.housing) },
-      { label: "Annual Meal Plan", val: fmt(path.mealPlan) },
+      { label: path.isPublic ? `Annual Tuition (${residency === "in" ? "In-State" : "Out-of-State"})` : "Annual Tuition", val: fmt(tuition) },
+      incHousing && { label: "Annual Housing",   val: fmt(path.housing)   },
+      incMeal    && { label: "Annual Meal Plan",  val: fmt(path.mealPlan)  },
       { label: "Required Fees", val: fmt(path.fees) },
-    ];
+    ].filter(Boolean);
 
     return (
       <div style={{ border: `1.5px solid ${T.borderMid}`, borderRadius: "10px", overflow: "hidden", boxShadow: T.shadow, background: T.white }}>
         {/* Header */}
         <div style={{ background: T.warm, padding: "1.25rem 1.5rem", borderBottom: `1px solid ${T.border}` }}>
           <div style={{ fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.25rem" }}>Estimated Cost of Attendance</div>
-          <div className="serif" style={{ fontSize: "1.5rem", fontWeight: 700, color: T.ink, lineHeight: 1.2 }}>{path.school}</div>
+          <div className="serif" style={{ fontSize: "1.4rem", fontWeight: 700, color: T.ink, lineHeight: 1.2 }}>{path.school}</div>
         </div>
         <div style={{ height: "4px", background: T.olive }} />
 
-        {/* Cost breakdown */}
+        {/* Residency */}
+        {path.isPublic ? (
+          <div style={{ padding: "0.9rem 1.5rem", borderBottom: `1px solid ${T.border}`, background: T.parchment }}>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.5rem" }}>Residency Status</div>
+            <div style={{ display: "flex", gap: "1.25rem" }}>
+              {[["in", "In-State"], ["out", "Out-of-State"]].map(([val, lbl]) => (
+                <label key={val} style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer", fontSize: "0.82rem", color: residency === val ? T.olive : T.inkMid, fontWeight: residency === val ? 600 : 400 }}>
+                  <input type="radio" name={`res-${path.school}`} value={val} checked={residency === val} onChange={() => onResidencyChange(val)}
+                    style={{ accentColor: T.olive, width: "14px", height: "14px" }} />
+                  {lbl}
+                </label>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div style={{ padding: "0.75rem 1.5rem", borderBottom: `1px solid ${T.border}`, background: T.parchment }}>
+            <div style={{ fontSize: "0.75rem", color: T.inkSoft, fontStyle: "italic" }}>Private institutions charge the same tuition regardless of residency.</div>
+          </div>
+        )}
+
+        {/* Housing & meal toggles */}
+        <div style={{ padding: "0.85rem 1.5rem", borderBottom: `1px solid ${T.border}`, display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+          <Toggle checked={incHousing} onChange={onHousingToggle} label="Include Housing" />
+          <Toggle checked={incMeal}    onChange={onMealToggle}    label="Include Meal Plan" />
+        </div>
+
+        {/* Cost rows */}
         {rows.map((r, i) => (
-          <div key={i} style={{
-            display: "flex", justifyContent: "space-between", alignItems: "center",
-            padding: "0.8rem 1.5rem",
-            borderBottom: `1px solid ${T.border}`,
-            background: T.white,
-          }}>
+          <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.8rem 1.5rem", borderBottom: `1px solid ${T.border}`, background: T.white }}>
             <div style={{ fontSize: "0.85rem", color: T.inkMid }}>{r.label}</div>
             <div className="mono" style={{ fontSize: "0.93rem", fontWeight: 600, color: T.ink }}>{r.val}</div>
           </div>
         ))}
+
         {/* Subtotal */}
-        <div style={{
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          padding: "0.9rem 1.5rem", background: T.parchment, borderBottom: `1px solid ${T.border}`,
-        }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.9rem 1.5rem", background: T.parchment, borderBottom: `1px solid ${T.border}` }}>
           <div style={{ fontSize: "0.85rem", fontWeight: 600, color: T.inkMid }}>Estimated Total Annual Cost</div>
           <div className="mono" style={{ fontSize: "1rem", fontWeight: 700, color: T.ink }}>{fmt(annual)}</div>
         </div>
 
-        {/* Scholarships & Grants — optional */}
+        {/* Aid inputs */}
         <div style={{ padding: "1.25rem 1.5rem", borderBottom: `1px solid ${T.border}` }}>
           <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.inkSoft, marginBottom: "0.6rem" }}>Scholarships &amp; Grants (optional)</div>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <AidInput label="Scholarships" value={scholarship} onChange={onScholarshipChange} />
-            <AidInput label="Grants" value={grant} onChange={onGrantChange} />
+            <AidInput label="Grants"       value={grant}       onChange={onGrantChange} />
           </div>
         </div>
 
-        {/* Your estimated cost */}
+        {/* Annual out-of-pocket */}
         <div style={{ padding: "1.25rem 1.5rem", borderBottom: `1px solid ${T.border}` }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "0.75rem" }}>
             <div>
@@ -1186,7 +1160,7 @@ function CompareYourFuture() {
           </div>
         </div>
 
-        {/* Total estimated cost — the main takeaway */}
+        {/* 4-year total — primary takeaway */}
         <div style={{ background: T.olive, color: T.white, padding: "1.25rem 1.5rem" }}>
           <div style={{ fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", opacity: 0.65, marginBottom: "0.35rem" }}>Total Estimated Cost (4 Years)</div>
           <div className="serif" style={{ fontSize: "2.5rem", fontWeight: 700, lineHeight: 1 }}>{fmt(fourYear)}</div>
@@ -1200,7 +1174,6 @@ function CompareYourFuture() {
       style={{ background: T.paper, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        {/* Header */}
         <div style={{ maxWidth: "640px", marginBottom: "2.5rem" }}>
           <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>The Main Tool</span>
           <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
@@ -1211,83 +1184,29 @@ function CompareYourFuture() {
           </p>
         </div>
 
-        {/* Selectors */}
         <div style={{ display: "grid", gridTemplateColumns: compareIdx === null ? "1fr auto" : "1fr 1fr", gap: "1rem", marginBottom: "2rem", alignItems: "start" }}>
-          <SchoolDropdown
-            value={selectedIdx}
-            onChange={setSelectedIdx}
-            open={dropdownOpen}
-            setOpen={setDropdownOpen}
-            search={search}
-            setSearch={setSearch}
-            excludeIdx={compareIdx}
-          />
+          <SchoolDropdown value={selectedIdx} onChange={v => { setSelectedIdx(v); setResidency1("in"); }} open={dropdownOpen} setOpen={setDropdownOpen} search={search} setSearch={setSearch} excludeIdx={compareIdx} />
           {compareIdx === null ? (
-            <button
-              onClick={() => setCompareIdx(universityCostData.findIndex((_, i) => i !== selectedIdx))}
-              style={{
-                display: "flex", alignItems: "center", gap: "0.5rem",
-                padding: "0.85rem 1.25rem", borderRadius: "10px",
-                border: `1px dashed ${T.borderMid}`, background: "transparent",
-                fontSize: "0.85rem", fontWeight: 500, color: T.inkSoft,
-                cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.2s",
-              }}
+            <button onClick={() => setCompareIdx(universityCostData.findIndex((_, i) => i !== selectedIdx))}
+              style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.85rem 1.25rem", borderRadius: "10px", border: `1px dashed ${T.borderMid}`, background: "transparent", fontSize: "0.85rem", fontWeight: 500, color: T.inkSoft, cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = T.olive; e.currentTarget.style.color = T.olive; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = T.borderMid; e.currentTarget.style.color = T.inkSoft; }}
-            >
-              + Compare another school
-            </button>
+            >+ Compare another school</button>
           ) : (
-            <SchoolDropdown
-              value={compareIdx}
-              onChange={(i) => { if (i === null) setCompareIdx(null); else setCompareIdx(i); }}
-              open={compareDropdownOpen}
-              setOpen={setCompareDropdownOpen}
-              search={compareSearch}
-              setSearch={setCompareSearch}
-              excludeIdx={selectedIdx}
-              placeholder="Remove comparison"
-            />
+            <SchoolDropdown value={compareIdx} onChange={v => { if (v === null) setCompareIdx(null); else { setCompareIdx(v); setResidency2("in"); }}} open={compareDropdownOpen} setOpen={setCompareDropdownOpen} search={compareSearch} setSearch={setCompareSearch} excludeIdx={selectedIdx} placeholder="Remove comparison" />
           )}
         </div>
 
-        {/* Cards */}
         <div style={{ display: "grid", gridTemplateColumns: compareIdx === null ? "1fr" : "1fr 1fr", gap: "1.5rem", marginBottom: "2rem", maxWidth: compareIdx === null ? "560px" : "none", marginLeft: compareIdx === null ? "auto" : 0, marginRight: compareIdx === null ? "auto" : 0 }}>
-          <CostCard path={selected} scholarship={scholarship1} grant={grant1} onScholarshipChange={setScholarship1} onGrantChange={setGrant1} />
-          {comparePath && <CostCard path={comparePath} scholarship={scholarship2} grant={grant2} onScholarshipChange={setScholarship2} onGrantChange={setGrant2} />}
+          <CostCard path={selected} scholarship={scholarship1} grant={grant1} onScholarshipChange={setScholarship1} onGrantChange={setGrant1} residency={residency1} onResidencyChange={setResidency1} incHousing={incHousing1} onHousingToggle={setIncHousing1} incMeal={incMeal1} onMealToggle={setIncMeal1} />
+          {comparePath && <CostCard path={comparePath} scholarship={scholarship2} grant={grant2} onScholarshipChange={setScholarship2} onGrantChange={setGrant2} residency={residency2} onResidencyChange={setResidency2} incHousing={incHousing2} onHousingToggle={setIncHousing2} incMeal={incMeal2} onMealToggle={setIncMeal2} />}
         </div>
 
-        {/* Note */}
-        <p style={{ fontSize: "0.82rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "640px", marginBottom: "2.5rem" }}>
-          This estimate reflects the total cost of attendance after the scholarships and aid entered above. Future versions of this tool will let you adjust for number of semesters, transfer credits, living off-campus, loan assumptions, and graduation timelines.
+        <p style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "680px", marginBottom: "0.5rem" }}>
+          Estimates are based on publicly available university cost-of-attendance data and may vary based on housing choices, residency status, and individual financial aid packages.
         </p>
-
-        {/* Get full access */}
-        <div style={{ textAlign: "center", borderTop: `1px solid ${T.border}`, paddingTop: "2.5rem" }}>
-          <div className="serif" style={{ fontSize: "1.2rem", fontWeight: 700, color: T.ink, marginBottom: "0.5rem" }}>
-            Want more schools and your real financial aid numbers?
-          </div>
-          <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "520px", margin: "0 auto 1.5rem" }}>
-            This feature is currently being built and improved. Join as an early tester to get access before public launch and help shape the future of Paid Off.
-          </p>
-          <a href="#waitlist" style={{
-            display: "inline-flex", alignItems: "center", gap: "0.5rem",
-            background: T.olive, color: T.white,
-            padding: "0.85rem 2.25rem", borderRadius: "100px",
-            fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(184,64,64,0.18)",
-            transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
-          >
-            Become an Early Tester
-          </a>
-        </div>
-
-        {/* Disclaimer */}
-        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, marginTop: "2rem", textAlign: "center", maxWidth: "560px", marginLeft: "auto", marginRight: "auto" }}>
-          This preview uses sample cost data for a small set of schools. The full tool will let you enter any school and your actual financial aid package.
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, maxWidth: "560px" }}>
+          This preview uses 2024–25 published cost-of-attendance figures for a small set of schools. The full tool will let you enter any school and your actual financial aid package.
         </p>
 
       </div>
@@ -1297,9 +1216,8 @@ function CompareYourFuture() {
 }
 
 // ─── DEEPER COMPARISON BANNER ─────────────────────────────────────────────────
-// A bridging card, not its own section — sits on the seam between
-// "Compare Your Future" and "Future Career Outlook" using negative margins
-// to overlap both section backgrounds.
+// A bridging card on the seam between Compare College Costs and Future Career
+// Outlook — floats over both section backgrounds via negative margin.
 function DeeperComparisonBanner() {
   const comparisonItems = [
     "Universities", "Majors", "Scholarships", "Borrowing decisions",
@@ -1310,16 +1228,16 @@ function DeeperComparisonBanner() {
     <div style={{ position: "relative", zIndex: 5, maxWidth: "1000px", margin: "-3rem auto", padding: "0 2.5rem" }}>
       <div style={{
         background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
-        padding: "2.5rem", boxShadow: T.shadowMd,
+        padding: "2.5rem", boxShadow: T.shadowMd, textAlign: "center",
       }}>
-        <div className="serif" style={{ fontSize: "1.5rem", fontWeight: 700, color: T.ink, marginBottom: "0.75rem", textAlign: "center" }}>
+        <div className="serif" style={{ fontSize: "1.5rem", fontWeight: 700, color: T.ink, marginBottom: "0.6rem" }}>
           Want a Deeper Comparison?
         </div>
-        <p style={{ fontSize: "0.92rem", color: T.inkSoft, lineHeight: 1.7, textAlign: "center", maxWidth: "560px", margin: "0 auto 1.75rem" }}>
-          The full Compare Your Future tool will let you compare universities, majors, scholarships, borrowing decisions, salary projections, career outlook, Future-Proof Scores, and monthly loan payments — all in one side-by-side experience.
+        <p style={{ fontSize: "0.88rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "480px", margin: "0 auto 1.75rem" }}>
+          The full Compare Your Future tool brings all of this together in one side-by-side experience:
         </p>
 
-        <div className="deeper-comparison-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem 1.5rem", maxWidth: "640px", margin: "0 auto 2rem" }}>
+        <div className="deeper-comparison-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem 1.5rem", maxWidth: "640px", margin: "0 auto" }}>
           {comparisonItems.map((item) => (
             <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem", color: T.inkMid }}>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
@@ -1330,37 +1248,8 @@ function DeeperComparisonBanner() {
             </div>
           ))}
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
-          <a href="#compare" style={{
-            display: "inline-flex", alignItems: "center", gap: "0.5rem",
-            background: T.olive, color: T.white,
-            padding: "0.88rem 2.25rem", borderRadius: "100px",
-            fontSize: "0.9rem", fontWeight: 500,
-            boxShadow: "0 4px 20px rgba(184,64,64,0.18)",
-            transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
-          >
-            Compare Your Future
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-          <a href="#waitlist" style={{ fontSize: "0.85rem", color: T.olive, fontWeight: 500, borderBottom: `1px solid ${T.olivePale}`, paddingBottom: "2px", transition: "color 0.2s, border-color 0.2s" }}
-            onMouseEnter={e => { e.currentTarget.style.color = T.oliveLight; e.currentTarget.style.borderColor = T.olive; }}
-            onMouseLeave={e => { e.currentTarget.style.color = T.olive; e.currentTarget.style.borderColor = T.olivePale; }}
-          >
-            Become an Early Tester
-          </a>
-        </div>
       </div>
-      <style>{`
-        @media(max-width:640px){
-          .deeper-comparison-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}</style>
+      <style>{`@media(max-width:640px){ .deeper-comparison-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
     </div>
   );
 }
@@ -1401,10 +1290,10 @@ function Waitlist() {
         <div style={{ marginBottom: "4rem" }}>
           <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Early Testers</span>
           <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, maxWidth: "580px" }}>
-            Help build Paid Off.
+            Help Shape What's Next.
           </h2>
-          <p style={{ fontSize: "1rem", color: T.inkSoft, lineHeight: 1.75, marginTop: "1rem", maxWidth: "480px", fontWeight: 300 }}>
-            Paid Off is being built in the open. Become an early tester and help shape the tools that students and families actually need.
+          <p style={{ fontSize: "1rem", color: T.inkSoft, lineHeight: 1.75, marginTop: "1rem", maxWidth: "520px", fontWeight: 300 }}>
+            Paid Off is being built alongside students and families navigating these decisions in real time. If you'd like early access to upcoming tools and the opportunity to influence what gets built next, we'd love your input.
           </p>
         </div>
 
@@ -1422,22 +1311,6 @@ function Waitlist() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Decorative panel */}
-            <div style={{
-              borderRadius: "10px", padding: "1.75rem",
-              background: `linear-gradient(145deg, ${T.sage} 0%, ${T.warm} 60%, ${T.linen} 100%)`,
-              border: `1px solid ${T.border}`,
-              position: "relative", overflow: "hidden",
-            }}>
-              <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-10%", width: "70%", height: "70%", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(180,130,120,0.2) 0%, transparent 65%)" }} />
-              <div style={{ position: "relative", zIndex: 1 }}>
-                <div className="serif" style={{ fontSize: "1rem", fontStyle: "italic", color: T.inkSoft, lineHeight: 1.7, marginBottom: "0.75rem" }}>
-                  "Every feature on Paid Off comes from a real situation students face. Testers help make sure we're solving the right problems."
-                </div>
-                <div style={{ fontSize: "0.75rem", fontWeight: 500, color: T.oliveMid }}>— Paid Off founder</div>
-              </div>
             </div>
           </div>
 
@@ -1993,46 +1866,36 @@ function SurveyPage({ onNavigate }) {
 // versus repetitive, predictable, automatable tasks (low score). It is not a
 // measure of "AI taking jobs."
 const careerOutlookData = [
-  { major: "Biology", startingSalary: 48000, jobGrowth: 6.0, careerStability: 6.5, aiResilience: 7.5,
-    description: "Biology opens doors to research, healthcare, biotechnology, and environmental sciences. Many career paths benefit from advanced study, while emerging technologies continue to create new opportunities across the life sciences." },
-  { major: "Nursing", startingSalary: 72000, jobGrowth: 8.5, careerStability: 9.3, aiResilience: 9.2,
-    description: "Nursing combines clinical training with direct patient care — a combination that's difficult to automate. Strong demand and steady growth make this one of the most consistently resilient career paths." },
-  { major: "Finance", startingSalary: 68000, jobGrowth: 6.5, careerStability: 7.5, aiResilience: 6.0,
-    description: "Finance spans banking, investment, and corporate roles built on analysis and relationships. Routine calculations are increasingly automated, but advisory and strategic work continue to rely on human judgment." },
-  { major: "Accounting", startingSalary: 58000, jobGrowth: 6.0, careerStability: 7.0, aiResilience: 5.5,
-    description: "Accounting covers financial reporting, compliance, and analysis across nearly every industry. Automation is reshaping routine bookkeeping, while credentialed and advisory roles remain steady." },
-  { major: "Marketing", startingSalary: 54000, jobGrowth: 6.0, careerStability: 6.5, aiResilience: 5.0,
-    description: "Marketing blends creativity, strategy, and data to connect brands with audiences. As content tools become more automated, the value of strategic thinking and creative direction continues to grow." },
-  { major: "Computer Science", startingSalary: 80000, jobGrowth: 9.0, careerStability: 8.5, aiResilience: 6.5,
-    description: "Computer Science prepares graduates to design and build the software behind nearly every industry. Demand remains strong even as AI changes how code gets written." },
-  { major: "Information Systems", startingSalary: 70000, jobGrowth: 8.5, careerStability: 8.0, aiResilience: 6.8,
-    description: "Information Systems connects technology with business strategy, focusing on how organizations use data and digital tools. Professionals who bridge technical and business needs are consistently in demand." },
-  { major: "Mechanical Engineering", startingSalary: 72000, jobGrowth: 6.5, careerStability: 8.0, aiResilience: 7.8,
-    description: "Mechanical Engineering applies physics and design to build machines, products, and systems. Hands-on design, testing, and problem-solving keep this field grounded in practical expertise." },
-  { major: "Civil Engineering", startingSalary: 68000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.2,
-    description: "Civil Engineering focuses on designing and maintaining the infrastructure that supports everyday life. On-site judgment and regulatory expertise keep this work closely tied to human oversight." },
-  { major: "Psychology", startingSalary: 46000, jobGrowth: 6.0, careerStability: 6.0, aiResilience: 8.0,
-    description: "Psychology explores human behavior, with applications in counseling, research, and organizations. Many higher-paying paths involve graduate study, while the human connection at its core remains hard to replicate." },
-  { major: "Education", startingSalary: 44000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.8,
-    description: "Education prepares graduates to teach and shape learning environments at every level. Mentorship, communication, and adaptability remain at the heart of the work, even as new tools enter the classroom." },
-  { major: "Political Science", startingSalary: 46000, jobGrowth: 5.5, careerStability: 6.5, aiResilience: 7.0,
-    description: "Political Science examines government, policy, and political systems, often as a stepping stone to law or public service. Career paths vary widely, and many benefit from additional credentials." },
-  { major: "Economics", startingSalary: 62000, jobGrowth: 6.5, careerStability: 7.0, aiResilience: 6.5,
-    description: "Economics builds strong analytical and quantitative skills used across finance, policy, and business. While data analysis is increasingly automated, interpreting results and shaping strategy remain human-driven." },
-  { major: "Communications", startingSalary: 46000, jobGrowth: 5.5, careerStability: 6.0, aiResilience: 4.5,
-    description: "Communications covers media, public relations, and organizational messaging. As AI tools take on more routine writing and content tasks, the field is shifting toward strategy, storytelling, and relationship-building." },
-  { major: "Graphic Design", startingSalary: 46000, jobGrowth: 5.0, careerStability: 5.5, aiResilience: 4.0,
-    description: "Graphic Design focuses on visual communication across digital and print media. Generative tools are changing design workflows quickly, rewarding designers who combine visual skill with branding and strategy." },
-  { major: "Data Science", startingSalary: 82000, jobGrowth: 9.0, careerStability: 8.5, aiResilience: 6.8,
-    description: "Data Science combines statistics, programming, and domain expertise to turn data into insight. Demand for people who can interpret and apply data remains strong, even as tools automate routine analysis." },
-  { major: "Business Administration", startingSalary: 52000, jobGrowth: 6.0, careerStability: 6.8, aiResilience: 6.0,
-    description: "Business Administration offers a broad foundation across management, operations, and strategy. Its flexibility is a strength, and specialization often helps graduates stand out." },
-  { major: "Chemistry", startingSalary: 54000, jobGrowth: 6.0, careerStability: 7.0, aiResilience: 7.8,
-    description: "Chemistry underlies research, manufacturing, and materials science across many industries. Laboratory and applied research roles rely on hands-on expertise, and many paths benefit from graduate study." },
-  { major: "Environmental Science", startingSalary: 52000, jobGrowth: 7.5, careerStability: 7.0, aiResilience: 8.0,
-    description: "Environmental Science examines the natural world and humanity's impact on it, with growing demand tied to sustainability work. Fieldwork and applied research keep much of this work grounded in hands-on expertise." },
-  { major: "Exercise Physiology", startingSalary: 48000, jobGrowth: 6.0, careerStability: 6.2, aiResilience: 8.0,
-    description: "Exercise Physiology studies how the body responds to physical activity, with applications in healthcare, fitness, and rehabilitation. Hands-on assessment and coaching remain central to the field." },
+  { major: "Registered Nurse", startingSalary: 72000, jobGrowth: 8.5, careerStability: 9.3, aiResilience: 9.2,
+    description: "Nursing combines clinical training with hands-on patient care — a combination that's difficult to automate. Strong demand, steady growth, and a variety of specializations make it one of the most resilient career paths available." },
+  { major: "Software Developer", startingSalary: 80000, jobGrowth: 9.0, careerStability: 8.5, aiResilience: 6.5,
+    description: "Software development remains in high demand across every industry. AI tools are changing how code gets written, but the need for people who can design, problem-solve, and build complex systems continues to grow." },
+  { major: "Data Analyst", startingSalary: 68000, jobGrowth: 8.5, careerStability: 8.0, aiResilience: 6.2,
+    description: "Data analysts turn raw information into useful insights for businesses and organizations. As automation handles routine reporting, the most valuable work shifts toward interpretation, storytelling, and strategic recommendations." },
+  { major: "Financial Analyst", startingSalary: 70000, jobGrowth: 6.5, careerStability: 7.5, aiResilience: 6.0,
+    description: "Financial analysts help organizations and individuals make informed investment and planning decisions. Routine modeling is increasingly automated, but advisory, relationship-driven, and strategic work continues to rely on human judgment." },
+  { major: "Marketing Manager", startingSalary: 68000, jobGrowth: 6.5, careerStability: 6.8, aiResilience: 6.0,
+    description: "Marketing managers blend strategy, creativity, and data to drive business growth. As content creation and analytics tools become more automated, the premium shifts to strategic thinking, brand leadership, and cross-functional coordination." },
+  { major: "Physical Therapist", startingSalary: 78000, jobGrowth: 7.5, careerStability: 9.0, aiResilience: 9.0,
+    description: "Physical therapists work directly with patients to restore movement and manage pain — work that depends on physical touch, clinical observation, and therapeutic relationships. Demand is growing alongside an aging population." },
+  { major: "Teacher (K–12)", startingSalary: 44000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.8,
+    description: "Teaching is deeply human work — mentorship, communication, and adaptability in real time with real students. New tools may enter the classroom, but the need for skilled, caring educators continues to grow." },
+  { major: "Graphic Designer", startingSalary: 50000, jobGrowth: 5.0, careerStability: 5.5, aiResilience: 4.0,
+    description: "Graphic design is evolving quickly as generative tools take on more visual production work. Designers who pair strong craft with brand strategy, motion, or UX thinking tend to build more resilient careers." },
+  { major: "Civil Engineer", startingSalary: 68000, jobGrowth: 7.5, careerStability: 8.5, aiResilience: 8.2,
+    description: "Civil engineers design, plan, and oversee the infrastructure that communities depend on — from roads to water systems to buildings. On-site judgment, regulatory expertise, and complex project coordination keep this work grounded in human oversight." },
+  { major: "Physician", startingSalary: 120000, jobGrowth: 8.0, careerStability: 9.5, aiResilience: 8.5,
+    description: "Physicians require years of training and combine medical expertise with patient relationships, clinical judgment, and ethical decision-making. While AI may support diagnosis, the complexity and accountability of the role keeps it deeply human." },
+  { major: "Social Worker", startingSalary: 48000, jobGrowth: 7.0, careerStability: 8.0, aiResilience: 9.0,
+    description: "Social workers support individuals and families through difficult circumstances — work that depends almost entirely on human empathy, communication, and trust. Demand grows steadily as communities grapple with mental health and social challenges." },
+  { major: "Mechanical Engineer", startingSalary: 72000, jobGrowth: 6.5, careerStability: 8.0, aiResilience: 7.8,
+    description: "Mechanical engineers design and build the physical systems behind products, machines, and infrastructure. Hands-on design, testing, and applied problem-solving keep the field grounded in practical, creative expertise." },
+  { major: "Accountant / CPA", startingSalary: 60000, jobGrowth: 6.0, careerStability: 7.0, aiResilience: 5.5,
+    description: "Accountants manage financial records, compliance, and reporting across virtually every industry. Automation is reshaping routine bookkeeping, but credentialed and advisory roles — particularly CPAs — remain in steady demand." },
+  { major: "Environmental Scientist", startingSalary: 54000, jobGrowth: 7.5, careerStability: 7.0, aiResilience: 8.0,
+    description: "Environmental scientists study natural systems and help organizations navigate sustainability, regulations, and ecological impact. Growing demand tied to climate and policy work, with fieldwork and applied expertise at the core." },
+  { major: "Physician Assistant", startingSalary: 110000, jobGrowth: 9.0, careerStability: 9.0, aiResilience: 8.5,
+    description: "Physician assistants practice medicine across specialties, combining clinical training with patient care in a role that's growing quickly. The hands-on, relationship-driven nature of the work keeps it highly resilient." },
 ];
 
 // Future-Proof Score — a 0-100 composite of salary potential, job growth,
@@ -2056,7 +1919,7 @@ function scoreTier(score) {
 
 // Static tooltip copy for the four metric tiles.
 const METRIC_INFO = {
-  salary: "Typical starting salary for graduates entering this field.",
+  salary: "Typical starting salary for people entering this career.",
   jobGrowth: "Projected increase in opportunities over the next decade.",
   careerStability: "Likelihood of maintaining demand despite economic changes.",
   aiResilience: "Measures how difficult the core responsibilities are to automate.",
@@ -2311,7 +2174,7 @@ function FutureCareerOutlook() {
             Future Career Outlook
           </h2>
           <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Explore how different majors compare in salary potential, job growth, career stability, and resilience to emerging technologies.
+            Explore how different careers compare in salary potential, job growth, stability, and resilience to emerging technologies.
           </p>
         </div>
 
@@ -2320,7 +2183,7 @@ function FutureCareerOutlook() {
           {/* LEFT: major selector */}
           <div>
             <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.6rem" }}>
-              Select a Major
+              Select a Career
             </label>
 
             <div style={{ position: "relative" }}>
@@ -2370,7 +2233,7 @@ function FutureCareerOutlook() {
             </div>
 
             <p style={{ fontSize: "0.85rem", color: T.inkSoft, lineHeight: 1.7, marginTop: "1.25rem" }}>
-              Pick any major to see its Future-Proof Score and a quick snapshot of what the next decade may look like.
+              Pick any career to see its Future-Proof Score and a quick snapshot of what the next decade may look like.
             </p>
           </div>
 
@@ -2427,7 +2290,7 @@ function FutureCareerOutlook() {
             Would You Still Choose This Path?
           </h3>
           <p style={{ fontSize: "0.92rem", color: T.inkSoft, lineHeight: 1.75 }}>
-            Understanding the future outlook of a major is only one piece of the equation. University costs, scholarships, student debt, and future earnings can dramatically change the financial outcome of your decision.
+            Understanding the future outlook of a career is only one piece of the equation. University costs, scholarships, student debt, and future earnings can dramatically change the financial outcome of your decision.
           </p>
         </div>
 

@@ -214,11 +214,12 @@ function HomeNav({ navigate }) {
   }, []);
 
   const anchorLinks = [
-    { label: "Compare",       href: "#compare" },
+    { label: "Simulator",      href: "#simulator" },
+    { label: "Compare Costs",  href: "#compare" },
+    { label: "Career Outlook", href: "#career-outlook" },
     { label: "Aid Translator", href: "#translator" },
-    { label: "Simulator",     href: "#simulator" },
-    { label: "Planner",       href: "#planner" },
-    { label: "Contact",       href: "#contact" },
+    { label: "Planner",        href: "#planner" },
+    { label: "Contact",        href: "#contact" },
   ];
 
   return (
@@ -231,8 +232,15 @@ function HomeNav({ navigate }) {
       backdropFilter: scrolled ? "blur(12px)" : "none",
       transition: "all 0.35s ease",
     }}>
-      <a href="#" style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, letterSpacing: "-0.01em" }}>
-        Paid Off.
+      <a href="#" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+        <svg width="32" height="32" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="56" height="56" rx="12" fill="#B84040"/>
+          <text x="5" y="42" fontFamily="-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif" fontSize="38" fontWeight="700" fill="#FDFAF7" letterSpacing="-1">P</text>
+          <circle cx="41" cy="41" r="11" fill="#1E1A18"/>
+          <circle cx="41" cy="41" r="8.5" fill="#B84040"/>
+          <path d="M36.5 41.5 L39.5 44.5 L46 36.5" stroke="#FDFAF7" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <span style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, letterSpacing: "-0.01em" }}>Paid Off.</span>
       </a>
       <div className="nav-links" style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
         {anchorLinks.map(l => (
@@ -1374,7 +1382,16 @@ function Footer() {
     <footer style={{ background: T.ink, color: T.paper, padding: "3rem 2.5rem" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "2rem" }}>
         <div>
-          <div className="serif" style={{ fontSize: "1.15rem", fontWeight: 700, color: T.paper, marginBottom: "0.4rem" }}>Paid Off.</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "0.5rem" }}>
+            <svg width="30" height="30" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="56" height="56" rx="12" fill="#B84040"/>
+              <text x="5" y="42" fontFamily="-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif" fontSize="38" fontWeight="700" fill="#FDFAF7" letterSpacing="-1">P</text>
+              <circle cx="41" cy="41" r="11" fill="#1E1A18"/>
+              <circle cx="41" cy="41" r="8.5" fill="#B84040"/>
+              <path d="M36.5 41.5 L39.5 44.5 L46 36.5" stroke="#FDFAF7" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <div className="serif" style={{ fontSize: "1.15rem", fontWeight: 700, color: T.paper }}>Paid Off.</div>
+          </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(253,250,245,0.4)", maxWidth: "230px", lineHeight: 1.65 }}>Helping students borrow smarter and graduate with less regret.</p>
         </div>
         <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>

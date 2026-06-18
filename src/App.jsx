@@ -1566,9 +1566,6 @@ function AboutPage({ onNavigate }) {
         <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-5%", width: "50vw", height: "50vw", borderRadius: "50%", background: "radial-gradient(ellipse, rgba(200,170,160,0.2) 0%, transparent 65%)", pointerEvents: "none" }} />
 
         <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <span className="fade-up d1" style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1.25rem" }}>
-            Founder Story
-          </span>
           <h1 className="fade-up d2 serif" style={{
             fontSize: "clamp(2.4rem, 5vw, 4rem)",
             fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.03em",
@@ -1597,7 +1594,6 @@ function AboutPage({ onNavigate }) {
             <div className="serif" style={{ fontSize: "2.4rem", fontWeight: 700, color: T.olive, opacity: 0.4, lineHeight: 1 }}>L</div>
           </div>
           <div style={{ paddingTop: "0.5rem" }}>
-            <div style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.5rem" }}>Founder, Paid Off</div>
             <div className="serif" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.4rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
               Hi, I'm Lucy.
             </div>
@@ -1618,16 +1614,9 @@ function AboutPage({ onNavigate }) {
             As graduation approached, reality started setting in. I wasn't just thinking about a career, I was thinking a lot about my loans. During my final semester, I developed a concept in my New Venture Creation class born out of that anxiety and uncertainty. I called it Paid Off.
           </p>
 
-          {/* Pull quote */}
-          <blockquote style={{
-            margin: "1rem 0",
-            paddingLeft: "1.75rem",
-            borderLeft: `3px solid ${T.olive}`,
-          }}>
-            <p className="serif" style={{ fontSize: "1.25rem", fontStyle: "italic", fontWeight: 400, color: T.inkMid, lineHeight: 1.7, letterSpacing: "-0.01em" }}>
-              The idea never left me.
-            </p>
-          </blockquote>
+          <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
+            The idea never left me.
+          </p>
 
           <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
             The more I learned, the more I realized that millions of students face the same problem—very little education on the long-term consequences of borrowing and almost no resources for reducing debt before graduation.
@@ -1639,7 +1628,7 @@ function AboutPage({ onNavigate }) {
           </p>
 
           <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
-            My mission is to help students better understand the true cost of college, make informed financial decisions, and reduce student loan debt while they're still in school. I believe every student deserves access to tools, opportunities, and information that make financial freedom more achievable after graduation.
+            My mission is to help students better understand the true cost of college, make informed financial decisions, and explore opportunities to minimize—and potentially reduce—the burden of student debt before graduation. I believe every student deserves access to tools, opportunities, and information that make financial freedom more achievable after graduation.
           </p>
 
           <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.9, fontWeight: 300 }}>
@@ -1649,7 +1638,7 @@ function AboutPage({ onNavigate }) {
           {/* Sign-off */}
           <div style={{ paddingTop: "1rem" }}>
             <p style={{ fontSize: "1.05rem", color: T.inkMid, lineHeight: 1.7, marginBottom: "0.5rem" }}>Thanks for being here.</p>
-            <p className="serif" style={{ fontSize: "1.35rem", fontStyle: "italic", fontWeight: 400, color: T.ink, letterSpacing: "-0.01em" }}>— Lucy</p>
+            <p className="serif" style={{ fontSize: "1.35rem", fontStyle: "italic", fontWeight: 400, color: T.ink, letterSpacing: "-0.01em" }}>— Lucy :)</p>
           </div>
         </div>
 

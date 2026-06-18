@@ -266,7 +266,7 @@ function HomeNav({ navigate }) {
           borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500,
           transition: "background 0.2s, transform 0.15s",
         }}
-        >Become an Early Tester</a>
+        >Become a Tester</a>
       </div>
       <button id="mob-menu" onClick={() => setMenuOpen(!menuOpen)}
         style={{ display: "none", background: "none", border: "none", fontSize: "1.3rem", color: T.ink }}>
@@ -283,7 +283,7 @@ function HomeNav({ navigate }) {
           {anchorLinks.map(l => (<a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{ fontSize: "1rem", color: T.inkMid }}>{l.label}</a>))}
           <button onClick={() => { setMenuOpen(false); navigate("about"); }} style={{ background: "none", border: "none", fontSize: "1rem", color: T.inkMid, textAlign: "left", cursor: "pointer", padding: 0 }}>About</button>
           <button onClick={() => { setMenuOpen(false); navigate("survey"); }} style={{ background: "none", border: "none", fontSize: "1rem", color: T.inkMid, textAlign: "left", cursor: "pointer", padding: 0 }}>Survey</button>
-          <a href="#waitlist" onClick={() => setMenuOpen(false)} style={{ background: T.olive, color: T.white, padding: "0.75rem", borderRadius: "100px", textAlign: "center", fontWeight: 500 }}>Become an Early Tester</a>
+          <a href="#waitlist" onClick={() => setMenuOpen(false)} style={{ background: T.olive, color: T.white, padding: "0.75rem", borderRadius: "100px", textAlign: "center", fontWeight: 500 }}>Become a Tester</a>
         </div>
       )}
     </nav>
@@ -321,10 +321,10 @@ function Hero() {
           fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.03em",
           color: T.ink, marginBottom: "1.5rem",
           textTransform: "uppercase",
-          whiteSpace: "nowrap",
+          textAlign: "center",
         }}>
-          <span style={{ display: "block" }}>Know the Cost.</span>
-          <span style={{ display: "block" }}>Own the Decision.</span>
+          <span style={{ display: "block" }}>Borrow Smarter.</span>
+          <span style={{ display: "block" }}>Graduate With Less Regret.</span>
         </h1>
 
         {/* Two equal primary CTAs */}
@@ -453,7 +453,7 @@ function Simulator() {
         <div>
           <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Borrowing Impact Simulator</span>
           <h2 className="serif" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
-            What happens if I borrow this much?
+            Know what you're signing up for.
           </h2>
           <p style={{ fontSize: "0.93rem", color: T.inkSoft, lineHeight: 1.75, marginBottom: "2rem" }}>
             Model different loan amounts, interest rates, and repayment plans to see your monthly payment, total interest, and payoff timeline.
@@ -882,7 +882,7 @@ function Translator() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Become an Early Tester</a>
+              >Become a Tester</a>
             </div>
           </div>
         )}
@@ -1119,9 +1119,9 @@ function CompareYourFuture() {
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
         <div style={{ maxWidth: "640px", marginBottom: "2.5rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>The Main Tool</span>
+          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Compare College Costs</span>
           <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1rem" }}>
-            Compare College Costs
+            Know the Cost.<br />Own the Decision.
           </h2>
           <p style={{ fontSize: "0.95rem", color: T.inkSoft, lineHeight: 1.75 }}>
             See what each school could really cost you after scholarships and financial aid — and what that adds up to over four years.
@@ -1204,7 +1204,7 @@ function DeeperComparisonBanner() {
           onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-2px)"; }}
           onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
         >
-          Become an Early Tester
+          Become a Tester
         </a>
       </div>
       <style>{`@media(max-width:640px){ .deeper-comparison-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
@@ -1244,29 +1244,29 @@ function Waitlist() {
       style={{ background: T.sage, padding: "7rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        {/* Section header */}
-        <div style={{ marginBottom: "4rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Early Testers</span>
-          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, maxWidth: "580px" }}>
-            Help Shape What's Next.
+        {/* Section header — centered */}
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <h2 className="serif" style={{ fontSize: "clamp(2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink }}>
+            Become a Founding Tester.
           </h2>
-          <p style={{ fontSize: "1rem", color: T.inkSoft, lineHeight: 1.75, marginTop: "1rem", maxWidth: "520px", fontWeight: 300 }}>
-            Paid Off is being built alongside students and families navigating these decisions in real time. If you'd like early access to upcoming tools and the opportunity to influence what gets built next, we'd love your input.
-          </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center", maxWidth: "860px", margin: "0 auto" }}>
 
-          {/* Left: what testers do */}
+          {/* Left: paragraph + numbered list */}
           <div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2.5rem" }}>
-              {testerRoles.map((r, i) => (
-                <div key={i} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-                  <div className="mono" style={{ fontSize: "0.65rem", color: T.olive, letterSpacing: "0.1em", flexShrink: 0, marginTop: "3px", opacity: 0.7 }}>{r.num}</div>
-                  <div>
-                    <div style={{ fontSize: "0.92rem", fontWeight: 600, color: T.ink, marginBottom: "0.3rem" }}>{r.title}</div>
-                    <p style={{ fontSize: "0.84rem", color: T.inkSoft, lineHeight: 1.65 }}>{r.body}</p>
-                  </div>
+            <p style={{ fontSize: "0.92rem", color: T.inkSoft, lineHeight: 1.75, fontWeight: 300, marginBottom: "1.75rem" }}>
+              Paid Off is being built alongside students and families navigating these decisions in real time. If you'd like early access to upcoming tools and the opportunity to influence what gets built next, we'd love your input.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {[
+                { num: "01", title: "Test new features and full tools" },
+                { num: "02", title: "Share feedback that influences what we build" },
+                { num: "03", title: "Receive exclusive updates and insights" },
+              ].map((r, i) => (
+                <div key={i} style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
+                  <div className="mono" style={{ fontSize: "0.65rem", color: T.olive, letterSpacing: "0.1em", flexShrink: 0, opacity: 0.7 }}>{r.num}</div>
+                  <div style={{ fontSize: "0.9rem", fontWeight: 600, color: T.ink }}>{r.title}</div>
                 </div>
               ))}
             </div>
@@ -1283,9 +1283,6 @@ function Waitlist() {
               </div>
             ) : (
               <div style={{ background: T.white, borderRadius: "12px", border: `1px solid ${T.border}`, padding: "2.5rem", boxShadow: T.shadow }}>
-                <div style={{ fontSize: "0.82rem", color: T.inkSoft, marginBottom: "1.75rem", lineHeight: 1.6 }}>
-                  A small group of early testers will get hands-on access before Paid Off officially launches. Apply now.
-                </div>
                 <input style={field} type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
                   onFocus={e => e.target.style.borderColor = T.olive}
                   onBlur={e => e.target.style.borderColor = T.border} />
@@ -1304,20 +1301,11 @@ function Waitlist() {
                 >
                   {loading
                     ? <><span style={{ width: "14px", height: "14px", border: "2px solid rgba(255,255,255,0.3)", borderTopColor: T.white, borderRadius: "50%", display: "inline-block", animation: "spin 0.7s linear infinite" }} /> Applying...</>
-                    : "Become an Early Tester"}
+                    : "Become a Tester"}
                 </button>
                 <p style={{ fontSize: "0.68rem", color: T.olivePale, marginTop: "0.75rem", textAlign: "center" }}>No spam. Unsubscribe anytime.</p>
               </div>
             )}
-
-            <div style={{ display: "flex", gap: "2.5rem", marginTop: "2.5rem", paddingTop: "2rem", borderTop: `1px solid ${T.border}` }}>
-              {[["$1.7T","US student debt"],["45M","Borrowers"],["Free","Always"]].map(([num, lbl]) => (
-                <div key={lbl}>
-                  <div className="serif" style={{ fontSize: "1.55rem", fontWeight: 700, color: T.olive, lineHeight: 1 }}>{num}</div>
-                  <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", color: T.olivePale, marginTop: "0.2rem" }}>{lbl}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -1407,6 +1395,55 @@ function Contact() {
 }
 
 // ─── FOUNDER INTRO ───────────────────────────────────────────────────────────
+function SurveyCallout({ navigate }) {
+  return (
+    <div style={{ background: T.warm, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`, padding: "1.25rem 2.5rem" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
+
+        {/* Icon + text */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: T.oliveFaint, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+              <path d="M17 2H3a1 1 0 00-1 1v10a1 1 0 001 1h5l2 3 2-3h5a1 1 0 001-1V3a1 1 0 00-1-1z" stroke={T.olive} strokeWidth="1.4" strokeLinejoin="round"/>
+              <line x1="6" y1="7" x2="14" y2="7" stroke={T.olive} strokeWidth="1.3" strokeLinecap="round"/>
+              <line x1="6" y1="10" x2="11" y2="10" stroke={T.olive} strokeWidth="1.3" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.2rem" }}>Help Shape Paid Off</div>
+            <div style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.5 }}>
+              Share your experience to help build tools that make college financial decisions easier for future students and families.
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0 }}>
+          <span style={{ fontSize: "0.75rem", color: T.olivePale, whiteSpace: "nowrap" }}>~3 minutes</span>
+          <button
+            onClick={() => navigate("survey")}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "0.4rem",
+              background: T.olive, color: T.white,
+              padding: "0.6rem 1.35rem", borderRadius: "100px",
+              fontSize: "0.85rem", fontWeight: 500, border: "none", cursor: "pointer",
+              whiteSpace: "nowrap", transition: "background 0.2s, transform 0.15s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.oliveLight; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = T.olive; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            Take the Survey
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 function FounderIntro({ navigate }) {
   const [ref, visible] = useReveal();
 
@@ -1512,7 +1549,7 @@ function AboutPage({ onNavigate }) {
             style={{ background: T.olive, color: T.white, padding: "0.5rem 1.35rem", borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500, border: "none", cursor: "pointer", transition: "background 0.2s" }}
             onMouseEnter={e => e.currentTarget.style.background = T.oliveLight}
             onMouseLeave={e => e.currentTarget.style.background = T.olive}
-          >Become an Early Tester</button>
+          >Become a Tester</button>
         </div>
       </nav>
 
@@ -1673,9 +1710,21 @@ function AboutPage({ onNavigate }) {
 
 // ─── SURVEY PAGE ──────────────────────────────────────────────────────────────
 function SurveyPage({ onNavigate }) {
+  const [scrollPct, setScrollPct] = useState(0);
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
     injectGlobalStyles();
+
+    const onScroll = () => {
+      const el = document.documentElement;
+      const scrolled = el.scrollTop || document.body.scrollTop;
+      const total = el.scrollHeight - el.clientHeight;
+      setScrollPct(total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navBtn = {
@@ -1687,30 +1736,31 @@ function SurveyPage({ onNavigate }) {
   return (
     <div style={{ background: T.parchment, minHeight: "100vh" }}>
 
-      {/* Sticky nav */}
+      {/* Sticky nav with progress bar */}
       <nav style={{
         position: "sticky", top: 0, zIndex: 200,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "1rem 2.5rem",
         background: "rgba(253,250,247,0.97)",
         borderBottom: `1px solid ${T.border}`,
         backdropFilter: "blur(12px)",
       }}>
-        <button onClick={() => onNavigate("home")}
-          style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, background: "none", border: "none", cursor: "pointer", letterSpacing: "-0.01em" }}>
-          Paid Off.
-        </button>
-        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-          <button onClick={() => onNavigate("home")} style={navBtn}
-            onMouseEnter={e => e.target.style.color = T.olive}
-            onMouseLeave={e => e.target.style.color = T.inkSoft}
-          >← Back to Home</button>
-          <button
-            onClick={() => { onNavigate("home"); setTimeout(() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }), 100); }}
-            style={{ background: T.olive, color: T.white, padding: "0.5rem 1.35rem", borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500, border: "none", cursor: "pointer", transition: "background 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.background = T.oliveLight}
-            onMouseLeave={e => e.currentTarget.style.background = T.olive}
-          >Become an Early Tester</button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1rem 2.5rem" }}>
+          <button onClick={() => onNavigate("home")}
+            style={{ fontFamily: "'Inter',-apple-system,'Helvetica Neue',sans-serif", fontSize: "1.2rem", fontWeight: 700, color: T.ink, background: "none", border: "none", cursor: "pointer", letterSpacing: "-0.01em" }}>
+            Paid Off.
+          </button>
+
+          <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+            <button onClick={() => onNavigate("home")} style={navBtn}
+              onMouseEnter={e => e.target.style.color = T.olive}
+              onMouseLeave={e => e.target.style.color = T.inkSoft}
+            >← Back to Home</button>
+            <button
+              onClick={() => { onNavigate("home"); setTimeout(() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+              style={{ background: T.olive, color: T.white, padding: "0.5rem 1.35rem", borderRadius: "100px", fontSize: "0.82rem", fontWeight: 500, border: "none", cursor: "pointer", transition: "background 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.background = T.oliveLight}
+              onMouseLeave={e => e.currentTarget.style.background = T.olive}
+            >Become a Tester</button>
+          </div>
         </div>
       </nav>
 
@@ -1727,11 +1777,11 @@ function SurveyPage({ onNavigate }) {
           background: "radial-gradient(ellipse, rgba(200,160,150,0.18) 0%, transparent 65%)",
           pointerEvents: "none",
         }} />
-        <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 1, textAlign: "center" }}>
           <span className="fade-up d1" style={{
             fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em",
             textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1.25rem",
-          }}>Research</span>
+          }}>Help Shape Paid Off.</span>
           <h1 className="fade-up d2 serif" style={{
             fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
             fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.03em",
@@ -1741,9 +1791,9 @@ function SurveyPage({ onNavigate }) {
           </h1>
           <p className="fade-up d3" style={{
             fontSize: "1rem", color: T.inkSoft, lineHeight: 1.8,
-            fontWeight: 300, maxWidth: "520px",
+            fontWeight: 300, maxWidth: "520px", margin: "0 auto",
           }}>
-            Help shape Paid Off. Share your experience with student loans — what you understood, what surprised you, and what you wish you'd known sooner. It takes about 3 minutes.
+            College is one of the biggest financial decisions many people will ever make — yet few feel prepared for it. Share your experience to help build a future where students and families can navigate these decisions with confidence.
           </p>
         </div>
       </div>
@@ -1756,22 +1806,20 @@ function SurveyPage({ onNavigate }) {
 
         {/* Context strip */}
         <div style={{
-          display: "flex", gap: "2rem", marginBottom: "3rem",
-          flexWrap: "wrap",
+          display: "flex", gap: "1rem", marginBottom: "3rem",
+          justifyContent: "center",
         }}>
           {[
-            { label: "Time", val: "~3 minutes" },
             { label: "Questions", val: "10–12" },
-            { label: "Purpose", val: "Improve Paid Off" },
             { label: "Your data", val: "Anonymous" },
           ].map((item, i) => (
             <div key={i} style={{
-              flex: "1 1 120px",
               background: T.white,
               border: `1px solid ${T.border}`,
               borderRadius: "10px",
-              padding: "1.25rem 1.5rem",
+              padding: "1rem 1.75rem",
               boxShadow: T.shadow,
+              textAlign: "center",
             }}>
               <div style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.35rem" }}>{item.label}</div>
               <div style={{ fontSize: "0.95rem", fontWeight: 600, color: T.ink }}>{item.val}</div>
@@ -2160,6 +2208,7 @@ export default function App() {
       <AIResilienceSection />
       <Translator />
       <FounderIntro navigate={navigate} />
+      <SurveyCallout navigate={navigate} />
       <Contact />
       <Waitlist />
       <Footer />

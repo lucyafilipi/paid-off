@@ -1146,10 +1146,10 @@ function CompareYourFuture() {
           {comparePath && <CostCard path={comparePath} scholarship={scholarship2} grant={grant2} onScholarshipChange={setScholarship2} onGrantChange={setGrant2} residency={residency2} onResidencyChange={setResidency2} incHousing={incHousing2} onHousingToggle={setIncHousing2} incMeal={incMeal2} onMealToggle={setIncMeal2} />}
         </div>
 
-        <p style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "640px", marginBottom: "0.5rem", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
+        <p style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "640px", marginBottom: "0.5rem" }}>
           Estimates are based on publicly available university cost-of-attendance data and may vary based on housing choices, residency status, and individual financial aid packages.
         </p>
-        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, maxWidth: "560px", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
+        <p style={{ fontSize: "0.75rem", color: T.olivePale, lineHeight: 1.65, maxWidth: "560px" }}>
           This preview uses 2024–25 published cost-of-attendance figures for a small set of schools. The full tool will let you enter any school and your actual financial aid package.
         </p>
 
@@ -1169,7 +1169,8 @@ function DeeperComparisonBanner() {
   ];
 
   return (
-    <div style={{ position: "relative", zIndex: 5, maxWidth: "1000px", margin: "-3rem auto", padding: "0 2.5rem" }}>
+    <div style={{ position: "relative", zIndex: 5, background: `linear-gradient(to bottom, ${T.paper} 50%, ${T.sage} 50%)`, margin: "-3rem 0", padding: "0 2.5rem" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
       <div style={{
         background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
         padding: "2.5rem", boxShadow: T.shadowMd, textAlign: "center",
@@ -1208,6 +1209,7 @@ function DeeperComparisonBanner() {
         </a>
       </div>
       <style>{`@media(max-width:640px){ .deeper-comparison-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
+      </div>
     </div>
   );
 }
@@ -2051,132 +2053,141 @@ function AIResilienceSection() {
 
   return (
     <section id="career-outlook" ref={ref} className={`section-reveal${visible ? " visible" : ""}`}
-      style={{ background: T.sage, padding: "5rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
-      <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+      style={{ background: T.sage, padding: "6rem 2.5rem", borderTop: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "0.75rem" }}>Career Intelligence</span>
-          <h2 className="serif" style={{ fontSize: "clamp(1.75rem,3.5vw,2.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: T.ink, marginBottom: "0.75rem" }}>
-            Is Your Career Choice AI-Resilient?
-          </h2>
-          <p style={{ fontSize: "0.9rem", color: T.inkSoft, lineHeight: 1.7, maxWidth: "520px", margin: "0 auto" }}>
-            Explore how different career paths may evolve in an AI-driven world — and which uniquely human skills could keep you valuable in the future.
-          </p>
-        </div>
+        {/* Two-column layout: left = heading + dropdown, right = dashboard */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.7fr", gap: "5rem", alignItems: "center", marginBottom: "2.5rem" }}>
 
-        {/* Dropdown — centered */}
-        <div style={{ marginBottom: "1.75rem" }}>
-          <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.5rem", textAlign: "center" }}>
-            What career path interests you?
-          </label>
-          <div style={{ position: "relative" }}>
-            <button onClick={() => setDropdownOpen(!dropdownOpen)} style={{
-              width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
-              background: T.white, border: `1px solid ${dropdownOpen ? T.olive : T.border}`,
-              borderRadius: "10px", padding: "0.85rem 1.25rem",
-              fontSize: "0.95rem", fontWeight: 500, color: T.ink,
-              cursor: "pointer", transition: "border-color 0.2s", boxShadow: T.shadow,
+          {/* LEFT: heading + subtitle + dropdown */}
+          <div>
+            <span style={{ fontSize: "0.67rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: T.oliveMid, display: "block", marginBottom: "1rem" }}>Career Intelligence</span>
+            <h2 className="serif" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.02em", color: T.ink, marginBottom: "1.25rem" }}>
+              Is Your Career Choice AI-Resilient?
+            </h2>
+            <p style={{ fontSize: "0.93rem", color: T.inkSoft, lineHeight: 1.75, marginBottom: "2rem" }}>
+              Explore how different career paths may evolve in an AI-driven world — and which uniquely human skills could keep you valuable in the future.
+            </p>
+          </div>
+
+          {/* RIGHT: dropdown + score card + legend */}
+          <div>
+            {/* Dropdown — above the score card */}
+            <div style={{ marginBottom: "1.25rem" }}>
+              <label style={{ fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.inkSoft, display: "block", marginBottom: "0.5rem" }}>
+                What career path interests you?
+              </label>
+              <div style={{ position: "relative" }}>
+                <button onClick={() => setDropdownOpen(!dropdownOpen)} style={{
+                  width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center",
+                  background: T.white, border: `1px solid ${dropdownOpen ? T.olive : T.border}`,
+                  borderRadius: "10px", padding: "0.85rem 1.25rem",
+                  fontSize: "0.95rem", fontWeight: 500, color: T.ink,
+                  cursor: "pointer", transition: "border-color 0.2s", boxShadow: T.shadow,
+                }}>
+                  <span>{selected.career}</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
+                    <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {dropdownOpen && (
+                  <div style={{
+                    position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
+                    background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
+                    boxShadow: T.shadowMd, zIndex: 20, overflow: "hidden",
+                  }}>
+                    <div style={{ padding: "0.6rem", borderBottom: `1px solid ${T.border}` }}>
+                      <input autoFocus type="text" placeholder="Search careers..."
+                        value={search} onChange={e => setSearch(e.target.value)}
+                        style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${T.border}`, borderRadius: "7px", background: T.parchment, fontSize: "0.85rem", color: T.ink, outline: "none" }}
+                        onFocus={e => e.target.style.borderColor = T.olive}
+                        onBlur={e => e.target.style.borderColor = T.border}
+                      />
+                    </div>
+                    <div style={{ maxHeight: "280px", overflowY: "auto" }}>
+                      {filtered.length === 0 && <div style={{ padding: "0.9rem 1.25rem", fontSize: "0.85rem", color: T.inkSoft }}>No careers found</div>}
+                      {filtered.map((m, i) => (
+                        <button key={m.career} onClick={() => { setSelectedIdx(m.idx); setDropdownOpen(false); setSearch(""); }}
+                          style={{
+                            width: "100%", textAlign: "left", padding: "0.75rem 1.25rem",
+                            background: m.idx === selectedIdx ? T.oliveFaint : "transparent",
+                            border: "none", borderBottom: i < filtered.length - 1 ? `1px solid ${T.border}` : "none",
+                            fontSize: "0.9rem", fontWeight: m.idx === selectedIdx ? 600 : 400,
+                            color: m.idx === selectedIdx ? T.olive : T.inkMid,
+                            cursor: "pointer", transition: "background 0.15s",
+                          }}
+                          onMouseEnter={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = T.parchment; }}
+                          onMouseLeave={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = "transparent"; }}
+                        >{m.career}</button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Score card */}
+            <div key={selectedIdx} className="fade-up" style={{
+              background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
+              padding: "2rem", boxShadow: T.shadowMd, marginBottom: "1.25rem",
             }}>
-              <span>{selected.career}</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }}>
-                <path d="M4 6l4 4 4-4" stroke={T.olive} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            {dropdownOpen && (
-              <div style={{
-                position: "absolute", top: "calc(100% + 0.5rem)", left: 0, right: 0,
-                background: T.white, border: `1px solid ${T.border}`, borderRadius: "10px",
-                boxShadow: T.shadowMd, zIndex: 20, overflow: "hidden",
-              }}>
-                <div style={{ padding: "0.6rem", borderBottom: `1px solid ${T.border}` }}>
-                  <input autoFocus type="text" placeholder="Search careers..."
-                    value={search} onChange={e => setSearch(e.target.value)}
-                    style={{ width: "100%", padding: "0.55rem 0.75rem", border: `1px solid ${T.border}`, borderRadius: "7px", background: T.parchment, fontSize: "0.85rem", color: T.ink, outline: "none" }}
-                    onFocus={e => e.target.style.borderColor = T.olive}
-                    onBlur={e => e.target.style.borderColor = T.border}
-                  />
-                </div>
-                <div style={{ maxHeight: "280px", overflowY: "auto" }}>
-                  {filtered.length === 0 && <div style={{ padding: "0.9rem 1.25rem", fontSize: "0.85rem", color: T.inkSoft }}>No careers found</div>}
-                  {filtered.map((m, i) => (
-                    <button key={m.career} onClick={() => { setSelectedIdx(m.idx); setDropdownOpen(false); setSearch(""); }}
-                      style={{
-                        width: "100%", textAlign: "left", padding: "0.75rem 1.25rem",
-                        background: m.idx === selectedIdx ? T.oliveFaint : "transparent",
-                        border: "none", borderBottom: i < filtered.length - 1 ? `1px solid ${T.border}` : "none",
-                        fontSize: "0.9rem", fontWeight: m.idx === selectedIdx ? 600 : 400,
-                        color: m.idx === selectedIdx ? T.olive : T.inkMid,
-                        cursor: "pointer", transition: "background 0.15s",
-                      }}
-                      onMouseEnter={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = T.parchment; }}
-                      onMouseLeave={e => { if (m.idx !== selectedIdx) e.currentTarget.style.background = "transparent"; }}
-                    >{m.career}</button>
-                  ))}
+              {/* Gauge */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1.25rem" }}>
+                <div style={{ position: "relative", width: "180px", height: "155px" }}>
+                  <svg width="180" height="155" viewBox="0 0 180 180">
+                    <path d={arc(startAngle, startAngle + sweepAngle)} fill="none" stroke={T.linen} strokeWidth="14" strokeLinecap="round"/>
+                    <path d={arc(startAngle, angle)} fill="none" stroke={category.color} strokeWidth="14" strokeLinecap="round" style={{ transition: "stroke 0.4s ease" }}/>
+                  </svg>
+                  <div style={{ position: "absolute", top: "36%", left: 0, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.3rem" }}>AI Resilience Score</div>
+                    <div className="serif" style={{ fontSize: "3rem", fontWeight: 700, color: category.color, lineHeight: 1, transition: "color 0.3s ease" }}>{animScore}</div>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: category.color, background: category.bg, padding: "0.2rem 0.75rem", borderRadius: "100px", marginTop: "0.4rem", transition: "all 0.3s ease" }}>{category.label}</div>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Score card — centered, compact */}
-        <div key={selectedIdx} className="fade-up" style={{
-          background: T.white, border: `1px solid ${T.border}`, borderRadius: "14px",
-          padding: "2rem", boxShadow: T.shadowMd, marginBottom: "1.5rem",
-        }}>
-          {/* Gauge */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1.25rem" }}>
-            <div style={{ position: "relative", width: "180px", height: "155px" }}>
-              <svg width="180" height="155" viewBox="0 0 180 180">
-                <path d={arc(startAngle, startAngle + sweepAngle)} fill="none" stroke={T.linen} strokeWidth="14" strokeLinecap="round"/>
-                <path d={arc(startAngle, angle)} fill="none" stroke={category.color} strokeWidth="14" strokeLinecap="round" style={{ transition: "stroke 0.4s ease" }}/>
-              </svg>
-              <div style={{ position: "absolute", top: "36%", left: 0, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.3rem" }}>AI Resilience Score</div>
-                <div className="serif" style={{ fontSize: "3rem", fontWeight: 700, color: category.color, lineHeight: 1, transition: "color 0.3s ease" }}>{animScore}</div>
-                <div style={{ fontSize: "0.7rem", fontWeight: 600, color: category.color, background: category.bg, padding: "0.2rem 0.75rem", borderRadius: "100px", marginTop: "0.4rem", transition: "all 0.3s ease" }}>{category.label}</div>
+              {/* 2035 Snapshot */}
+              <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: "1.1rem" }}>
+                <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.5rem" }}>2035 Snapshot</div>
+                <p style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.7 }}>{selected.snapshot}</p>
               </div>
             </div>
-          </div>
 
-          {/* 2035 Snapshot */}
-          <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: "1.1rem", textAlign: "center" }}>
-            <div style={{ fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: T.oliveMid, marginBottom: "0.5rem" }}>2035 Snapshot</div>
-            <p style={{ fontSize: "0.88rem", color: T.inkMid, lineHeight: 1.7 }}>{selected.snapshot}</p>
-          </div>
-        </div>
-
-        {/* Legend */}
-        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.5rem" }}>
-          {legend.map(l => (
-            <div key={l.label} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", background: T.white, border: `1px solid ${T.border}`, borderRadius: "8px", padding: "0.6rem 0.85rem", flex: "1 1 180px", maxWidth: "210px" }}>
-              <span style={{ fontSize: "0.7rem", fontWeight: 700, color: l.color, background: l.bg, padding: "0.1rem 0.5rem", borderRadius: "100px", whiteSpace: "nowrap", marginTop: "1px", flexShrink: 0 }}>{l.range}</span>
-              <span style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.4, flex: 1 }}>{l.label}</span>
-              <span className="io-tooltip" style={{ position: "relative", display: "inline-flex", marginTop: "2px", flexShrink: 0, cursor: "default" }}>
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="7" stroke={T.olivePale} strokeWidth="1.3"/>
-                  <line x1="8" y1="7.2" x2="8" y2="11.5" stroke={T.olivePale} strokeWidth="1.3" strokeLinecap="round"/>
-                  <circle cx="8" cy="4.7" r="0.9" fill={T.olivePale}/>
-                </svg>
-                <span className="io-tooltip-box" style={{
-                  position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)",
-                  background: T.ink, color: T.paper, fontSize: "0.72rem", lineHeight: 1.55,
-                  padding: "0.65rem 0.85rem", borderRadius: "8px", width: "210px",
-                  opacity: 0, visibility: "hidden", transition: "opacity 0.18s ease",
-                  boxShadow: T.shadowMd, zIndex: 40, pointerEvents: "none",
-                }}>{l.tooltip}</span>
-              </span>
+            {/* Legend */}
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              {legend.map(l => (
+                <div key={l.label} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", background: T.white, border: `1px solid ${T.border}`, borderRadius: "8px", padding: "0.6rem 0.85rem", flex: "1 1 160px" }}>
+                  <span style={{ fontSize: "0.7rem", fontWeight: 700, color: l.color, background: l.bg, padding: "0.1rem 0.5rem", borderRadius: "100px", whiteSpace: "nowrap", marginTop: "1px", flexShrink: 0 }}>{l.range}</span>
+                  <span style={{ fontSize: "0.78rem", color: T.inkSoft, lineHeight: 1.4, flex: 1 }}>{l.label}</span>
+                  <span className="io-tooltip" style={{ position: "relative", display: "inline-flex", marginTop: "2px", flexShrink: 0, cursor: "default" }}>
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7" stroke={T.olivePale} strokeWidth="1.3"/>
+                      <line x1="8" y1="7.2" x2="8" y2="11.5" stroke={T.olivePale} strokeWidth="1.3" strokeLinecap="round"/>
+                      <circle cx="8" cy="4.7" r="0.9" fill={T.olivePale}/>
+                    </svg>
+                    <span className="io-tooltip-box" style={{
+                      position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)",
+                      background: T.ink, color: T.paper, fontSize: "0.72rem", lineHeight: 1.55,
+                      padding: "0.65rem 0.85rem", borderRadius: "8px", width: "210px",
+                      opacity: 0, visibility: "hidden", transition: "opacity 0.18s ease",
+                      boxShadow: T.shadowMd, zIndex: 40, pointerEvents: "none",
+                    }}>{l.tooltip}</span>
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Disclaimer */}
-        <p style={{ fontSize: "0.73rem", color: T.olivePale, lineHeight: 1.6, textAlign: "center", fontStyle: "italic" }}>
+        {/* Disclaimer — centered at bottom */}
+        <p style={{ fontSize: "0.73rem", color: T.olivePale, lineHeight: 1.6, fontStyle: "italic", textAlign: "center", maxWidth: "640px", margin: "0 auto" }}>
           These projections are intended for educational purposes and are based on emerging labor market and technology trends. The future of work is constantly evolving, and no career path can be predicted with certainty.
         </p>
 
       </div>
-      <style>{`.io-tooltip:hover .io-tooltip-box { opacity: 1 !important; visibility: visible !important; }`}</style>
+      <style>{`
+        .io-tooltip:hover .io-tooltip-box { opacity: 1 !important; visibility: visible !important; }
+        @media(max-width:900px){ #career-outlook > div > div:first-of-type { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }
+      `}</style>
     </section>
   );
 }

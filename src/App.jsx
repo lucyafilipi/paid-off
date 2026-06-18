@@ -1654,7 +1654,7 @@ function AboutPage({ onNavigate }) {
         {/* Divider */}
         <div style={{ height: "1px", background: T.border, margin: "4rem 0" }} />
 
-        {/* Let's Connect */}
+        {/* Connect */}
         <div style={{
           background: T.sage,
           borderRadius: "12px",
